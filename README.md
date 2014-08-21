@@ -4,6 +4,7 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 
 - It doesn't have to transport cookbooks via scp,rsync or something.
 - It can collect node object into local chef-repo.
+- It supports all functioanly of chef(C/S).
 - You have only to manage one chef-repo.
 
 ## Requirements
@@ -75,7 +76,7 @@ host.example.com
 
 Search nodes from local chef-repo directory, and run command at remote node.
 
-Supported options are mostly the same as `knife bootstrap`.
+Supported options are mostly the same as `knife ssh`.
 
 > Pending
 
