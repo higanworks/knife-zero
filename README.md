@@ -92,8 +92,15 @@ Search and update node by `knife exec`(I will implement them into plugin.).
 $ knife exec --local-mode -E 'nodes.all {|n| system "ssh -R8889:127.0.0.1:8889 #{n.ipaddress} chef-client -S http://127.0.0.1:8889" }'
 ```
 
+Seach and execute command via ssh by knife ssh.
 
-### SSH
+```
+$ knife ssh 'hostname:*' --local-mode uptime --attribute ipaddress 
+xxx.xxx.xxx.xxx  08:41:36 up  1:03,  1 user,  load average: 0.00, 0.01, 0.01
+xxx.xxx.xxx.xxx  08:41:37 up 143 days,  2:32,  4 users,  load average: 0.00, 0.01, 0.05
+```
+
+### Update(pending)
 
 Search nodes from local chef-repo directory, and run command at remote node.
 
