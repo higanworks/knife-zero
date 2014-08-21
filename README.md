@@ -1,5 +1,7 @@
 # Knife-Plugin Zero
 
+[![Gem Version](https://badge.fury.io/rb/knife-zero.svg)](http://badge.fury.io/rb/knife-zero)
+
 Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port fowarding.
 
 - It doesn't have to transport cookbooks via scp,rsync or something.
