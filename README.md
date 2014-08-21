@@ -70,6 +70,20 @@ host.example.com Chef Client finished, 0/0 resources updated in 4.895561879 seco
  $ ls nodes/host.example.com.json 
 nodes/host.example.com.json
 host.example.com
+
+## Search by knife with --local--mode option.
+$ bundle exec knife search node --local-mode
+1 items found
+
+Node Name:   host.example.com
+Environment: _default
+FQDN:        
+IP:          xxx.xxx.xxx.xxx
+Run List:    recipe[hogehoge::default]
+Roles:       
+Recipes:     hogehoge::default
+Platform:    ubuntu 12.04
+Tags:        
 ```
 
 ### SSH
