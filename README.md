@@ -13,8 +13,6 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 
 ## Installation
 
-> This gem has not been released yet.
-
 Add this line to your application's Gemfile:
 
     gem 'knife-zero'
