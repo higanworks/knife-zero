@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["sawanoboly"]
   spec.email         = ["sawanoboriyu@higanworks.com"]
   spec.summary       = %q{Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port fowarding.}
-  spec.description   = File.read('README.md')
+  spec.description   = %q{Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port fowarding.}
   spec.homepage      = ""
   spec.license       = "Apache2"
 
