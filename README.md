@@ -41,6 +41,8 @@ Supported options are mostly the same as `knife bootstrap`.
 
 #### Example
 
+Bootstrap with run-list.
+
 ```
 $ bundle exec knife zero bootstrap host.example.com -r hogehoge::default --no-host-key-verify
 Connecting to host.example.com
@@ -83,6 +85,13 @@ Recipes:     hogehoge::default
 Platform:    ubuntu 12.04
 Tags:        
 ```
+
+Search and update node by `knife exec`(I will implement them into plugin.).
+
+```
+$ knife exec --local-mode -E 'nodes.all {|n| system "ssh -R8889:127.0.0.1:8889 #{n.ipaddress} chef-client -S http://127.0.0.1:8889" }'
+```
+
 
 ### SSH
 
