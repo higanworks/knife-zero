@@ -110,6 +110,19 @@ Supported options are mostly the same as `knife ssh`.
 
 > Pending
 
+## Sample Workflow
+
+1. create chef-repo directory.
+1. bundle init and add below.
+    - `gem 'chef'  `
+    - `gem 'knife-zero'`
+    - and cookbook management tool such as `Beakshelf` or `Librarian-Chef`.
+1. bundle   
+e.g.) `bundle install --path vendor/bundle --binstubs`
+1.  install cookbooks to `./cookbooks`. (if you need run recipe.)
+1. bootstrap on remote node.  
+`./bin/knife zero bootstrap host.example.com [-r "${your-run-list}"]`
+1. chef-client will run using resources on local chef-repo.
 
 ## Contributing
 
