@@ -58,6 +58,22 @@ class Chef
         end
       end
 
+      def knife_ssh
+        ssh = Chef::Knife::BootstrapSsh.new
+        ssh.ui = ui
+        ssh.name_args = [ server_name, ssh_command ] unless ssh.name_args.empty?
+        ssh.config[:ssh_user] = Chef::Config[:knife][:ssh_user] || config[:ssh_user]
+        ssh.config[:ssh_password] = config[:ssh_password]
+        ssh.config[:ssh_port] = Chef::Config[:knife][:ssh_port] || config[:ssh_port]
+        ssh.config[:ssh_gateway] = Chef::Config[:knife][:ssh_gateway] || config[:ssh_gateway]
+        ssh.config[:forward_agent] = Chef::Config[:knife][:forward_agent] || config[:forward_agent]
+        ssh.config[:identity_file] = Chef::Config[:knife][:identity_file] || config[:identity_file]
+        ssh.config[:manual] = true
+        ssh.config[:host_key_verify] = Chef::Config[:knife][:host_key_verify] || config[:host_key_verify]
+        ssh.config[:on_error] = :raise
+        ssh
+      end
+
       private
 
       def locate_config_value(key)

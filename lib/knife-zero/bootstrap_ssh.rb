@@ -3,8 +3,8 @@ require 'chef/knife/ssh'
 class Chef
   class Knife
     class BootstrapSsh < Chef::Knife::Ssh
-      def configure_session
-        host, ssh_port = @name_args[0].split(" ")
+      def configure_session(args = @name_args)
+        host, ssh_port = args[0].split(" ")
         @longest = host.length
 
         Chef::Log.debug("Configration for #{host}")
