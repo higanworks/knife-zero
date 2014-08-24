@@ -32,9 +32,10 @@ Or install it yourself as:
 ```
 ** ZERO COMMANDS **
 knife zero bootstrap FQDN (options)
+knife zero chef_client QUERY (options)
 ```
 
-### Bootstrap
+### knife zero bootstrap
 
 Install Chef to remote node and run chef-client under chef-zero via tcp-forward.
 
@@ -55,6 +56,7 @@ host.example.com Thank you for installing Chef!
 host.example.com Starting first Chef Client run...
 host.example.com Starting Chef Client, version 11.14.6
 host.example.com Creating a new client identity for host.example.com using the validator key.
+
 
 ## Resolv and sync cookbook via http over ssh tcp-forward by run-list.
 host.example.com resolving cookbooks for run list: ["hogehoge::default"]
@@ -102,13 +104,56 @@ xxx.xxx.xxx.xxx  08:41:36 up  1:03,  1 user,  load average: 0.00, 0.01, 0.01
 xxx.xxx.xxx.xxx  08:41:37 up 143 days,  2:32,  4 users,  load average: 0.00, 0.01, 0.05
 ```
 
-### Update(pending)
+### knife zero chef_client (for update)
+
+`knife zero chef_client QUERY (options)`
 
 Search nodes from local chef-repo directory, and run command at remote node.
 
 Supported options are mostly the same as `knife ssh`.
 
-> Pending
+#### Example
+
+```
+## Chef-Repo has two nodes
+$ knife node list --local-mode
+host.example.com
+host2.example.com
+
+## add recipe to run_list of host.example.com
+$ knife node run_list add host.example.com hogehoge::default --local-mode
+host.example.com:
+  run_list: recipe[hogehoge::default]
+
+
+$ knife zero chef_client 'name:*' --attribute ipaddress 
+
+## host.example.com was converged by run_list.
+host.example.com Starting Chef Client, version 11.14.6
+host.example.com resolving cookbooks for run list: ["hogehoge::default"]
+host.example.com Synchronizing Cookbooks:
+host.example.com   - hogehoge
+host.example.com Compiling Cookbooks...
+host.example.com Converging 0 resources
+host.example.com 
+host.example.com Running handlers:
+host.example.com Running handlers complete
+host.example.com Chef Client finished, 0/0 resources updated in 3.112708185 seconds
+
+
+## host2.example.com has no run_list.
+host2.example.com Starting Chef Client, version 11.14.2
+host2.example.com resolving cookbooks for run list: []
+host2.example.com Synchronizing Cookbooks:
+host2.example.com Compiling Cookbooks...
+host2.example.com [2014-08-24T11:52:15+00:00] WARN: Node ngrok01.xenzai.net has an empty run list.
+host2.example.com Converging 0 resources
+host2.example.com 
+host2.example.com Running handlers:
+host2.example.com Running handlers complete
+host2.example.com Chef Client finished, 0/0 resources updated in 3.729471856 seconds
+```
+
 
 ## Sample Workflow
 
