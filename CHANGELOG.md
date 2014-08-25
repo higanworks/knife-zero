@@ -2,6 +2,10 @@
 
 ## v0.1.1
 
+- Update: Issue #2 Support sudo for zero chef-client
+
+## v0.1.1
+
 - Bug: Issue #1 NoMethodError: undefined method 'split' for nil:NilClass at bootstrap
 
 ## v0.1.0 (yanked)
