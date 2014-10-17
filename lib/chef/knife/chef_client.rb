@@ -48,6 +48,7 @@ class Chef
         s = "#{client_path}"
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:8889"
+        s << " -W" if @config[:why_run]
         s
       end
     end

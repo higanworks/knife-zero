@@ -11,6 +11,7 @@ class Chef
              s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
              s << " -E #{bootstrap_environment}" if chef_version.to_f != 0.9 # only use the -E option on Chef 0.10+
              s << " -S http://127.0.0.1:8889"
+             s << " -W" if @config[:why_run]
              s
            end
          end
