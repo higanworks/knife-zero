@@ -1,10 +1,11 @@
 require 'chef/knife'
 require 'chef/knife/bootstrap'
+require 'chef/knife/zero_base'
 
 class Chef
   class Knife
     class ZeroBootstrap < Chef::Knife::Bootstrap
-      include ZeroBase
+      include Chef::Knife::ZeroBase
       deps do
         require 'knife-zero/bootstrap_ssh'
         Chef::Knife::BootstrapSsh.load_deps
