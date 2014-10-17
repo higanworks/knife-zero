@@ -1,8 +1,8 @@
 # Changelog of knife-zero
 
-## v0.3.0dev
+## v0.3.0.pre
 
-- Feature: run parallel(only chef_client).
+- Feature: chef_client run parallel.
 
 ## v0.2.0
 
