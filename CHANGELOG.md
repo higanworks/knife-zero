@@ -1,6 +1,14 @@
 # Changelog of knife-zero
 
-## v0.1.1
+## v0.2.0
+
+- Feature: Support Why-run.
+
+## v0.1.3
+
+- Bug: require zero_base HT: @Yasushi
+
+## v0.1.2
 
 - Update: Issue #2 Support sudo for zero chef-client
 

@@ -55,6 +55,12 @@ class Chef
             :boolean => true,
             :default => true
 
+          option :why_run,
+            :short        => '-W',
+            :long         => '--why-run',
+            :description  => 'Enable whyrun mode on chef-client run at remote node.',
+            :boolean      => true
+
         end
       end
 
