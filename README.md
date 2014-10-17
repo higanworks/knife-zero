@@ -125,7 +125,7 @@ Supported options are mostly the same as `knife ssh`.
 
 ```
 -W, --why-run                    Enable whyrun mode on chef-client run at remote node.
--C, --concurrency NUMBER         Number of concurrency. (default: 1) ; not avaiable on some platforms like Windows and NetBSD 4.
+-C, --concurrency NUMBER         (0.3.0 or later) Number of concurrency. (default: 1) ; not avaiable on some platforms like Windows and NetBSD 4.
 ```
 
 #### Example
