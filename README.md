@@ -44,7 +44,12 @@ knife zero chef_client QUERY (options)
 Install Chef to remote node and run chef-client under chef-zero via tcp-forward.
 
 Supported options are mostly the same as `knife bootstrap`.
-And it supports why-run(`-W, --why-run`).
+
+#### Specific options(s)
+
+```
+-W, --why-run                    Enable whyrun mode on chef-client run at remote node.
+```
 
 #### Example
 
@@ -115,7 +120,13 @@ xxx.xxx.xxx.xxx  08:41:37 up 143 days,  2:32,  4 users,  load average: 0.00, 0.0
 Search nodes from local chef-repo directory, and run command at remote node.
 
 Supported options are mostly the same as `knife ssh`.
-And it supports why-run(`-W, --why-run`).
+
+#### Specific options(s)
+
+```
+-W, --why-run                    Enable whyrun mode on chef-client run at remote node.
+-C, --concurrency NUMBER         Number of concurrency. (default: 1) ; not avaiable on some platforms like Windows and NetBSD 4.
+```
 
 #### Example
 
