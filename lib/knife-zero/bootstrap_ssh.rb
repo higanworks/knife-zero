@@ -12,7 +12,7 @@ class Chef
                         '127.0.0.1'
         (subsession || session).servers.each do |server|
           session = server.session(true)
-          session.forward.remote(8889, chef_zero_host, chef_zero_port)
+          session.forward.remote(8889, chef_zero_host, chef_zero_port) if session.respond_to?(:forward)
         end
         super
       end
