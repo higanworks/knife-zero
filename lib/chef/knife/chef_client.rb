@@ -33,7 +33,7 @@ class Chef
       option :concurrency,
         :short => "-C NUMBER",
         :long => "--concurrency NUMBER",
-        :description => "Number of concurrency. (default: 1) ; not avaiable on some platforms like Windows and NetBSD 4.",
+        :description => "Number of concurrency. (default: 1)",
         :proc => lambda { |s| s.to_i },
         :default => 1
 
@@ -46,22 +46,14 @@ class Chef
 
         pids = []
         list.each do |n|
-          # Note: fork(2) is not avaiable on some platforms like Windows and NetBSD 4. 
-          if (Process.respond_to?(:fork) && !Chef::Platform.windows?)
-            pids << Process.fork {
-              Chef::Log.debug("Start session for #{n}")
-              session = knife_ssh
-              session.configure_session(n)
-              session.ssh_command(start_chef_client)
-            }
-            until count_alive_pids(pids) < @config[:concurrency]
-              sleep 1
-            end
-          else
+          pids << Process.fork {
             Chef::Log.debug("Start session for #{n}")
             session = knife_ssh
             session.configure_session(n)
             session.ssh_command(start_chef_client)
+          }
+          until count_alive_pids(pids) < @config[:concurrency]
+            sleep 1
           end
         end
 
