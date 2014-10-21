@@ -1,20 +1,20 @@
 require 'chef/knife'
 require 'chef/knife/zero_base'
+require 'knife-zero/bootstrap_ssh'
 
 class Chef
   class Knife
-    class ZeroChefClient < Chef::Knife::Ssh
+    class ZeroChefClient < Chef::Knife::BootstrapSsh
       include Chef::Knife::ZeroBase
-      deps do
-        require 'chef/node'
-        require 'chef/environment'
-        require 'chef/api_client'
-        require 'chef/search/query'
-        require 'knife-zero/bootstrap_ssh'
-        Chef::Knife::BootstrapSsh.load_deps
-      end
 
       banner "knife zero chef_client QUERY (options)"
+
+      option :concurrency,
+        :short => "-C NUM",
+        :long => "--concurrency NUM",
+        :description => "The number of concurrent connections",
+        :default => nil,
+        :proc => lambda { |o| o.to_i }
 
       option :attribute,
         :short => "-a ATTR",
@@ -27,24 +27,14 @@ class Chef
         :description => "execute the chef-client via sudo",
         :boolean => true
 
-      def run
-        configure_attribute
-        configure_user
-        configure_password
-        configure_identity_file
-        list = search_nodes
-
-        list.each do |n|
-          Chef::Log.debug("Start session for #{n}")
-          session = knife_ssh
-          session.configure_session(n)
-          session.ssh_command(start_chef_client)
-        end
+      def initialize(argv=[])
+        super
+        @name_args = [@name_args[0], start_chef_client]
       end
 
       def start_chef_client
         client_path = @config[:use_sudo] ? 'sudo ' : ''
-        client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}chef-client" 
+        client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}chef-client"
         s = "#{client_path}"
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:8889"

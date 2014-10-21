@@ -7,8 +7,8 @@ class Chef
     class ZeroBootstrap < Chef::Knife::Bootstrap
       include Chef::Knife::ZeroBase
       deps do
+        require 'knife-zero/core/bootstrap_context'
         require 'knife-zero/bootstrap_ssh'
-        Chef::Knife::BootstrapSsh.load_deps
       end
 
       banner "knife zero bootstrap FQDN (options)"
@@ -126,11 +126,6 @@ class Chef
         ssh.config[:host_key_verify] = Chef::Config[:knife][:host_key_verify] || config[:host_key_verify]
         ssh.config[:on_error] = :raise
         ssh
-      end
-
-      alias :default_run :run
-      def run
-        default_run
       end
     end
   end
