@@ -35,15 +35,11 @@ class Chef
         list = search_nodes
 
         list.each do |n|
-          Process.fork {
-            Chef::Log.debug("Start session for #{n}")
-            session = knife_ssh
-            session.configure_session(n)
-            session.ssh_command(start_chef_client)
-          }
+          Chef::Log.debug("Start session for #{n}")
+          session = knife_ssh
+          session.configure_session(n)
+          session.ssh_command(start_chef_client)
         end
-
-        Process.waitall
       end
 
       def start_chef_client
