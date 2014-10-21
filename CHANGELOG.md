@@ -1,9 +1,5 @@
 # Changelog of knife-zero
 
-## v0.3.0dev
-
-- Feature: run parallel(only chef_client).
-
 ## v0.2.0
 
 - Feature: Support Why-run.

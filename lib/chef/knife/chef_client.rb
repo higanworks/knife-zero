@@ -1,13 +1,10 @@
 require 'chef/knife'
 require 'chef/knife/zero_base'
-require 'knife-zero/helper'
 
 class Chef
   class Knife
     class ZeroChefClient < Chef::Knife::Ssh
       include Chef::Knife::ZeroBase
-      include ::Knife::Zero::Helper
-
       deps do
         require 'chef/node'
         require 'chef/environment'
@@ -30,13 +27,6 @@ class Chef
         :description => "execute the chef-client via sudo",
         :boolean => true
 
-      option :concurrency,
-        :short => "-C NUMBER",
-        :long => "--concurrency NUMBER",
-        :description => "Number of concurrency. (default: 1)",
-        :proc => lambda { |s| s.to_i },
-        :default => 1
-
       def run
         configure_attribute
         configure_user
@@ -44,21 +34,16 @@ class Chef
         configure_identity_file
         list = search_nodes
 
-        pids = []
         list.each do |n|
-          pids << Process.fork {
+          Process.fork {
             Chef::Log.debug("Start session for #{n}")
             session = knife_ssh
             session.configure_session(n)
             session.ssh_command(start_chef_client)
           }
-          until count_alive_pids(pids) < @config[:concurrency]
-            sleep 1
-          end
         end
 
-        result = Process.waitall
-        ## NOTE: should report if includes fail...?
+        Process.waitall
       end
 
       def start_chef_client
