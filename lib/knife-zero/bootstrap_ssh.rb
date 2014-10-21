@@ -3,6 +3,11 @@ require 'chef/knife/ssh'
 class Chef
   class Knife
     class BootstrapSsh < Chef::Knife::Ssh
+      deps do
+        Chef::Knife::Ssh.load_deps
+        require "knife-zero/net-ssh-multi-patch"
+      end
+
       def ssh_command(command, subsession=nil)
         chef_zero_port = config[:chef_zero_port] ||
                          Chef::Config[:knife][:chef_zero_port] ||
@@ -19,4 +24,3 @@ class Chef
     end
   end
 end
-

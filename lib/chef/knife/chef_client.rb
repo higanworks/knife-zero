@@ -6,6 +6,9 @@ class Chef
   class Knife
     class ZeroChefClient < Chef::Knife::BootstrapSsh
       include Chef::Knife::ZeroBase
+      deps do
+        Chef::Knife::BootstrapSsh.load_deps
+      end
 
       banner "knife zero chef_client QUERY (options)"
 

@@ -9,6 +9,7 @@ class Chef
       deps do
         require 'knife-zero/core/bootstrap_context'
         require 'knife-zero/bootstrap_ssh'
+        Chef::Knife::BootstrapSsh.load_deps
       end
 
       banner "knife zero bootstrap FQDN (options)"
