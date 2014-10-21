@@ -3,7 +3,7 @@
 ## v1.0.0
 
 - Code cleanup: use Chef::Knife::SSH framework. HT: @Yasushi
-- Feature: Support `-C, --concurrency` for zero chef_client.
+- Patch: Support forwarding in Net::SSH::Multi::PendingConnection. HT: @Yasushi
 
 ## v0.2.0
 
