@@ -1,5 +1,10 @@
 # Changelog of knife-zero
 
+## v1.0.0
+
+- Code cleanup: use Chef::Knife::SSH framework. HT: @Yasushi
+- Feature: Support `-C, --concurrency` for zero chef_client.
+
 ## v0.2.0
 
 - Feature: Support Why-run.
