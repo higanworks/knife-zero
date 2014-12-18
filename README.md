@@ -115,7 +115,10 @@ xxx.xxx.xxx.xxx  08:41:37 up 143 days,  2:32,  4 users,  load average: 0.00, 0.0
 Search nodes from local chef-repo directory, and run command at remote node.
 
 Supported options are mostly the same as `knife ssh`.
-And it supports why-run(`-W, --why-run`).
+And it supports below.
+
+- why-run(`-W, --why-run`)
+- Override run-list(`-o RunlistItem,RunlistItem, --override-runlist`). It skips save node.json on workstation.
 
 #### Example
 
