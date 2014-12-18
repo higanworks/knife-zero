@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## v1.0.1
+
+- Feature: Support override run-list for zero chef_client.
+
 ## v1.0.0
 
 - Code cleanup: use Chef::Knife::SSH framework. HT: @Yasushi
