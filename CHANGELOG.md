@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## v1.1.0
+
+- Upgrade: Remove chef version dependency.
+
 ## v1.0.1
 
 - Feature: Support override run-list for zero chef_client.
