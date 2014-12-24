@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## v1.1.1
+
+- Bugfix: use ::Chef::VERSION instead of chef_version
+
 ## v1.1.0
 
 - Upgrade: Remove chef version dependency.
