@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## v1.1.2
+
+- Bugfix: delete version line from bootstrap template
+
 ## v1.1.1
 
 - Bugfix: use ::Chef::VERSION instead of chef_version
