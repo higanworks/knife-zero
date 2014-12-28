@@ -177,6 +177,13 @@ e.g.) `bundle install --path vendor/bundle --binstubs`
 `./bin/knife zero bootstrap host.example.com [-r "${your-run-list}"]`
 1. chef-client will run using resources on local chef-repo.
 
+### Need test on Vagrant ?
+
+You can test cookbooks easily by Test-Kitchen before manage remote nodes instead of using knife-zero for vagrant VM.
+
+See [Getting Started knife-zero with test-kitchen](https://github.com/higanworks/knife-zero-with-kitchen).
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/knife-zero/fork )
