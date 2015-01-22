@@ -31,6 +31,14 @@ Or install it yourself as:
 
     $ gem install knife-zero
 
+### With Chef-DK
+
+Install via `chef gem` subcommand.
+
+```
+$ chef gem install knife-zero
+```
+
 ## Usage
 
 ```
