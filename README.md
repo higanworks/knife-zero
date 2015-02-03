@@ -192,6 +192,103 @@ You can test cookbooks easily by Test-Kitchen before manage remote nodes instead
 
 See [Getting Started knife-zero with test-kitchen](https://github.com/higanworks/knife-zero-with-kitchen).
 
+#### Or, Try knife-zero simply with Vagrant.
+
+Set local_mode as default to `knfie.rb`.
+
+```
+$ echo 'local_mode true' >> knife.rb
+```
+
+Add host-only network to vagrant vm(strongly recommended).
+
+```
+Vagrant.configure(2) do |config|
+  config.vm.box = "opscode-ubuntu-14.04"
+  config.vm.network "private_network", ip: "192.168.33.10"
+end
+```
+
+
+Retrieve ssh-config.
+
+```
+$ vagrant up
+$ vagrant ssh-config
+Host default
+  HostName 127.0.0.1
+  User vagrant
+  Port 2201
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile /Users/sawanoboriyu/worktemp/knife-zero-vagrant/.vagrant/machines/default/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+```
+
+Bootstrap with ssh options and `--sudo` to host-only address. 
+
+```
+$ knife zero bootstrap 192.168.33.10 -i /Users/sawanoboriyu/worktemp/knife-zero-vagrant/.vagrant/machines/default/virtualbox/private_key -x vagrant --sudo
+WARN: No cookbooks directory found at or above current directory.  Assuming /Users/sawanoboriyu/worktemp/knife-zero-vagrant.
+Connecting to 192.168.33.10
+192.168.33.10 Installing Chef Client...
+192.168.33.10 --2015-02-03 16:44:56--  https://www.opscode.com/chef/install.sh
+192.168.33.10 Resolving www.opscode.com (www.opscode.com)... 184.106.28.91
+192.168.33.10 Connecting to www.opscode.com (www.opscode.com)|184.106.28.91|:443... connected.
+192.168.33.10 HTTP request sent, awaiting response... 200 OK
+192.168.33.10 Length: 18285 (18K) [application/x-sh]
+192.168.33.10 Saving to: ‘STDOUT’
+192.168.33.10 
+100%[======================================>] 18,285      --.-K/s   in 0.002s  
+...
+```
+
+You can see node which was bootstrapped at list.
+
+```
+$ knife node list
+
+vagrant.vm
+```
+
+Set unique attribute to node by `node edit`, such as `chef_ip`.
+
+```
+$ knife node edit vagrant.vm
+{
+  "name": "vagrant.vm",
+  "chef_environment": "_default",
+  "normal": {
+    "chef_ip" : "192.168.33.10",
+    "tags": [
+
+    ]   
+  },  
+  "run_list": [
+
+]
+
+}
+```
+
+Run zero chef_client with `-a chef_ip` option. 
+
+```
+$ ./bin/knife zero chef_client "name:vagrant.vm" -x vagrant -i /Users/sawanoboriyu/worktemp/knife-zero-vagrant/.vagrant/machines/default/virtualbox/private_key --sudo -a chef_ip 
+
+192.168.33.10 Starting Chef Client, version 12.0.3
+192.168.33.10 resolving cookbooks for run list: []
+192.168.33.10 Synchronizing Cookbooks:
+192.168.33.10 Compiling Cookbooks...
+192.168.33.10 [2015-02-03T17:03:37+00:00] WARN: Node vagrant.vm has an empty run list.
+192.168.33.10 Converging 0 resources
+192.168.33.10 
+192.168.33.10 Running handlers:
+192.168.33.10 Running handlers complete
+192.168.33.10 Chef Client finished, 0/0 resources updated in 6.245413202 seconds
+```
 
 ## Contributing
 
