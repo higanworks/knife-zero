@@ -325,8 +325,16 @@ $ ./bin/knife zero chef_client "name:vagrant.vm" -x vagrant -i ./.vagrant/machin
 192.168.33.10 Chef Client finished, 0/0 resources updated in 6.245413202 seconds
 ```
 
+#### Case: don't use name or specific attribute..?
 
+For example, you can use ipv4 of eth1(or others) like below.
 
+```
+$ knife zero chef_client "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a network.interfaces.eth1.addresses.keys.rotate.first
+
+192.168.33.10 Starting Chef Client, version 12.0.3
+192.168.33.10 resolving cookbooks for run list: []
+```
 
 ## Contributing
 
