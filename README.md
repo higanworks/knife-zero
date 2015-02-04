@@ -192,7 +192,7 @@ You can test cookbooks easily by Test-Kitchen before manage remote nodes instead
 
 See [Getting Started knife-zero with test-kitchen](https://github.com/higanworks/knife-zero-with-kitchen).
 
-#### Or, Try knife-zero simply with Vagrant.
+### Or, Try knife-zero simply with Vagrant.
 
 Set local_mode as default to `knfie.rb`.
 
@@ -227,10 +227,45 @@ Host default
   LogLevel FATAL
 ```
 
+#### Case: Use name as address for ssh
+
+Bootstrap with ssh options and `--sudo` to host-only address. And set ipaddress to name with `-N` option.
+
+```
+$ ./bin/knife zero bootstrap 192.168.33.10 -i ./.vagrant/machines/default/virtualbox/private_key -N 192.168.33.10 -x vagrant --sudo
+
+WARN: No cookbooks directory found at or above current directory.  Assuming /Users/sawanoboriyu/worktemp/knife-zero-vagrant.
+Connecting to 192.168.33.10
+192.168.33.10 Installing Chef Client...
+
+...
+```
+
+Run zero chef_client with `-a name` option.
+
+```
+$ knife zero chef_client "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a name
+WARN: No cookbooks directory found at or above current directory.  Assuming /Users/sawanoboriyu/worktemp/knife-zero-vagrant.
+192.168.33.10 Starting Chef Client, version 12.0.3
+192.168.33.10 resolving cookbooks for run list: []
+192.168.33.10 Synchronizing Cookbooks:
+192.168.33.10 Compiling Cookbooks...
+192.168.33.10 [2015-02-04T04:08:04+00:00] WARN: Node 192.168.33.10 has an empty run list.
+192.168.33.10 Converging 0 resources
+192.168.33.10 
+192.168.33.10 Running handlers:
+192.168.33.10 Running handlers complete
+192.168.33.10 Chef Client finished, 0/0 resources updated in 6.571334535 seconds
+...
+```
+
+#### Case: Set specific attribute for ssh
+
 Bootstrap with ssh options and `--sudo` to host-only address. 
 
 ```
-$ knife zero bootstrap 192.168.33.10 -i /Users/sawanoboriyu/worktemp/knife-zero-vagrant/.vagrant/machines/default/virtualbox/private_key -x vagrant --sudo
+$ knife zero bootstrap 192.168.33.10 -i ./.vagrant/machines/default/virtualbox/private_key -x vagrant --sudo
+
 WARN: No cookbooks directory found at or above current directory.  Assuming /Users/sawanoboriyu/worktemp/knife-zero-vagrant.
 Connecting to 192.168.33.10
 192.168.33.10 Installing Chef Client...
@@ -276,7 +311,7 @@ $ knife node edit vagrant.vm
 Run zero chef_client with `-a chef_ip` option. 
 
 ```
-$ ./bin/knife zero chef_client "name:vagrant.vm" -x vagrant -i /Users/sawanoboriyu/worktemp/knife-zero-vagrant/.vagrant/machines/default/virtualbox/private_key --sudo -a chef_ip 
+$ ./bin/knife zero chef_client "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a chef_ip 
 
 192.168.33.10 Starting Chef Client, version 12.0.3
 192.168.33.10 resolving cookbooks for run list: []
@@ -289,6 +324,9 @@ $ ./bin/knife zero chef_client "name:vagrant.vm" -x vagrant -i /Users/sawanobori
 192.168.33.10 Running handlers complete
 192.168.33.10 Chef Client finished, 0/0 resources updated in 6.245413202 seconds
 ```
+
+
+
 
 ## Contributing
 
