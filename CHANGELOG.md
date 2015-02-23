@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## v1.1.5
+
+- FIx: remove debug code.
+
 ## v1.1.4
 
 - Feature: support ssh/config on bootstrapping.

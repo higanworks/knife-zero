@@ -127,7 +127,6 @@ class Chef
         ssh.config[:manual] = true
         ssh.config[:host_key_verify] = Chef::Config[:knife][:host_key_verify] || config[:host_key_verify]
         ssh.config[:on_error] = :raise
-        puts ssh.config
         ssh
       end
     end
