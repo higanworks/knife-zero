@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## v1.1.4
+
+- Feature: support ssh/config on bootstrapping.
+
 ## v1.1.3
 
 - Feature: allow plural bootstrapping

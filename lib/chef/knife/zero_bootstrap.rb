@@ -117,6 +117,7 @@ class Chef
         ssh = Chef::Knife::BootstrapSsh.new
         ssh.ui = ui
         ssh.name_args = [ server_name, ssh_command ]
+        ssh.config = Net::SSH.configuration_for(server_name)
         ssh.config[:ssh_user] = Chef::Config[:knife][:ssh_user] || config[:ssh_user]
         ssh.config[:ssh_password] = config[:ssh_password]
         ssh.config[:ssh_port] = Chef::Config[:knife][:ssh_port] || config[:ssh_port]
@@ -126,6 +127,7 @@ class Chef
         ssh.config[:manual] = true
         ssh.config[:host_key_verify] = Chef::Config[:knife][:host_key_verify] || config[:host_key_verify]
         ssh.config[:on_error] = :raise
+        puts ssh.config
         ssh
       end
     end
