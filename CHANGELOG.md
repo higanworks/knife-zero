@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## v1.1.6
+
+- Minor update: update bootstrap template for chef 11,12
+
 ## v1.1.5
 
 - FIx: remove debug code.
