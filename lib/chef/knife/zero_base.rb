@@ -7,7 +7,6 @@ class Chef
         includer.class_eval do
           deps do
             Chef::Config[:local_mode] = true
-            Chef::Config[:validation_key] = './.chef/dummy.pem'
             Chef::Knife::Ssh.load_deps
           end
 
