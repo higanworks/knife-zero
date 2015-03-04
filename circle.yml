@@ -1,4 +1,7 @@
 ---
+machine:
+  ruby:
+    version: 2.1.5
 test:
   override:
     - ruby test/run_test.rb -v
