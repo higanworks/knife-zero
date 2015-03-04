@@ -12,6 +12,7 @@ if ENV['CIRCLE_ARTIFACTS']
   SimpleCov.coverage_dir(dir)
   SimpleCov.start do
     add_filter "/vendor/"
+    add_filter "/test/"
   end
 end
 
