@@ -1,5 +1,4 @@
-require 'chef/knife/chef_client'
-
+require 'chef/knife/zero_chef_client'
 class TC_ZeroChefClient < Test::Unit::TestCase
   sub_test_case "called with no options" do
     def setup

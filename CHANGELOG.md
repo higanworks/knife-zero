@@ -1,5 +1,9 @@
 # Changelog of knife-zero
 
+## Unrelesed
+
+- change filename knife/chef_client to zero_chef_client
+
 ## v1.1.6
 
 - Minor update: update bootstrap template for chef 11,12
