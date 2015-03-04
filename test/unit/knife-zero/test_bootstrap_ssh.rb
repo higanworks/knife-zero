@@ -1,4 +1,4 @@
-require 'chef/knife-zero/bootstrap_ssh'
+require 'knife-zero/bootstrap_ssh'
 
 class TC_BootstrapSsh < Test::Unit::TestCase
   def setup

@@ -5,6 +5,7 @@ test_dir = File.join(base_dir, "test/unit")
 $LOAD_PATH.unshift(lib_dir)
 
 require 'test/unit'
+require 'test/unit/rr'
 require 'simplecov'
 require 'simplecov-rcov'
 
@@ -16,6 +17,8 @@ if ENV['CIRCLE_ARTIFACTS']
     add_filter "/vendor/"
     add_filter "/test/"
   end
+else
+  require "test/unit/notify"
 end
 
 exit Test::Unit::AutoRunner.run(true, test_dir)

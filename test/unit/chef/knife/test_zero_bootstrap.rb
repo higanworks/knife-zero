@@ -5,10 +5,25 @@ class TC_ZeroBootstrap < Test::Unit::TestCase
     def setup
       @app = Chef::Knife::ZeroBootstrap.new
       @app.merge_configs
+      require 'chef/knife/ssh'
+      Chef::Knife::ZeroBootstrap.load_deps
     end
 
     test "returns changed value from core" do
-      assert_equal(@app.config[:distro], "chef-full-localmode")
+      assert_equal("chef-full-localmode", @app.config[:distro])
+    end
+
+    test "returns BootstrapSsh via knife_ssh" do
+      ssh = @app.knife_ssh
+      assert_kind_of(Chef::Knife::BootstrapSsh, ssh)
+    end
+
+    sub_test_case "overwrite ssh_configration from ssh/config" do
+      test "overwrite port number" do
+        stub(Net::SSH).configuration_for { {port: 10022} }
+        ssh = @app.knife_ssh
+        assert_equal(10022, ssh.config[:port])
+      end
     end
   end
 end
