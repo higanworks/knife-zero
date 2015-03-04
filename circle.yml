@@ -1,0 +1,4 @@
+---
+test:
+  override:
+    - ruby test/run_test.rb -v
