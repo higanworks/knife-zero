@@ -10,7 +10,9 @@ require 'simplecov'
 if ENV['CIRCLE_ARTIFACTS']
   dir = File.join("..", "..", "..", ENV['CIRCLE_ARTIFACTS'], "coverage")
   SimpleCov.coverage_dir(dir)
-  SimpleCov.start
+  SimpleCov.start do
+    add_filter "/vendor/"
+  end
 end
 
 exit Test::Unit::AutoRunner.run(true, test_dir)
