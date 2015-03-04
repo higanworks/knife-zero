@@ -6,10 +6,12 @@ $LOAD_PATH.unshift(lib_dir)
 
 require 'test/unit'
 require 'simplecov'
+require 'simplecov-rcov'
 
 if ENV['CIRCLE_ARTIFACTS']
   dir = File.join("..", "..", "..", ENV['CIRCLE_ARTIFACTS'], "coverage")
   SimpleCov.coverage_dir(dir)
+  SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
   SimpleCov.start do
     add_filter "/vendor/"
     add_filter "/test/"
