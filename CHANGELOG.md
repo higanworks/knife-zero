@@ -2,7 +2,10 @@
 
 ## Unrelesed
 
+## v1.2.0
+
 - change filename knife/chef_client to zero_chef_client
+- New function diagnose
 
 ## v1.1.6
 
