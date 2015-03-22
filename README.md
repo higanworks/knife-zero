@@ -45,6 +45,7 @@ $ chef gem install knife-zero
 ** ZERO COMMANDS **
 knife zero bootstrap FQDN (options)
 knife zero chef_client QUERY (options)
+knife zero diagnose # show configuration from file
 ```
 
 ### knife zero bootstrap
@@ -335,6 +336,58 @@ $ knife zero chef_client "name:*" -x vagrant -i ./.vagrant/machines/default/virt
 192.168.33.10 Starting Chef Client, version 12.0.3
 192.168.33.10 resolving cookbooks for run list: []
 ```
+
+## Debug for Configration
+
+`knife zero diagnose` shows configration from file(Such as knife.rb).
+
+```
+$ knife zero diagnose
+
+Chef::Config
+====================
+---
+:local_mode: true
+:verbosity: 
+:config_file: "/Users/sawanoboriyu/github/higanworks/knife-zero_plyglound/knife.rb"
+:color: true
+:log_level: :error
+:chef_repo_path: "/Users/sawanoboriyu/github/higanworks/knife-zero_plyglound"
+:log_location: !ruby/object:IO {}
+:chef_server_url: http://localhost:8889
+:repo_mode: everything
+
+Knife::Config
+====================
+---
+:verbosity: 0
+:color: true
+:editor: vim
+:disable_editing: false
+:format: summary
+:ssh_user: root
+:host_key_verify: true
+:config_file: "/Users/sawanoboriyu/github/higanworks/knife-zero_plyglound/knife.rb"
+
+Zero Boostrap Config
+====================
+---
+:ssh_user: root
+:host_key_verify: true
+:distro: chef-full-localmode
+:template_file: false
+:run_list: []
+:first_boot_attributes: {}
+
+Zero ChefClient Config
+====================
+---
+:ssh_user: root
+:host_key_verify: true
+:concurrency: 
+:override_runlist: 
+```
+
 
 ## Contributing
 
