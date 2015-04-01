@@ -2,6 +2,10 @@
 
 ## Unrelesed
 
+## v1.2.1
+
+- set rescue for debug during ssh session.
+
 ## v1.2.0
 
 - change filename knife/chef_client to zero_chef_client

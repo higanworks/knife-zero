@@ -9,6 +9,7 @@ class Chef
       end
 
       def ssh_command(command, subsession=nil)
+        begin
         chef_zero_port = config[:chef_zero_port] ||
                          Chef::Config[:knife][:chef_zero_port] ||
                          URI.parse(Chef::Config.chef_server_url).port
@@ -20,6 +21,11 @@ class Chef
           session.forward.remote(chef_zero_port, chef_zero_host, chef_zero_port)
         end
         super
+        rescue => e
+          ui.error(e.class.to_s + e.message)
+          ui.error e.backtrace.join("\n")
+          exit 1
+        end
       end
     end
   end

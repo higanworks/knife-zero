@@ -114,6 +114,7 @@ class Chef
         :proc        => Proc.new { |co| Chef::Config[:knife][:bootstrap_curl_options] = co }
 
       def knife_ssh
+        begin
         ssh = Chef::Knife::BootstrapSsh.new
         ssh.ui = ui
         ssh.name_args = [ server_name, ssh_command ]
@@ -128,6 +129,11 @@ class Chef
         ssh.config[:host_key_verify] = Chef::Config[:knife][:host_key_verify] || config[:host_key_verify]
         ssh.config[:on_error] = :raise
         ssh
+        rescue => e
+          ui.error(e.class.to_s + e.message)
+          ui.error e.backtrace.join("\n")
+          exit 1
+        end
       end
     end
   end
