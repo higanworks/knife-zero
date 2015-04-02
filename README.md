@@ -1,5 +1,7 @@
 # Knife-Plugin Zero
 
+[![Circle CI](https://circleci.com/gh/higanworks/knife-zero.svg?style=svg)](https://circleci.com/gh/higanworks/knife-zero)
+
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/higanworks/knife-zero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Gem Version](https://badge.fury.io/rb/knife-zero.svg)](http://badge.fury.io/rb/knife-zero)
