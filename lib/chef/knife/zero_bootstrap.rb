@@ -43,7 +43,7 @@ class Chef
         :short => "-d DISTRO",
         :long => "--distro DISTRO",
         :description => "Bootstrap a distro using a template",
-        :default => "chef-full-localmode"
+        :default => "chef-full"
 
       option :use_sudo,
         :long => "--sudo",
