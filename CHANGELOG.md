@@ -2,6 +2,13 @@
 
 ## Unrelesed
 
+## v1.3.0
+
+- return dummy key to validation.
+- remove bootstrap template chef-full-localmode. use chef-full by default.
+- create around alias for validation_key and start_chef to bootstrap_context.
+- set true to Chef::Config[:knife_zero] for bootstrap_context.
+
 ## v1.2.1
 
 - set rescue for debug during ssh session.

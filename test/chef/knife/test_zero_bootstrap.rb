@@ -9,8 +9,12 @@ class TC_ZeroBootstrap < Test::Unit::TestCase
       Chef::Knife::ZeroBootstrap.load_deps
     end
 
+    test "returns true from Chef::Config[:knife_zero]" do
+      assert_true(Chef::Config[:knife_zero])
+    end
+
     test "returns changed value from core" do
-      assert_equal("chef-full-localmode", @app.config[:distro])
+      assert_equal("chef-full", @app.config[:distro])
     end
 
     test "returns BootstrapSsh via knife_ssh" do
