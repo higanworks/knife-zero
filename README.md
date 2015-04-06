@@ -246,6 +246,10 @@ Connecting to 192.168.33.10
 
 Run zero chef_client with `-a name` option.
 
+> Caution: `-a(--attribute) name` option doesn't work since chef 12.1.0.
+> Please use specific attribute until fix it.
+> I've already create PR for fix. Please wait for merge to use name attribute. https://github.com/chef/chef/pull/3195
+
 ```
 $ knife zero chef_client "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a name
 WARN: No cookbooks directory found at or above current directory.  Assuming /Users/sawanoboriyu/worktemp/knife-zero-vagrant.
