@@ -2,6 +2,11 @@
 
 ## Unrelesed
 
+## v1.4.0
+
+- Change: remote listen by local chef-zero port + 10000
+- Feature: overrde Remote Chef-Zero port.
+
 ## v1.3.0
 
 - return dummy key to validation.
