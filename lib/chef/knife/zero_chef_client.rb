@@ -9,6 +9,7 @@ class Chef
       deps do
         require 'chef/run_list/run_list_item'
         Chef::Knife::BootstrapSsh.load_deps
+        require "knife-zero/helper"
       end
 
       banner "knife zero chef_client QUERY (options)"
@@ -49,7 +50,7 @@ class Chef
         client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}chef-client"
         s = "#{client_path}"
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
-        s << " -S http://127.0.0.1:8889"
+        s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
         s << " -W" if @config[:why_run]
         s

@@ -57,6 +57,12 @@ class Chef
             :description  => 'Enable whyrun mode on chef-client run at remote node.',
             :boolean      => true
 
+          option :remote_chef_zero_port,
+            :long => "--remote-chef-zero-port PORT",
+            :description => "Listen port on remote",
+            :default => nil,
+            :proc => Proc.new { |key| Chef::Config[:remote_chef_zero_port] = key.to_i }
+
         end
       end
 

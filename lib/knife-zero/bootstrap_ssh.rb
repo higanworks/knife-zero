@@ -6,6 +6,7 @@ class Chef
       deps do
         Chef::Knife::Ssh.load_deps
         require "knife-zero/net-ssh-multi-patch"
+        require "knife-zero/helper"
       end
 
       def ssh_command(command, subsession=nil)
@@ -18,7 +19,7 @@ class Chef
                         '127.0.0.1'
         (subsession || session).servers.each do |server|
           session = server.session(true)
-          session.forward.remote(chef_zero_port, chef_zero_host, chef_zero_port)
+          session.forward.remote(chef_zero_port, chef_zero_host, ::Knife::Zero::Helper.zero_remote_port)
         end
         super
         rescue => e
