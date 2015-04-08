@@ -7,11 +7,11 @@ class TC_BootstrapContext < Test::Unit::TestCase
     app = Chef::Knife::ZeroBootstrap.new
     app.merge_configs
     @bsc = Chef::Knife::Core::BootstrapContext.new(app.config, [], Chef::Config.configuration)
-    stub(OpenSSL::PKey::RSA).new{"knfe-zerozero"}
+    stub(OpenSSL::PKey::RSA).new{"knife-zerozero"}
   end
 
   test "Should use aliased validation_key" do
-    assert_equal("knfe-zerozero", @bsc.validation_key)
+    assert_equal("knife-zerozero", @bsc.validation_key)
   end
 
   test "Should use aliased start_chef" do
