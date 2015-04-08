@@ -22,7 +22,7 @@ class TC_ZeroBootstrap < Test::Unit::TestCase
       assert_kind_of(Chef::Knife::BootstrapSsh, ssh)
     end
 
-    sub_test_case "overwrite ssh_configration from ssh/config" do
+    sub_test_case "overwrite ssh_configuration from ssh/config" do
       test "overwrite port number" do
         stub(Net::SSH).configuration_for { {port: 10022} }
         ssh = @app.knife_ssh

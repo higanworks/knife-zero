@@ -34,7 +34,7 @@ class Chef
         ui.msg config.to_yaml
         ui.msg ""
 
-        ui.msg "Zero Boostrap Config"
+        ui.msg "Zero Bootstrap Config"
         ui.msg "===================="
         bootstrap = Chef::Knife::ZeroBootstrap.new
         @bootstrap.merge_configs
