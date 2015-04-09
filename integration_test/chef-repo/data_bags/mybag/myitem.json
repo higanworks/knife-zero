@@ -1,0 +1,10 @@
+{
+  "id": "myitem",
+  "mydata": {
+    "encrypted_data": "RV/wGesLZ6LCH4+fAzsDA5Iklpjtz+Brebplv/f5FJc=\n",
+    "iv": "1r9eP6AKpdmIVSI+\n",
+    "auth_tag": "+broHbwV8ys4uH4HliJYzA==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}
