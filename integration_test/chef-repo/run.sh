@@ -6,12 +6,12 @@ set -e
 knife zero diagnose
 
 # Use Ipaddress
-knife zero bootstrap 127.0.0.1 -N zerohost -x docker -P docker --sudo -V
+knife helper exec boot_ipaddress
 knife node show zerohost
-knife zero chef_client "name:zerohost" -a ipaddress -x docker -P docker --sudo -V -o 'kzi::default'
+knife helper exec client_ipaddress
 
 # Use Name
-knife zero bootstrap 127.0.0.1 -N 127.0.0.1 -x docker -P docker --sudo -V
+knife helper exec boot_name
 knife node show 127.0.0.1
 ## Pending until merge https://github.com/chef/chef/pull/3195
-# knife zero chef_client "name:127.0.0.1" -a name -x docker -P docker --sudo -V -o 'kzi::default'
+# knife helper exec client_name

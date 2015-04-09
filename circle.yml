@@ -12,4 +12,4 @@ deployment:
     branch: integration_testedge
     commands:
       - docker build -t local/knife-zero .
-      - docker run -it local/knife-zero sh run.sh
+      - docker run -it --rm local/knife-zero sh run.sh

@@ -1,0 +1,27 @@
+---
+<% confset = { ipaddress: "zerohost", name: "127.0.0.1" } %>
+settings:
+  command_base: /usr/local/bin/knife
+
+commands:
+<% confset.each_pair do |target, node| %>
+  - name: boot_<%= target %>
+    command: zero bootstrap 127.0.0.1
+    condition:
+    options:
+      node-name: <%= node %>
+      ssh-user: docker
+      ssh-password: docker
+      sudo:
+      verbose:
+  - name: client_<%= target %>
+    command: zero chef_client
+    condition: 'name:<%= node %>'
+    options:
+      attribute: <%= target %>
+      override-runlist: 'kzi::default'
+      ssh-user: docker
+      ssh-password: docker
+      sudo:
+      verbose:
+<% end %>

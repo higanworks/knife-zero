@@ -19,6 +19,7 @@ WORKDIR /home/knife-zero
 
 RUN gem build knife-zero.gemspec
 RUN gem install -V -l knife-zero-*.gem
+RUN gem install -V knife-helper
 
 WORKDIR /chef-repo
 
