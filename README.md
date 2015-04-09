@@ -8,11 +8,11 @@
 [![Stories in Ready](https://badge.waffle.io/higanworks/knife-zero.svg?label=ready&title=Ready)](http://waffle.io/higanworks/knife-zero) 
 [![Stories in Progress](https://badge.waffle.io/higanworks/knife-zero.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/higanworks/knife-zero) 
 
-Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port fowarding.
+Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port forwarding.
 
 - It doesn't have to transport cookbooks via scp,rsync or something.
 - It can collect node object into local chef-repo.
-- It supports all functioanly of chef(C/S).
+- It supports all functions of chef(C/S).
 - You have only to manage one chef-repo.
 
 ## Requirements
@@ -73,7 +73,7 @@ host.example.com Starting Chef Client, version 11.14.6
 host.example.com Creating a new client identity for host.example.com using the validator key.
 
 
-## Resolv and sync cookbook via http over ssh tcp-forward by run-list.
+## Resolve and sync cookbook via http over ssh tcp-forward by run-list.
 host.example.com resolving cookbooks for run list: ["hogehoge::default"]
 host.example.com Synchronizing Cookbooks:
 host.example.com   - hogehoge
@@ -105,7 +105,7 @@ Platform:    ubuntu 12.04
 Tags:        
 ```
 
-Seach and execute command via ssh by knife ssh.
+Search and execute command via ssh by knife ssh.
 
 ```
 $ knife ssh 'hostname:*' --local-mode uptime --attribute ipaddress 
@@ -181,7 +181,7 @@ host2.example.com Chef Client finished, 0/0 resources updated in 3.729471856 sec
 1. bundle init and add below.
     - `gem 'chef'  `
     - `gem 'knife-zero'`
-    - and cookbook management tool such as `Beakshelf` or `Librarian-Chef`.
+    - and cookbook management tool such as `Berkshelf` or `Librarian-Chef`.
 1. bundle   
 e.g.) `bundle install --path vendor/bundle --binstubs`
 1.  install cookbooks to `./cookbooks`. (if you need run recipe.)
@@ -197,7 +197,7 @@ See [Getting Started knife-zero with test-kitchen](https://github.com/higanworks
 
 ### Or, Try knife-zero simply with Vagrant.
 
-Set local_mode as default to `knfie.rb`.
+Set local_mode as default to `knife.rb`.
 
 ```
 $ echo 'local_mode true' >> knife.rb
@@ -343,9 +343,9 @@ $ knife zero chef_client "name:*" -x vagrant -i ./.vagrant/machines/default/virt
 192.168.33.10 resolving cookbooks for run list: []
 ```
 
-## Debug for Configration
+## Debug for Configuration
 
-`knife zero diagnose` shows configration from file(Such as knife.rb).
+`knife zero diagnose` shows configuration from file(Such as knife.rb).
 
 ```
 $ knife zero diagnose
@@ -355,10 +355,10 @@ Chef::Config
 ---
 :local_mode: true
 :verbosity: 
-:config_file: "/Users/sawanoboriyu/github/higanworks/knife-zero_plyglound/knife.rb"
+:config_file: "/Users/sawanoboriyu/github/higanworks/knife-zero_playground/knife.rb"
 :color: true
 :log_level: :error
-:chef_repo_path: "/Users/sawanoboriyu/github/higanworks/knife-zero_plyglound"
+:chef_repo_path: "/Users/sawanoboriyu/github/higanworks/knife-zero_playground"
 :log_location: !ruby/object:IO {}
 :chef_server_url: http://localhost:8889
 :repo_mode: everything
@@ -373,9 +373,9 @@ Knife::Config
 :format: summary
 :ssh_user: root
 :host_key_verify: true
-:config_file: "/Users/sawanoboriyu/github/higanworks/knife-zero_plyglound/knife.rb"
+:config_file: "/Users/sawanoboriyu/github/higanworks/knife-zero_playground/knife.rb"
 
-Zero Boostrap Config
+Zero Bootstrap Config
 ====================
 ---
 :ssh_user: root

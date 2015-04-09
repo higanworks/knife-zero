@@ -1,11 +1,11 @@
 # Changelog of knife-zero
 
-## Unrelesed
+## Unreleased
 
 ## v1.4.0
 
 - Change: remote listen by local chef-zero port + 10000
-- Feature: overrde Remote Chef-Zero port.
+- Feature: override Remote Chef-Zero port.
 
 ## v1.3.0
 
@@ -29,7 +29,7 @@
 
 ## v1.1.5
 
-- FIx: remove debug code.
+- Fix: remove debug code.
 
 ## v1.1.4
 
@@ -78,7 +78,7 @@
 
 ## v0.1.0 (yanked)
 
-- Feature: run Chef-Client by Seach query.
+- Feature: run Chef-Client by Search query.
 
 
 ## v0.0.2
