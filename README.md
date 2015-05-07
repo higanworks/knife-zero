@@ -198,6 +198,10 @@ See [Getting Started knife-zero with test-kitchen](https://github.com/higanworks
 
 ### Or, Try knife-zero simply with Vagrant.
 
+> **For Your Information** :  
+> If only you want to try `chef-zero` or `chef-client localmode` (For instance: migrate from chef-solo), You should use [chef-zero provisioner(Vagrant)](http://docs.vagrantup.com/v2/provisioning/chef_zero.html) with vagrant.
+> The knife-zero will provides similar usage with the chef-zero provisioner on vagrant, but for remote node.
+
 Set local_mode as default to `knife.rb`.
 
 ```
