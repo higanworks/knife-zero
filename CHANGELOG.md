@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.5.0
+
+- Feature: Support bootstrap as vault client(chef-vault).
+
 ## v1.4.0
 
 - Change: remote listen by local chef-zero port + 10000
