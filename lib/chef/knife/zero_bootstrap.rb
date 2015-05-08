@@ -14,6 +14,7 @@ class Chef
 
       banner "knife zero bootstrap FQDN (options)"
 
+      ## Just ported from chef bootstrap
       option :chef_node_name,
         :short => "-N NAME",
         :long => "--node-name NAME",
@@ -38,23 +39,19 @@ class Chef
         :description => "Do not proxy locations for the node being bootstrapped; this option is used internally by Opscode",
         :proc => Proc.new { |np| Chef::Config[:knife][:bootstrap_no_proxy] = np }
 
-      ## Patched
+      # DEPR: Remove this option in Chef 13
       option :distro,
         :short => "-d DISTRO",
         :long => "--distro DISTRO",
         :description => "Bootstrap a distro using a template",
         :default => "chef-full"
 
-      option :use_sudo,
-        :long => "--sudo",
-        :description => "Execute the bootstrap via sudo",
-        :boolean => true
+      option :bootstrap_template,
+        :short => "-t TEMPLATE",
+        :long => "--bootstrap-template TEMPLATE",
+        :description => "Bootstrap Chef using a built-in or custom template. Set to the full path of an erb template or use one of the built-in templates."
 
-      option :use_sudo_password,
-        :long => "--use-sudo-password",
-        :description => "Execute the bootstrap via sudo with password",
-        :boolean => false
-
+      # DEPR: Remove this option in Chef 13
       option :template_file,
         :long => "--template-file TEMPLATE",
         :description => "Full path to location of template to use",
@@ -112,6 +109,28 @@ class Chef
         :long        => "--bootstrap-curl-options OPTIONS",
         :description => "Add options to curl when install chef-client",
         :proc        => Proc.new { |co| Chef::Config[:knife][:bootstrap_curl_options] = co }
+
+
+      ## experimental: vault support
+      option :bootstrap_vault_file,
+        :long        => '--bootstrap-vault-file VAULT_FILE',
+        :description => 'A JSON file with a list of vault(s) and item(s) to be updated'
+
+      option :bootstrap_vault_json,
+        :long        => '--bootstrap-vault-json VAULT_JSON',
+        :description => 'A JSON string with the vault(s) and item(s) to be updated'
+
+      option :bootstrap_vault_item,
+        :long        => '--bootstrap-vault-item VAULT_ITEM',
+        :description => 'A single vault and item to update as "vault:item"',
+        :proc        => Proc.new { |i|
+          (vault, item) = i.split(/:/)
+          Chef::Config[:knife][:bootstrap_vault_item] ||= {}
+          Chef::Config[:knife][:bootstrap_vault_item][vault] ||= []
+          Chef::Config[:knife][:bootstrap_vault_item][vault].push(item)
+          Chef::Config[:knife][:bootstrap_vault_item]
+        }
+
 
       def knife_ssh
         begin

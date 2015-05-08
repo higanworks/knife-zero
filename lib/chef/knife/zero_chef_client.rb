@@ -27,11 +27,6 @@ class Chef
         :description => "The attribute to use for opening the connection - default depends on the context",
         :proc => Proc.new { |key| Chef::Config[:knife][:ssh_attribute] = key.strip }
 
-      option :use_sudo,
-        :long => "--sudo",
-        :description => "execute the chef-client via sudo",
-        :boolean => true
-
       option :override_runlist,
         :short        => "-o RunlistItem,RunlistItem...",
         :long         => "--override-runlist RunlistItem,RunlistItem...",
