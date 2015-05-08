@@ -11,6 +11,7 @@ class Chef
             Chef::Knife::Ssh.load_deps
           end
 
+          ## Just ported from chef
           option :ssh_user,
             :short => "-x USERNAME",
             :long => "--ssh-user USERNAME",
@@ -51,6 +52,17 @@ class Chef
             :boolean => true,
             :default => true
 
+          option :use_sudo,
+            :long => "--sudo",
+            :description => "execute the chef-client via sudo",
+            :boolean => true
+
+          option :use_sudo_password,
+            :long => "--use-sudo-password",
+            :description => "Execute the bootstrap via sudo with password",
+            :boolean => false
+
+          ## Added by Knife-Zero
           option :why_run,
             :short        => '-W',
             :long         => '--why-run',

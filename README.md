@@ -1,6 +1,7 @@
 # Knife-Plugin Zero
 
-[![Circle CI](https://circleci.com/gh/higanworks/knife-zero.svg?style=svg)](https://circleci.com/gh/higanworks/knife-zero)
+- current_master: [![Circle CI](https://circleci.com/gh/higanworks/knife-zero/tree/master.svg?style=svg)](https://circleci.com/gh/higanworks/knife-zero/tree/master)
+- integration_with_edge_chef: [![Circle CI](https://circleci.com/gh/higanworks/knife-zero/tree/integration_testedge.svg?style=svg)](https://circleci.com/gh/higanworks/knife-zero/tree/integration_testedge)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/higanworks/knife-zero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -196,6 +197,10 @@ You can test cookbooks easily by Test-Kitchen before manage remote nodes instead
 See [Getting Started knife-zero with test-kitchen](https://github.com/higanworks/knife-zero-with-kitchen).
 
 ### Or, Try knife-zero simply with Vagrant.
+
+> **For Your Information** :  
+> If only you want to try `chef-zero` or `chef-client localmode` (For instance: migrate from chef-solo), You should use [chef-zero provisioner(Vagrant)](http://docs.vagrantup.com/v2/provisioning/chef_zero.html) with vagrant.
+> The knife-zero will provides similar usage with the chef-zero provisioner on vagrant, but for remote node.
 
 Set local_mode as default to `knife.rb`.
 
