@@ -16,5 +16,4 @@ knife helper exec client_ipaddress --print-only
 knife helper exec boot_name --print-only
 knife helper exec boot_name
 knife node show 127.0.0.1
-## Pending until merge https://github.com/chef/chef/pull/3195
-# knife helper exec client_name
+knife helper exec client_name
