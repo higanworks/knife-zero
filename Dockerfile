@@ -4,12 +4,12 @@ MAINTAINER sawanoboriyu@higanworks.com
 ADD .git/index /index
 
 WORKDIR /home
-RUN wget https://codeload.github.com/chef/chef-config/legacy.tar.gz/master -O chef-config.tgz
-RUN tar xvzf chef-config.tgz && mv chef-chef-* chef-config
+# RUN wget https://codeload.github.com/chef/chef-config/legacy.tar.gz/master -O chef-config.tgz
+# RUN tar xvzf chef-config.tgz && mv chef-chef-* chef-config
 RUN wget https://codeload.github.com/chef/chef/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-* chef
 
-WORKDIR /home/chef-config
+WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
 RUN sed 's/0.1.0.dev.0/12.4.0.dev.0/' lib/chef-config/version.rb -i
 RUN gem build chef-config.gemspec
