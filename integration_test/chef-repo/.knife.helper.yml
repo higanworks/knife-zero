@@ -14,8 +14,8 @@ commands:
       ssh-password: docker
       sudo:
       verbose:
-  - name: client_<%= target %>
-    command: zero chef_client
+  - name: converge_<%= target %>
+    command: zero converge
     condition: 'name:<%= node %>'
     options:
       attribute: <%= target %>
