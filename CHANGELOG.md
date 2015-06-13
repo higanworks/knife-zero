@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v1.6.0
+
 - Feature: #32 create alias converge to chef_client, and recommended it by README.
 - Refactor: almostoptions are derived from core.
     - PR #38 HT: @patcon
