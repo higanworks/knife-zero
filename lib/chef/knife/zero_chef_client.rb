@@ -12,7 +12,7 @@ class Chef
         require "knife-zero/helper"
       end
 
-      banner "knife zero chef_client QUERY (options)"
+      banner "knife zero chef_client QUERY (options) | It's same as converge"
 
       option :concurrency,
         :short => "-C NUM",

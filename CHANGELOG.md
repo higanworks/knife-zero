@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Feature: #32 create alias converge to chef_client, and recommended it by README.
+- Refactor: almost bootstrap options are derived from core.
+
 ## v1.5.1
 
 - Bug: `--ssh-user` arg doesn't override `knife[:ssh_user]`.
