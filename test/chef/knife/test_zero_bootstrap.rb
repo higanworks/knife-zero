@@ -13,8 +13,8 @@ class TC_ZeroBootstrap < Test::Unit::TestCase
       assert_true(Chef::Config[:knife_zero])
     end
 
-    test "returns changed value from core" do
-      assert_equal("chef-full", @app.config[:distro])
+    test "returns expected bootstrap template(for notice changes of core to me)" do
+      assert_equal("chef-full", @app.default_bootstrap_template)
     end
 
     test "returns BootstrapSsh via knife_ssh" do
