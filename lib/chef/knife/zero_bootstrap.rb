@@ -15,7 +15,7 @@ class Chef
       banner "knife zero bootstrap FQDN (options)"
 
       ## Import from knife bootstrap except exclusions
-      self.options = Bootstrap.options
+      self.options = Bootstrap.options.merge(self.options)
       self.options.delete :node_ssl_verify_mode
       self.options.delete :node_verify_api_cert
 
