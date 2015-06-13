@@ -47,7 +47,8 @@ $ chef gem install knife-zero
 ```
 ** ZERO COMMANDS **
 knife zero bootstrap FQDN (options)
-knife zero chef_client QUERY (options)
+knife zero chef_client QUERY (options) | It's same as converge
+knife zero converge QUERY (options)
 knife zero diagnose # show configuration from file
 ```
 
@@ -121,11 +122,12 @@ $ parallel -j 5 ./bin/knife zero bootstrap ::: nodeA nodeB nodeC...
 ```
 
 
-### knife zero chef_client (for update)
+### knife zero converge/chef_client (for update)
 
-`knife zero chef_client QUERY (options)`
+`knife zero converge QUERY (options)`
+`knife zero chef_client QUERY (options) | It's same as converge`
 
-Search nodes from local chef-repo directory, and run command at remote node.
+Search nodes from local chef-repo directory, and run chef-client at remote node.
 
 Supported options are mostly the same as `knife ssh`.
 And it supports below.
@@ -147,7 +149,7 @@ host.example.com:
   run_list: recipe[hogehoge::default]
 
 
-$ knife zero chef_client 'name:*' --attribute ipaddress 
+$ knife zero converge 'name:*' --attribute ipaddress 
 
 ## host.example.com was converged by run_list.
 host.example.com Starting Chef Client, version 11.14.6
@@ -249,14 +251,14 @@ Connecting to 192.168.33.10
 ...
 ```
 
-Run zero chef_client with `-a name` option.
+Run zero converge with `-a name` option.
 
 > Caution: `-a(--attribute) name` option doesn't work since chef 12.1.0.
 > Please use specific attribute until fix it.
 > I've already create PR for fix. Please wait for merge to use name attribute. https://github.com/chef/chef/pull/3195
 
 ```
-$ knife zero chef_client "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a name
+$ knife zero converge "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a name
 WARN: No cookbooks directory found at or above current directory.  Assuming /Users/sawanoboriyu/worktemp/knife-zero-vagrant.
 192.168.33.10 Starting Chef Client, version 12.0.3
 192.168.33.10 resolving cookbooks for run list: []
@@ -320,10 +322,10 @@ $ knife node edit vagrant.vm
 }
 ```
 
-Run zero chef_client with `-a chef_ip` option. 
+Run zero converge with `-a chef_ip` option. 
 
 ```
-$ ./bin/knife zero chef_client "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a chef_ip 
+$ ./bin/knife zero converge "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a chef_ip 
 
 192.168.33.10 Starting Chef Client, version 12.0.3
 192.168.33.10 resolving cookbooks for run list: []
@@ -342,7 +344,7 @@ $ ./bin/knife zero chef_client "name:vagrant.vm" -x vagrant -i ./.vagrant/machin
 For example, you can use ipv4 of eth1(or others) like below.
 
 ```
-$ knife zero chef_client "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a network.interfaces.eth1.addresses.keys.rotate.first
+$ knife zero converge "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a network.interfaces.eth1.addresses.keys.rotate.first
 
 192.168.33.10 Starting Chef Client, version 12.0.3
 192.168.33.10 resolving cookbooks for run list: []

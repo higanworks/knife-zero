@@ -8,7 +8,7 @@ class Chef
         Chef::Knife::ZeroChefClient.load_deps
       end
 
-      banner "knife zero converge QUERY (options) | It's alias of chef_client."
+      banner "knife zero converge QUERY (options)"
       self.options = ZeroChefClient.options
     end
   end
