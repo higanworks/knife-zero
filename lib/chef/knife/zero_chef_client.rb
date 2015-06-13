@@ -14,18 +14,9 @@ class Chef
 
       banner "knife zero chef_client QUERY (options) | It's same as converge"
 
-      option :concurrency,
-        :short => "-C NUM",
-        :long => "--concurrency NUM",
-        :description => "The number of concurrent connections",
-        :default => nil,
-        :proc => lambda { |o| o.to_i }
-
-      option :attribute,
-        :short => "-a ATTR",
-        :long => "--attribute ATTR",
-        :description => "The attribute to use for opening the connection - default depends on the context",
-        :proc => Proc.new { |key| Chef::Config[:knife][:ssh_attribute] = key.strip }
+      self.options = Ssh.options.merge(self.options)
+      self.options[:use_sudo] = Bootstrap.options[:use_sudo]
+      self.options[:use_sudo_password] = Bootstrap.options[:use_sudo_password]
 
       option :override_runlist,
         :short        => "-o RunlistItem,RunlistItem...",
