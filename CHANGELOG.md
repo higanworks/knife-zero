@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v1.5.1
+
+- Bug: `--ssh-user` arg doesn't override `knife[:ssh_user]`.
+    - PR #35 HT: @patcon
+
 ## v1.5.0
 
 - Feature: Support bootstrap as vault client(chef-vault).
