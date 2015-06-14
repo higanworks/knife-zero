@@ -18,8 +18,8 @@ class Chef
            alias :orig_config_content config_content
            def config_content
              client_rb = orig_config_content
-             if Chef::Config[:knife][:attribute_whitelist] && Chef::Config[:knife][:attribute_whitelist].is_a?(Array)
-               client_rb << "automatic_attribute_whitelist #{Chef::Config[:knife][:attribute_whitelist].to_s}"
+             if Chef::Config[:knife][:knife_zero][:automatic_attribute_whitelist] && Chef::Config[:knife][:knife_zero][:automatic_attribute_whitelist].is_a?(Array)
+               client_rb << "automatic_attribute_whitelist #{Chef::Config[:knife][:knife_zero][:automatic_attribute_whitelist].to_s}"
              end
              client_rb
            end
