@@ -19,10 +19,13 @@ class Chef
       self.options.delete :node_ssl_verify_mode
       self.options.delete :node_verify_api_cert
 
-      option :without_chef_run,
-        :long => "--without-chef-run",
+      option :bootstrap_converge,
+        :long => "--[no-]converge",
         :description => "Bootstrap without Chef-Client Run.(for only update client.rb)",
-        :boolean => false
+        :boolean => true,
+        :default => true,
+        :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
+
 
       def knife_ssh
         begin

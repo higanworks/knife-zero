@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.7.1
+
+- Misc: change option name from --without-chef-run to --[no-]converge #25
+
 ## v1.7.0
 
 - Bug: ignored knife[:use_sudo] by converge, #22 #42
