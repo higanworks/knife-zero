@@ -25,15 +25,21 @@ class Chef
         ssh.ui = ui
         ssh.name_args = [ server_name, ssh_command ]
         ssh.config = Net::SSH.configuration_for(server_name)
-        ssh.config[:ssh_user] = config[:ssh_user] || Chef::Config[:knife][:ssh_user]
+        #ssh.config[:ssh_user] = config[:ssh_user] || Chef::Config[:knife][:ssh_user]
+        ssh.config[:ssh_user] = config[:ssh_user] || Chef::Config[:knife][:ssh_user] || ssh.config[:user]
         ssh.config[:ssh_password] = config[:ssh_password]
-        ssh.config[:ssh_port] = config[:ssh_port] || Chef::Config[:knife][:ssh_port]
+        #ssh.config[:ssh_port] = config[:ssh_port] || Chef::Config[:knife][:ssh_port]
+        ssh.config[:ssh_port] = config[:ssh_port] || Chef::Config[:knife][:ssh_port] || ssh.config[:port]
         ssh.config[:ssh_gateway] = config[:ssh_gateway] || Chef::Config[:knife][:ssh_gateway]
         ssh.config[:forward_agent] = config[:forward_agent] || Chef::Config[:knife][:forward_agent]
         ssh.config[:identity_file] = config[:identity_file] || Chef::Config[:knife][:identity_file]
         ssh.config[:manual] = true
         ssh.config[:host_key_verify] = config[:host_key_verify] || Chef::Config[:knife][:host_key_verify]
         ssh.config[:on_error] = :raise
+        puts ssh.config
+        ssh.config.delete(:user)
+        ssh.config.delete(:port)
+        puts ssh.config
         ssh
         rescue => e
           ui.error(e.class.to_s + e.message)
