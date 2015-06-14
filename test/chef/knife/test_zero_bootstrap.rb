@@ -10,7 +10,7 @@ class TC_ZeroBootstrap < Test::Unit::TestCase
     end
 
     test "returns true from Chef::Config[:knife_zero]" do
-      assert_true(Chef::Config[:knife_zero])
+      assert_equal({}, Chef::Config[:knife_zero])
     end
 
     test "returns expected bootstrap template(for notice changes of core to me)" do

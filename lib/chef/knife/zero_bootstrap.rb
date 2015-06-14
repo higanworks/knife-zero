@@ -19,6 +19,11 @@ class Chef
       self.options.delete :node_ssl_verify_mode
       self.options.delete :node_verify_api_cert
 
+      option :without_chef_run,
+        :long => "--without-chef-run",
+        :description => "Bootstrap without Chef-Client Run.(for only update client.rb)",
+        :boolean => false
+
       def knife_ssh
         begin
         ssh = Chef::Knife::BootstrapSsh.new

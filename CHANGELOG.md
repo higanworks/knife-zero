@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-- Bug: ignored knife[:use_sudo] by converge, #22
+## v1.7.0
+
+- Bug: ignored knife[:use_sudo] by converge, #22 #42
+- Feature: Append white_list to client.rb at bootstrap. #43
+- Feature: Add --without-chef-run to zero bootstrap #44
 
 ## v1.6.0
 

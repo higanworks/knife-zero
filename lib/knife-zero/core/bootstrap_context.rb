@@ -15,9 +15,24 @@ class Chef
              end
            end
 
+           alias :orig_config_content config_content
+           def config_content
+             client_rb = orig_config_content
+             %w{ automatic_attribute_whitelist default_attribute_whitelist normal_attribute_whitelist override_attribute_whitelist }.each do |white_list|
+               if Chef::Config[:knife][white_list.to_sym] && Chef::Config[:knife][white_list.to_sym].is_a?(Array)
+                 client_rb << [
+                   white_list,
+                   Chef::Config[:knife][white_list.to_sym].to_s
+                 ].join(" ")
+               end
+             end
+             client_rb
+           end
+
            alias :orig_start_chef start_chef
            def start_chef
              if @chef_config[:knife_zero]
+               unless @config[:without_chef_run]
                client_path = @chef_config[:chef_client_path] || 'chef-client'
                s = "#{client_path} -j /etc/chef/first-boot.json"
                s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
@@ -25,6 +40,9 @@ class Chef
                s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
                s << " -W" if @config[:why_run]
                s
+               else
+                 "echo Execution of Chef-Client has been canceled due to --without-chef-run."
+               end
              else
                orig_start_chef
              end
