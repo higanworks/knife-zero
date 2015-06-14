@@ -7,7 +7,7 @@ class Chef
         includer.class_eval do
           deps do
             Chef::Config[:local_mode] = true
-            Chef::Config[:knife_zero] = true
+            Chef::Config[:knife_zero] = Hash.new
             Chef::Knife::Ssh.load_deps
           end
 

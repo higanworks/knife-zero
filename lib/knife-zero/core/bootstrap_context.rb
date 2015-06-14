@@ -15,6 +15,20 @@ class Chef
              end
            end
 
+           alias :orig_config_content config_content
+           def config_content
+             client_rb = orig_config_content
+             %w{ automatic_attribute_whitelist default_attribute_whitelist normal_attribute_whitelist override_attribute_whitelist }.each do |white_list|
+               if Chef::Config[:knife][white_list.to_sym] && Chef::Config[:knife][white_list.to_sym].is_a?(Array)
+                 client_rb << [
+                   white_list,
+                   Chef::Config[:knife][white_list.to_sym].to_s
+                 ].join(" ")
+               end
+             end
+             client_rb
+           end
+
            alias :orig_start_chef start_chef
            def start_chef
              if @chef_config[:knife_zero]
