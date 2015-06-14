@@ -57,7 +57,7 @@ knife zero diagnose # show configuration from file
 Install Chef to remote node and run chef-client under chef-zero via tcp-forward.
 
 Supported options are mostly the same as `knife bootstrap`.
-And it supports why-run(`-W, --why-run`)and Bootstrap without Chef-Client Run.(--without-chef-run). 
+And it supports why-run(`-W, --why-run`)and Bootstrap without first Chef-Client Run.(--no-converge).
 
 #### Example
 
