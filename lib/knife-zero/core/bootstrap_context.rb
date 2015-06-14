@@ -32,7 +32,7 @@ class Chef
            alias :orig_start_chef start_chef
            def start_chef
              if @chef_config[:knife_zero]
-               if @chef_config[:knife][:bootstrap_converge]
+               if @config[:bootstrap_converge]
                client_path = @chef_config[:chef_client_path] || 'chef-client'
                s = "#{client_path} -j /etc/chef/first-boot.json"
                s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
