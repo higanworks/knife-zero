@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bug: ignored knife[:use_sudo] by converge, #22
+
 ## v1.6.0
 
 - Feature: #32 create alias converge to chef_client, and recommended it by README.
