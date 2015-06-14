@@ -18,6 +18,7 @@ class Chef
            alias :orig_start_chef start_chef
            def start_chef
              if @chef_config[:knife_zero]
+               unless @config[:without_chef_run]
                client_path = @chef_config[:chef_client_path] || 'chef-client'
                s = "#{client_path} -j /etc/chef/first-boot.json"
                s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
@@ -25,6 +26,9 @@ class Chef
                s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
                s << " -W" if @config[:why_run]
                s
+               else
+                 "echo Execution of Chef-Client has been canceled due to --without-chef-run."
+               end
              else
                orig_start_chef
              end
