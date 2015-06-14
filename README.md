@@ -57,7 +57,7 @@ knife zero diagnose # show configuration from file
 Install Chef to remote node and run chef-client under chef-zero via tcp-forward.
 
 Supported options are mostly the same as `knife bootstrap`.
-And it supports why-run(`-W, --why-run`).
+And it supports why-run(`-W, --why-run`)and Bootstrap without Chef-Client Run.(--without-chef-run). 
 
 #### Example
 
@@ -120,6 +120,60 @@ Bootstrap multi-nodes via GNU Parallel
 ```
 $ parallel -j 5 ./bin/knife zero bootstrap ::: nodeA nodeB nodeC...
 ```
+
+#### (Hint)Supress Automatic Attributes
+
+knife-zero supports appengding [whitelist-attributes](https://docs.chef.io/attributes.html#whitelist-attributes) to client.rb at bootstrap.
+
+For example, set array to `knife.rb`.
+
+```
+knife[:automatic_attribute_whitelist] = [
+  "fqdn/",
+  "ipaddress/",
+  "roles/",
+  "recipes/",
+  "ipaddress/",
+  "platform/",
+  "platform_version/",
+  "cloud/",
+  "cloud_v2/"
+]
+```
+
+It setting will append to client.rb of node via bootstrap.
+
+```
+...
+
+automatic_attribute_whitelist ["fqdn/", "ipaddress/", "roles/", "recipes/", "ipaddress/", "platform/", "platform_version/", "cloud/", "cloud_v2/"]
+```
+
+It means knife-zero will collects and updates only listed attributes to local file.
+
+```
+{
+  "name": "knife-zero.example.com",
+  "normal": {
+    "tags": [
+
+    ]
+  },
+  "automatic": {
+    "ipaddress": "xxx.xxx.xxx.xxx",
+    "roles": [
+
+    ],
+    "recipes": [
+
+    ],
+    "platform": "ubuntu",
+    "platform_version": "14.04",
+    "cloud_v2": null
+  }
+}  
+```
+
 
 
 ### knife zero converge/chef_client (for update)
