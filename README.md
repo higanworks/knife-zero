@@ -16,6 +16,8 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 - It supports all functions of chef(C/S).
 - You have only to manage one chef-repo.
 
+[Knife-Zero Document](http://higanworks.com/knife-zero/)(WIP)
+
 ## Requirements
 
 - Must support AllowTcpForward 
