@@ -54,6 +54,18 @@ knife zero converge QUERY (options)
 knife zero diagnose # show configuration from file
 ```
 
+### Configuration file
+
+You need to make sure the knife.rb file in your chef-repo (in the chef-repo root or .chef directory) is adapted to use chef-zero.
+
+For example, at `.chef/knife.rb`. At least the following contents are needed:
+```
+chef_repo_path   File.expand_path('../../' , __FILE__)
+cookbook_path    [File.expand_path('../../cookbooks' , __FILE__), File.expand_path('../../site-cookbooks' , __FILE__)]
+```
+
+If you used knife serve or knife zero, this makes sure chef-zero is started with the contents of the chef-repo directory instead of as an empty server.
+
 ### knife zero bootstrap
 
 Install Chef to remote node and run chef-client under chef-zero via tcp-forward.
