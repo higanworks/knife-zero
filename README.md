@@ -169,6 +169,9 @@ It means knife-zero will collects and updates only listed attributes to local fi
 {
   "name": "knife-zero.example.com",
   "normal": {
+    "knife_zero" : {
+      "host" : "xxx.xxx.xxx.xxx(bootstraped_target)"
+    },
     "tags": [
 
     ]
@@ -341,7 +344,7 @@ WARN: No cookbooks directory found at or above current directory.  Assuming /Use
 ...
 ```
 
-#### Case: Set specific attribute for ssh
+#### Case: Use network specific attribute
 
 Bootstrap with ssh options and `--sudo` to host-only address. 
 
@@ -362,38 +365,12 @@ Connecting to 192.168.33.10
 ...
 ```
 
-You can see node which was bootstrapped at list.
+The knife-zero creates `node.knife_zero.host` attribute when bootstrap.
+
+Run zero converge with `-a knife_zero.host` option.
 
 ```
-$ knife node list
-
-vagrant.vm
-```
-
-Set unique attribute to node by `node edit`, such as `chef_ip`.
-
-```
-$ knife node edit vagrant.vm
-{
-  "name": "vagrant.vm",
-  "chef_environment": "_default",
-  "normal": {
-    "chef_ip" : "192.168.33.10",
-    "tags": [
-
-    ]   
-  },  
-  "run_list": [
-
-]
-
-}
-```
-
-Run zero converge with `-a chef_ip` option. 
-
-```
-$ ./bin/knife zero converge "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a chef_ip 
+$ ./bin/knife zero converge "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a knife_zero.host
 
 192.168.33.10 Starting Chef Client, version 12.0.3
 192.168.33.10 resolving cookbooks for run list: []
@@ -405,17 +382,6 @@ $ ./bin/knife zero converge "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/
 192.168.33.10 Running handlers:
 192.168.33.10 Running handlers complete
 192.168.33.10 Chef Client finished, 0/0 resources updated in 6.245413202 seconds
-```
-
-#### Case: don't use name or specific attribute..?
-
-For example, you can use ipv4 of eth1(or others) like below.
-
-```
-$ knife zero converge "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a network.interfaces.eth1.addresses.keys.rotate.first
-
-192.168.33.10 Starting Chef Client, version 12.0.3
-192.168.33.10 resolving cookbooks for run list: []
 ```
 
 ## Debug for Configuration
