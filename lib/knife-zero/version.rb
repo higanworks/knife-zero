@@ -1,6 +1,6 @@
 module Knife
   module Zero
-    VERSION = "1.7.1"
+    VERSION = "1.8.0"
     MAJOR, MINOR, TINY = VERSION.split('.')
   end
 end

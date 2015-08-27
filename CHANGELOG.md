@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.8.0
+
+- Feature: set bootstraped host to knife_zero.host attribute(normal) #57
+
 ## v1.7.1
 
 - Misc: change option name from --without-chef-run to --[no-]converge #25
