@@ -26,6 +26,10 @@ class Chef
         :default => true,
         :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
 
+      def run
+        @config[:first_boot_attributes] = @config[:first_boot_attributes].merge(build_knifezero_attributes_for_node)
+        super
+      end
 
       def knife_ssh
         begin
@@ -48,6 +52,14 @@ class Chef
           ui.error e.backtrace.join("\n")
           exit 1
         end
+      end
+
+      def build_knifezero_attributes_for_node
+        attr = Mash.new
+        attr[:knife_zero] = {
+          host: server_name
+        }
+        attr
       end
     end
   end
