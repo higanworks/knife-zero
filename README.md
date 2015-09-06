@@ -137,7 +137,7 @@ $ parallel -j 5 ./bin/knife zero bootstrap ::: nodeA nodeB nodeC...
 
 #### (Hint)Supress Automatic Attributes
 
-knife-zero supports appengding [whitelist-attributes](https://docs.chef.io/attributes.html#whitelist-attributes) to client.rb at bootstrap.
+knife-zero supports appending [whitelist-attributes](https://docs.chef.io/attributes.html#whitelist-attributes) to client.rb at bootstrap.
 
 For example, set array to `knife.rb`.
 
