@@ -41,7 +41,7 @@ class Chef
                s << " -W" if @config[:why_run]
                s
                else
-                 "echo Execution of Chef-Client has been canceled due to bootstrap_converge if false."
+                 "echo Execution of Chef-Client has been canceled due to bootstrap_converge is false."
                end
              else
                orig_start_chef

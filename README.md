@@ -16,6 +16,8 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 - It supports all functions of chef(C/S).
 - You have only to manage one chef-repo.
 
+[Knife-Zero Document](https://knife-zero.github.io)(WIP)
+
 ## Requirements
 
 - Must support AllowTcpForward 
@@ -51,6 +53,18 @@ knife zero chef_client QUERY (options) | It's same as converge
 knife zero converge QUERY (options)
 knife zero diagnose # show configuration from file
 ```
+
+### Configuration file
+
+You need to make sure the knife.rb file in your chef-repo (in the chef-repo root or .chef directory) is adapted to use chef-zero.
+
+For example, at `.chef/knife.rb`. At least the following contents are needed:
+```
+chef_repo_path   File.expand_path('../../' , __FILE__)
+cookbook_path    [File.expand_path('../../cookbooks' , __FILE__), File.expand_path('../../site-cookbooks' , __FILE__)]
+```
+
+If you used knife serve or knife zero, this makes sure chef-zero is started with the contents of the chef-repo directory instead of as an empty server.
 
 ### knife zero bootstrap
 
@@ -123,7 +137,7 @@ $ parallel -j 5 ./bin/knife zero bootstrap ::: nodeA nodeB nodeC...
 
 #### (Hint)Supress Automatic Attributes
 
-knife-zero supports appengding [whitelist-attributes](https://docs.chef.io/attributes.html#whitelist-attributes) to client.rb at bootstrap.
+knife-zero supports appending [whitelist-attributes](https://docs.chef.io/attributes.html#whitelist-attributes) to client.rb at bootstrap.
 
 For example, set array to `knife.rb`.
 
@@ -155,6 +169,9 @@ It means knife-zero will collects and updates only listed attributes to local fi
 {
   "name": "knife-zero.example.com",
   "normal": {
+    "knife_zero" : {
+      "host" : "xxx.xxx.xxx.xxx(bootstraped_target)"
+    },
     "tags": [
 
     ]
@@ -327,7 +344,7 @@ WARN: No cookbooks directory found at or above current directory.  Assuming /Use
 ...
 ```
 
-#### Case: Set specific attribute for ssh
+#### Case: Use network specific attribute
 
 Bootstrap with ssh options and `--sudo` to host-only address. 
 
@@ -348,38 +365,12 @@ Connecting to 192.168.33.10
 ...
 ```
 
-You can see node which was bootstrapped at list.
+The knife-zero creates `node.knife_zero.host` attribute when bootstrap.
+
+Run zero converge with `-a knife_zero.host` option.
 
 ```
-$ knife node list
-
-vagrant.vm
-```
-
-Set unique attribute to node by `node edit`, such as `chef_ip`.
-
-```
-$ knife node edit vagrant.vm
-{
-  "name": "vagrant.vm",
-  "chef_environment": "_default",
-  "normal": {
-    "chef_ip" : "192.168.33.10",
-    "tags": [
-
-    ]   
-  },  
-  "run_list": [
-
-]
-
-}
-```
-
-Run zero converge with `-a chef_ip` option. 
-
-```
-$ ./bin/knife zero converge "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a chef_ip 
+$ ./bin/knife zero converge "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a knife_zero.host
 
 192.168.33.10 Starting Chef Client, version 12.0.3
 192.168.33.10 resolving cookbooks for run list: []
@@ -391,17 +382,6 @@ $ ./bin/knife zero converge "name:vagrant.vm" -x vagrant -i ./.vagrant/machines/
 192.168.33.10 Running handlers:
 192.168.33.10 Running handlers complete
 192.168.33.10 Chef Client finished, 0/0 resources updated in 6.245413202 seconds
-```
-
-#### Case: don't use name or specific attribute..?
-
-For example, you can use ipv4 of eth1(or others) like below.
-
-```
-$ knife zero converge "name:*" -x vagrant -i ./.vagrant/machines/default/virtualbox/private_key --sudo -a network.interfaces.eth1.addresses.keys.rotate.first
-
-192.168.33.10 Starting Chef Client, version 12.0.3
-192.168.33.10 resolving cookbooks for run list: []
 ```
 
 ## Debug for Configuration
@@ -455,6 +435,20 @@ Zero ChefClient Config
 :override_runlist: 
 ```
 
+
+## To include from other knife plugins
+
+If you want to integrate knife-zero on machine creation with cloud plugins, you can add zerobootstrap to deps like below.
+
+```
+deps do
+  require 'chef/knife/zerobootstrap'
+  Chef::Knife::ZeroBootstrap.load_deps
+  self.options = Chef::Knife::ZeroBootstrap.options.merge(self.options)
+end
+```
+
+For example, [knife-digital_ocean](https://github.com/higanworks/knife-digital_ocean/blob/79_merge_zero_bootstrap_options/lib/chef/knife/digital_ocean_droplet_create.rb)
 
 ## Contributing
 
