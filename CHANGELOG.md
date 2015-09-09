@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.8.1
+
+- Follow Chef: check first_boot_attribute_from_file flag for knife_zero.host attribute(normal).
+
 ## v1.8.0
 
 - Feature: set bootstraped host to knife_zero.host attribute(normal) #57
