@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Patched `net-ssh-multi`s from "1.1.0", "1.2.0" to "1.1.0", "1.2.0", "1.2.1"
+
 ## v1.8.3
 
 - include Chef#3900 until merge.
