@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## v1.8.3
+
+- include Chef#3900 until merge.
+    - add option --json-attribute-file FILE
+
+## v1.8.2
+
+- Cleanup: Swap chef_client and converge.
+
 ## v1.8.1
 
 - Follow Chef: check first_boot_attribute_from_file flag for knife_zero.host attribute(normal).

@@ -20,7 +20,7 @@ class Chef
       def initialize(argv = [])
         super
         @bootstrap = Chef::Knife::ZeroBootstrap.new
-        @chef_client = Chef::Knife::ZeroChefClient.new
+        @converge = Chef::Knife::ZeroConverge.new
       end
 
       def run
@@ -41,10 +41,10 @@ class Chef
         ui.msg @bootstrap.config.to_yaml
         ui.msg ""
 
-        ui.msg "Zero ChefClient Config"
+        ui.msg "Zero Converge Config"
         ui.msg "===================="
-        @chef_client.merge_configs
-        ui.msg @chef_client.config.to_yaml
+        @converge.merge_configs
+        ui.msg @converge.config.to_yaml
       end
     end
   end

@@ -26,7 +26,28 @@ class Chef
         :default => true,
         :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
 
+      ## monkey for #3900 >>
+      unless options.has_key?(:first_boot_attributes_from_file)
+        option :first_boot_attributes_from_file,
+          :long => "--json-attribute-file FILE",
+          :description => "A JSON file to be used to the first run of chef-client",
+          :proc => lambda { |o| Chef::JSONCompat.parse(File.read(o)) },
+          :default => nil
+
+        def render_template
+          @config[:first_boot_attributes].merge!(@config[:first_boot_attributes_from_file]) if @config[:first_boot_attributes_from_file]
+          super
+        end
+      ## monkey for #3900 <<
+      end
+
       def run
+      ## monkey for #3900 >>
+        if @config[:first_boot_attributes].any? && @config[:first_boot_attributes_from_file]
+          raise "You cannot pass both --json-attributes and --json-attribute-file."
+        end
+      ## monkey for #3900 <<
+
         if @config[:first_boot_attributes_from_file]
           @config[:first_boot_attributes_from_file] = @config[:first_boot_attributes_from_file].merge(build_knifezero_attributes_for_node)
         else
@@ -65,6 +86,7 @@ class Chef
         }
         attr
       end
+
     end
   end
 end
