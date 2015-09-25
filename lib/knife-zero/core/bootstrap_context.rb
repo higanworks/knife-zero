@@ -18,15 +18,16 @@ class Chef
            alias :orig_config_content config_content
            def config_content
              client_rb = orig_config_content
+             white_lists = []
              %w{ automatic_attribute_whitelist default_attribute_whitelist normal_attribute_whitelist override_attribute_whitelist }.each do |white_list|
                if Chef::Config[:knife][white_list.to_sym] && Chef::Config[:knife][white_list.to_sym].is_a?(Array)
-                 client_rb << [
+                 white_lists.push([
                    white_list,
                    Chef::Config[:knife][white_list.to_sym].to_s
-                 ].join(" ")
+                 ].join(" "))
                end
              end
-             client_rb
+             client_rb << white_lists.join("\n")
            end
 
            alias :orig_start_chef start_chef
