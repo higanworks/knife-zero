@@ -2,7 +2,10 @@
 
 ## Unreleased
 
+## v1.8.4
+
 - Patched `net-ssh-multi`s from "1.1.0", "1.2.0" to "1.1.0", "1.2.0", "1.2.1"
+    - and create issue #62
 
 ## v1.8.3
 
