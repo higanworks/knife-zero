@@ -25,25 +25,8 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Relocated: [Installation | Knife-Zero Document](http://knife-zero.github.io/10_install/)
 
-    gem 'knife-zero'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install knife-zero
-
-### With Chef-DK
-
-Install via `chef gem` subcommand.
-
-```
-$ chef gem install knife-zero
-```
 
 ## Usage
 
@@ -266,7 +249,7 @@ e.g.) `bundle install --path vendor/bundle --binstubs`
 
 ### Need test on Vagrant ?
 
-Relocated: [Practice with Vagrant | Knife-Zero Document](https://knife-zero.github.io/tips/practice_with_vagrant/) .
+Relocated: [Practice with Vagrant | Knife-Zero Document](https://knife-zero.github.io/tips/practice_with_vagrant/)
 
 
 ## Debug for Configuration
