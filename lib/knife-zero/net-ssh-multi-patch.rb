@@ -1,6 +1,6 @@
 require 'net/ssh/multi/version'
 
-if Net::SSH::Multi::Version::STRING == "1.1.0" || Net::SSH::Multi::Version::STRING == "1.2.0"
+if Net::SSH::Multi::Version::STRING == "1.1.0" || Net::SSH::Multi::Version::STRING == "1.2.0" || Net::SSH::Multi::Version::STRING == "1.2.1"
 
   require 'net/ssh/multi'
 
