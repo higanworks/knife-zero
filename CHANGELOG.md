@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.8.6
+
+- Feature: add new attribute knife_zero.ssh_url at bootstrap.
+
 ## v1.8.5
 
 - Bug: allow more than 2 white lists. HT: @kaznishi
