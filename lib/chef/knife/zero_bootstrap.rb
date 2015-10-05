@@ -80,9 +80,17 @@ class Chef
       end
 
       def build_knifezero_attributes_for_node
+        ssh_url = String.new("ssh://")
+        ssh_url << config[:ssh_user] || Chef::Config[:knife][:ssh_user]
+        ssh_url << "@"
+        ssh_url << server_name
+        ssh_url << ":"
+        port =  config[:ssh_port] || Chef::Config[:knife][:ssh_port] || 22
+        ssh_url << port.to_s
         attr = Mash.new
         attr[:knife_zero] = {
-          host: server_name
+          host: server_name,
+          ssh_url: ssh_url
         }
         attr
       end
