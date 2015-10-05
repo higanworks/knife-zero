@@ -43,7 +43,7 @@ class Chef
       def start_chef_client
         client_path = @config[:use_sudo] || Chef::Config[:knife][:use_sudo] ? 'sudo ' : ''
         client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}chef-client"
-        s = "#{client_path}"
+        s = String.new("#{client_path}")
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
