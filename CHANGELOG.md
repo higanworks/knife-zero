@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## v1.8.7
+
+- Follow master: environment _default is not set by default since 12.5
+- Replace string letelals to instance of String.
+
+## v1.8.6
+
+- Feature: add new attribute knife_zero.ssh_url at bootstrap.
+
 ## v1.8.5
 
 - Bug: allow more than 2 white lists. HT: @kaznishi

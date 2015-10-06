@@ -35,11 +35,12 @@ class Chef
              if @chef_config[:knife_zero]
                if @config[:bootstrap_converge]
                client_path = @chef_config[:chef_client_path] || 'chef-client'
-               s = "#{client_path} -j /etc/chef/first-boot.json"
+               s = String.new("#{client_path} -j /etc/chef/first-boot.json")
                s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
-               s << " -E #{bootstrap_environment}" if ::Chef::VERSION.to_f != 0.9 # only use the -E option on Chef 0.10+
+               s << " -E #{bootstrap_environment}" unless bootstrap_environment.nil?
                s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
                s << " -W" if @config[:why_run]
+               Chef::Log.info "Remote command: " + s
                s
                else
                  "echo Execution of Chef-Client has been canceled due to bootstrap_converge is false."
