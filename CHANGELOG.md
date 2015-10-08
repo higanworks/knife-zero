@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## v1.9.0
+
+- Change: use nil to ssh_user on bootstraping by default.
+    - compatibility for 12.5 and ssh/config
+- Remove: add new attribute knife_zero.ssh_url at bootstrap.
+
 ## v1.8.7
 
 - Follow master: environment _default is not set by default since 12.5
