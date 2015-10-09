@@ -19,6 +19,11 @@ class Chef
       self.options.delete :node_ssl_verify_mode
       self.options.delete :node_verify_api_cert
 
+      ## Override to use nil by default
+      option :ssh_user,
+        :short => "-x USERNAME",
+        :long => "--ssh-user USERNAME"
+
       option :bootstrap_converge,
         :long => "--[no-]converge",
         :description => "Bootstrap without Chef-Client Run.(for only update client.rb)",
@@ -80,17 +85,18 @@ class Chef
       end
 
       def build_knifezero_attributes_for_node
-        ssh_url = String.new("ssh://")
-        ssh_url << config[:ssh_user] || Chef::Config[:knife][:ssh_user]
-        ssh_url << "@"
-        ssh_url << server_name
-        ssh_url << ":"
-        port =  config[:ssh_port] || Chef::Config[:knife][:ssh_port] || 22
-        ssh_url << port.to_s
+## Return to Pending.
+#         ssh_url = String.new("ssh://")
+#         ssh_url << config[:ssh_user] || Chef::Config[:knife][:ssh_user]
+#         ssh_url << "@"
+#         ssh_url << server_name
+#         ssh_url << ":"
+#         port =  config[:ssh_port] || Chef::Config[:knife][:ssh_port] || 22
+#         ssh_url << port.to_s
         attr = Mash.new
         attr[:knife_zero] = {
-          host: server_name,
-          ssh_url: ssh_url
+          host: server_name
+#           ssh_url: ssh_url
         }
         attr
       end
