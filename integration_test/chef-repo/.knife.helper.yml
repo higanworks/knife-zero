@@ -18,7 +18,7 @@ commands:
     command: zero converge
     condition: 'name:<%= node %>'
     options:
-      attribute: <%= target %>
+      attribute: knife_zero.host
       override-runlist: 'kzi::default'
       ssh-user: docker
       ssh-password: docker

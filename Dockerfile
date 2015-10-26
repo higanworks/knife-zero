@@ -11,7 +11,6 @@ RUN tar xvzf chef.tgz && mv chef-chef-* chef
 
 WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
-RUN sed 's/0.1.0.dev.0/12.4.0.dev.0/' lib/chef-config/version.rb -i
 RUN gem build chef-config.gemspec
 RUN gem install -V -b chef-config*.gem --no-ri --no-rdoc
 
