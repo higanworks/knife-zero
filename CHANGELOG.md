@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v1.9.2
+
+- Monkey: include Fixed host parsing to work with ipv6 addresses net-ssh/net-ssh-multi#9
+    - https://github.com/net-ssh/net-ssh-multi/pull/9
+
 ## v1.9.1
 
 - Compatibility: Keep same behavior of --json-attribute-file option.
