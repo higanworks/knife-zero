@@ -24,8 +24,8 @@ ADD integration_test/chef-repo /chef-repo/
 WORKDIR /home/knife-zero
 
 RUN gem build knife-zero.gemspec
-RUN gem install -V -l knife-zero-*.gem
-RUN gem install -V knife-helper
+RUN gem install -V -l knife-zero-*.gem --no-ri --no-rdoc
+RUN gem install -V knife-helper --no-ri --no-rdoc
 
 WORKDIR /chef-repo
 
