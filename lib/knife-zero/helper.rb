@@ -12,6 +12,7 @@ module Knife
       end
 
       def self.chef_version_available?(version)
+        return true if version == 'latest'
         chefgem_metaurl = 'https://rubygems.org/api/v1/versions/chef.json'
         begin
           c_versions = JSON.parse(open(chefgem_metaurl).read).map {|v| v['number']}
