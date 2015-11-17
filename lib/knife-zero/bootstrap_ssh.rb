@@ -11,6 +11,11 @@ class Chef
 
       def ssh_command(command, subsession=nil)
         begin
+
+        if config[:client_version]
+          super(%Q{/opt/chef/embedded/bin/ruby -ropen-uri -e 'puts open("https://chef.sh").read' | sudo sh -s -- -v #{config[:client_version]}})
+        end
+
         chef_zero_port = config[:chef_zero_port] ||
                          Chef::Config[:knife][:chef_zero_port] ||
                          URI.parse(Chef::Config.chef_server_url).port
