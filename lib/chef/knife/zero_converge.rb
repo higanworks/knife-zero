@@ -1,6 +1,7 @@
 require 'chef/knife'
 require 'chef/knife/zero_base'
 require 'knife-zero/bootstrap_ssh'
+require 'knife-zero/helper'
 
 class Chef
   class Knife
@@ -33,6 +34,18 @@ class Chef
         :default => nil,
         :proc => lambda { |o| o.to_s }
 
+      option :client_version,
+        :long         => "--client-version [latest|VERSION]",
+        :description  => "Up or downgrade omnibus chef-client before converge.",
+        :default => nil,
+        :proc => lambda { |o|
+          if ::Knife::Zero::Helper.chef_version_available?(o)
+            o.to_s
+          else
+            ui.error "Client version #{o} is not found."
+            exit 1
+          end
+        }
 
       def initialize(argv=[])
         super
