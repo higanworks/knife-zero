@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.10.0
+
+- Feature: Add new option `--client-version [latest|VERSION]` for reinstall chef-client.
+
 ## v1.9.2
 
 - Monkey: include Fixed host parsing to work with ipv6 addresses net-ssh/net-ssh-multi#9
