@@ -25,7 +25,7 @@ commands:
       sudo:
       verbose:
   - name: converge2_<%= target %>
-    command: zero converge --client-version
+    command: zero converge --client-version latest
     condition: 'name:<%= node %>'
     options:
       attribute: knife_zero.host
