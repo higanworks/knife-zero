@@ -1,4 +1,6 @@
 require 'chef'
+require 'chef/knife/ssh'
+require 'chef/knife/bootstrap'
 
 class Chef
   class Knife

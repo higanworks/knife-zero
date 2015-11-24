@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.10.1
+
+- Fix: knife zero bootstrap broken by knife rehash #70
+
 ## v1.10.0
 
 - Feature: Add new option `--client-version [latest|VERSION]` for reinstall chef-client.
