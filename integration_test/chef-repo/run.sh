@@ -3,6 +3,7 @@
 set -xe
 
 /usr/sbin/sshd -E /tmp/log -o 'LogLevel DEBUG'
+knife rehash
 knife zero diagnose
 
 # Use Ipaddress
