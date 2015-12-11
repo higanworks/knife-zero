@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.10.2
+
+- Bugfix: `--json-attribute` was broken. #73
+
 ## v1.10.1
 
 - Fix: knife zero bootstrap broken by knife rehash #70

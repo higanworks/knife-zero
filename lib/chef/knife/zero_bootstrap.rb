@@ -69,7 +69,11 @@ class Chef
         if @config[:first_boot_attributes_from_file]
           @config[:first_boot_attributes_from_file] = @config[:first_boot_attributes_from_file].merge(build_knifezero_attributes_for_node)
         else
-          @config[:first_boot_attributes] = build_knifezero_attributes_for_node
+          if @config[:first_boot_attributes]
+            @config[:first_boot_attributes] = @config[:first_boot_attributes].merge(build_knifezero_attributes_for_node)
+          else
+            @config[:first_boot_attributes] = build_knifezero_attributes_for_node
+          end
         end
         super
       end
