@@ -1,7 +1,7 @@
 ---
 <% confset = { ipaddress: "zerohost", name: "127.0.0.1" } %>
 settings:
-  command_base: /usr/local/bin/knife
+  command_base: /usr/local/bundle/bin/knife
 
 commands:
 <% confset.each_pair do |target, node| %>

@@ -3,6 +3,8 @@
 set -xe
 
 /usr/sbin/sshd -E /tmp/log -o 'LogLevel DEBUG'
+sed -ri 's/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/' /etc/pam.d/sshd
+
 knife rehash
 knife zero diagnose
 
