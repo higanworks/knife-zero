@@ -1,7 +1,7 @@
 FROM higanworks/knife-zero-edgebase
 MAINTAINER sawanoboriyu@higanworks.com
 
-ADD .git/index /index
+# ADD .git/index /index
 
 WORKDIR /home
 # RUN wget https://codeload.github.com/chef/chef-config/legacy.tar.gz/master -O chef-config.tgz
@@ -20,6 +20,7 @@ RUN gem install -V -b chef*.gem --no-ri --no-rdoc
 
 ADD . /home/knife-zero/
 ADD integration_test/chef-repo /chef-repo/
+ADD integration_test/fixtures /chef-repo/fixtures
 
 WORKDIR /home/knife-zero
 
