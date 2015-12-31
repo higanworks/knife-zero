@@ -12,7 +12,7 @@ class Chef
         Chef::Knife::BootstrapSsh.load_deps
       end
 
-      banner "knife zero bootstrap FQDN (options)"
+      banner "knife zero bootstrap [SSH_USER@]FQDN (options)"
 
       ## Import from knife bootstrap except exclusions
       self.options = Bootstrap.options.merge(self.options)
@@ -84,7 +84,7 @@ class Chef
         ssh.ui = ui
         ssh.name_args = [ server_name, ssh_command ]
         ssh.config = Net::SSH.configuration_for(server_name)
-        ssh.config[:ssh_user] = config[:ssh_user] || Chef::Config[:knife][:ssh_user]
+        ssh.config[:ssh_user] = user_name || config[:ssh_user] || Chef::Config[:knife][:ssh_user]
         ssh.config[:ssh_password] = config[:ssh_password]
         ssh.config[:ssh_port] = config[:ssh_port] || Chef::Config[:knife][:ssh_port]
         ssh.config[:ssh_gateway] = config[:ssh_gateway] || Chef::Config[:knife][:ssh_gateway]
