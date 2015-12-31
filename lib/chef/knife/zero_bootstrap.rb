@@ -19,7 +19,7 @@ class Chef
       self.options.delete :node_ssl_verify_mode
       self.options.delete :node_verify_api_cert
 
-      ## Override to use nil by default
+      ## Override to use nil by default. It should be create PR
       option :ssh_user,
         :short => "-x USERNAME",
         :long => "--ssh-user USERNAME"
@@ -31,41 +31,7 @@ class Chef
         :default => true,
         :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
 
-      ## monkey for #3900(included 12.5.2) >>
-      if Gem::Version.new(Chef::VERSION) < Gem::Version.new('12.5.2')
-        unless options.has_key?(:first_boot_attributes_from_file)
-          option :first_boot_attributes_from_file,
-            :long => "--json-attribute-file FILE",
-            :description => "A JSON file to be used to the first run of chef-client",
-            :proc => lambda { |o| Chef::JSONCompat.parse(File.read(o)) },
-            :default => nil
-
-          def first_boot_attributes
-            @config[:first_boot_attributes] || @config[:first_boot_attributes_from_file] || {}
-          end
-
-          def render_template
-            @config[:first_boot_attributes] = first_boot_attributes
-            template_file = find_template
-            template = IO.read(template_file).chomp
-            Erubis::Eruby.new(template).evaluate(bootstrap_context)
-          end
-
-          ## monkey for #3900(included 12.5.2) <<
-        end
-      end
-
       def run
-      ## monkey for #3900(included 12.5.2) >>
-        if Gem::Version.new(Chef::VERSION) < Gem::Version.new('12.5.2')
-          if @config[:first_boot_attributes] # Check for edge master
-            if @config[:first_boot_attributes].any? && @config[:first_boot_attributes_from_file]
-              raise "You cannot pass both --json-attributes and --json-attribute-file."
-            end
-          end
-        end
-      ## monkey for #3900(included 12.5.2) <<
-
         if @config[:first_boot_attributes_from_file]
           @config[:first_boot_attributes_from_file] = @config[:first_boot_attributes_from_file].merge(build_knifezero_attributes_for_node)
         else
