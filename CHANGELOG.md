@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## v1.11.0
+
+- Add dependency chef "~> 12.6.0"
+- Feature: Allow USER@FQDN format for bootstrap commands #37
+- Remove: Option first_boot_attributes compatibility before 12.6.
+
 ## v1.10.2
 
 - Bugfix: `--json-attribute` was broken. #73
