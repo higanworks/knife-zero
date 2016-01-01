@@ -50,6 +50,12 @@ class Chef
       def initialize(argv=[])
         super
         self.configure_chef
+
+        ## Command hook before_converge (Before launched Chef-Zero)
+        if Chef::Config[:knife][:before_converge]
+          ::Knife::Zero::Helper.hook_shell_out!("before_converge", ui, Chef::Config[:knife][:before_converge])
+        end
+
         @name_args = [@name_args[0], start_chef_client]
       end
 

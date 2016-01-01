@@ -32,6 +32,11 @@ class Chef
         :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
 
       def run
+        ## Command hook before_bootstrap (After launched Chef-Zero)
+        if Chef::Config[:knife][:before_bootstrap]
+          ::Knife::Zero::Helper.hook_shell_out!("before_bootstrap", ui, Chef::Config[:knife][:before_bootstrap])
+        end
+
         if @config[:first_boot_attributes_from_file]
           @config[:first_boot_attributes_from_file] = @config[:first_boot_attributes_from_file].merge(build_knifezero_attributes_for_node)
         else
