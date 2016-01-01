@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## v1.11.1
+
+- Feature: add before_hook
+    - before_bootstrap
+    - before_converge
+
 ## v1.11.0
 
 - Add dependency chef "~> 12.6.0"
