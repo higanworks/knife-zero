@@ -20,6 +20,7 @@ class Chef
       self.options = Ssh.options.merge(self.options)
       self.options = ZeroConverge.options.merge(self.options)
       self.options[:use_sudo_password] = Bootstrap.options[:use_sudo_password]
+      self.options.delete(:override_runlist)
 
       option :recipe,
         :short        => "-r Recipe String or @filename",
