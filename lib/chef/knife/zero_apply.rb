@@ -10,7 +10,6 @@ class Chef
     class ZeroApply < Chef::Knife::BootstrapSsh
       include Chef::Knife::ZeroBase
       deps do
-        require 'chef/run_list/run_list_item'
         Chef::Knife::BootstrapSsh.load_deps
         Chef::Knife::ZeroConverge.load_deps
         require "knife-zero/helper"
@@ -25,7 +24,7 @@ class Chef
       option :recipe,
         :short        => "-r Recipe String or @filename",
         :long         => "--recipe Recipe String or @filename",
-        :description  => "Recipe to execute by chef-apply",
+        :description  => "Recipe for execute by chef-apply",
         :default => "",
         :proc => lambda { |o| o.start_with?('@') ? File.read(o[1..-1]).shellescape : (o.to_s).shellescape }
 
@@ -54,7 +53,6 @@ class Chef
         client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}chef-apply"
         s = String.new("echo #{@config[:recipe]} | #{client_path}")
         s << " -l #{log_level}"
-        # s << %Q{ -e "#{@config[:recipe]}"}
         s << " -s"
         s << " --minimal-ohai" if @config[:minimal_ohai]
         s << " -W" if @config[:why_run]
