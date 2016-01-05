@@ -40,10 +40,10 @@ class Chef
         super
         self.configure_chef
 
-        @name_args = [@name_args[0], start_chef_appy]
+        @name_args = [@name_args[0], start_chef_apply]
       end
 
-      def start_chef_appy
+      def start_chef_apply
         if @config[:verbosity] and @config[:verbosity] >= 2
           log_level = 'debug'
         else
