@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Typo: start_chef_appy => start_chef_apply
+
+## v1.12.0
+
+- Feature: New subcommand `zero apply`
+
 ## v1.11.1
 
 - Feature: add before_hook

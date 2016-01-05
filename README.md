@@ -32,6 +32,7 @@ Relocated: [Installation | Knife-Zero Document](http://knife-zero.github.io/10_i
 
 ```
 ** ZERO COMMANDS **
+knife zero apply QUERY (options)
 knife zero bootstrap [SSH_USER@]FQDN (options)
 knife zero chef_client QUERY (options) | It's same as converge
 knife zero converge QUERY (options)
