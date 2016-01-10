@@ -1,6 +1,7 @@
 require 'chef/knife'
 require 'chef/knife/zero_base'
 require 'chef/knife/zero_converge'
+require 'chef/application/apply'
 require 'knife-zero/bootstrap_ssh'
 require 'knife-zero/helper'
 require 'shellwords'
@@ -29,12 +30,11 @@ class Chef
         :default => "",
         :proc => lambda { |o| o.start_with?('@') ? File.read(o[1..-1]).shellescape : (o.to_s).shellescape }
 
-      option :minimal_ohai,
-        :long         => "--[no-]minimal-ohai",
-        :description  => "Only run the bare minimum ohai plugins chef needs to function (false by default)",
-        :boolean => true,
-        :default => false,
-        :proc => lambda { |o| o.to_s }
+      ## Import from Chef-Apply
+      self.options[:minimal_ohai] = Chef::Application::Apply.options[:minimal_ohai]
+      self.options[:json_attribs] = Chef::Application::Apply.options[:json_attribs]
+      self.options[:json_attribs][:description] = "Load attributes from a JSON file or URL (retrieves from the remote node)"
+
 
       def initialize(argv=[])
         super
@@ -56,6 +56,7 @@ class Chef
         s << " -l #{log_level}"
         s << " -s"
         s << " --minimal-ohai" if @config[:minimal_ohai]
+        s << " -j #{@config[:json_attribs]}" if @config[:json_attribs]
         s << " -W" if @config[:why_run]
         Chef::Log.info "Remote command: " + s
         s
