@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+
+## v1.12.1
+
 - Typo: start_chef_appy => start_chef_apply
 - Feature: Import json_attribs option from chef-apply to zero-apply
 
