@@ -18,6 +18,7 @@ class Chef
       self.options = Bootstrap.options.merge(self.options)
       self.options.delete :node_ssl_verify_mode
       self.options.delete :node_verify_api_cert
+      self.options.delete :policy_group
 
       ## Override to use nil by default. It should be create PR
       option :ssh_user,
@@ -30,6 +31,9 @@ class Chef
         :boolean => true,
         :default => true,
         :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
+
+      ## For support policy_document_databag(old style)
+      self.options[:policy_name][:description] = "Policy name to use (It'll be set as deployment_group=POLICY_NAME-local)"
 
       def run
         ## Command hook before_bootstrap (After launched Chef-Zero)
@@ -70,6 +74,15 @@ class Chef
           ui.error e.backtrace.join("\n")
           exit 1
         end
+      end
+
+      ## For support policy_document_databag(old style)
+      def validate_options!
+        if policyfile_and_run_list_given?
+          ui.error("Policyfile options and --run-list are exclusive")
+          exit 1
+        end
+        true
       end
 
       def build_knifezero_attributes_for_node
