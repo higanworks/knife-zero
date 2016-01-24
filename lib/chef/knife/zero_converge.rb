@@ -34,6 +34,12 @@ class Chef
         :default => nil,
         :proc => lambda { |o| o.to_s }
 
+      ## For support policy_document_databag(old style)
+      option :named_run_list,
+        :short        => "-n NAMED_RUN_LIST",
+        :long         => "--named-run-list NAMED_RUN_LIST",
+        :description  => "Use a policyfile's named run list instead of the default run list"
+
       option :client_version,
         :long         => "--client-version [latest|VERSION]",
         :description  => "Up or downgrade omnibus chef-client before converge.",
@@ -56,6 +62,8 @@ class Chef
           ::Knife::Zero::Helper.hook_shell_out!("before_converge", ui, Chef::Config[:knife][:before_converge])
         end
 
+        validate_options!
+
         @name_args = [@name_args[0], start_chef_client]
       end
 
@@ -70,6 +78,28 @@ class Chef
         Chef::Log.info "Remote command: " + s
         s
       end
+
+      ## For support policy_document_databag(old style)
+      def validate_options!
+        if override_and_named_given?
+          ui.error("--override_runlist and --named_run_list are exclusive")
+          exit 1
+        end
+        true
+      end
+      # True if policy_name and run_list are both given
+      def override_and_named_given?
+        override_runlist_given? && named_run_list_given?
+      end
+
+      def override_runlist_given?
+        !config[:run_list].nil? && !config[:run_list].empty?
+      end
+
+      def named_run_list_given?
+        !config[:run_list].nil? && !config[:run_list].empty?
+      end
+
     end
   end
 end

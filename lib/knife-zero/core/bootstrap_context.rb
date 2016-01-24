@@ -28,6 +28,16 @@ class Chef
                end
              end
              client_rb << white_lists.join("\n")
+
+             ## For support policy_document_databag(old style)
+             if @config[:policy_name]
+               client_rb << ["\n", "use_policyfile true",
+                             "versioned_cookbooks true",
+                             "policy_document_native_api false",
+                              %Q{deployment_group "#{@config[:policy_name]}-local"}].join("\n")
+             end
+
+             client_rb
            end
 
            alias :orig_start_chef start_chef
@@ -48,6 +58,16 @@ class Chef
              else
                orig_start_chef
              end
+           end
+
+           ## For support policy_document_databag(old style)
+           alias :orig_first_boot first_boot
+           def first_boot
+             attributes = orig_first_boot
+             if @config[:policy_name]
+               attributes.delete(:run_list)
+             end
+             attributes
            end
          end
       end
