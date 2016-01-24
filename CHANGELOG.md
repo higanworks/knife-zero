@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## v1.13.0
+
+- Feature: Support single Policyfile #80
 
 ## v1.12.1
 
