@@ -37,6 +37,10 @@ class Chef
                               %Q{deployment_group "#{@config[:policy_name]}-local"}].join("\n")
              end
 
+             if @config[:appendix_config]
+               client_rb << ["\n## --appendix-config", @config[:appendix_config]].join("\n")
+             end
+
              client_rb
            end
 
