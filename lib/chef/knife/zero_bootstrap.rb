@@ -32,6 +32,12 @@ class Chef
         :default => true,
         :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
 
+      option :appendix_config,
+        :long => "--appendix-config PATH",
+        :description => "",
+        :proc => lambda { |o| File.read(o) },
+        :default => nil
+
       ## For support policy_document_databag(old style)
       self.options[:policy_name][:description] = "Policy name to use (It'll be set as deployment_group=POLICY_NAME-local)"
 
