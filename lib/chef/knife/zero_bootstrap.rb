@@ -34,7 +34,7 @@ class Chef
 
       option :appendix_config,
         :long => "--appendix-config PATH",
-        :description => "",
+        :description => "Append lines to end of client.rb on remote node from file.",
         :proc => lambda { |o| File.read(o) },
         :default => nil
 
