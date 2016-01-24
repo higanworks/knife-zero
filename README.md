@@ -19,6 +19,8 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 - [Knife-Zero Document](https://knife-zero.github.io)
 - [Knife-Zero Document(Ja)](https://knife-zero.github.io/ja/)
 
+- [CHANGELOG](https://github.com/higanworks/knife-zero/blob/master/CHANGELOG.md)
+
 ## Requirements
 
 - Must support AllowTcpForward 

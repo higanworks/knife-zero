@@ -5,6 +5,7 @@
 ## v1.13.0
 
 - Feature: Support single Policyfile #80
+- Feature: Add new option --appendix-config to zero bootstrap #82
 
 ## v1.12.1
 
