@@ -36,3 +36,23 @@ commands:
       sudo:
       verbose:
 <% end %>
+  - name: boot_policy
+    command: zero bootstrap 127.0.0.1
+    condition:
+    options:
+      node-name: policy1
+      policy-name: integration_test
+      ssh-user: docker
+      ssh-password: docker
+      sudo:
+      verbose:
+  - name: converge_policy
+    command: zero converge
+    condition: 'name:policy1'
+    options:
+      attribute: knife_zero.host
+      named-run-list: replay
+      ssh-user: docker
+      ssh-password: docker
+      sudo:
+      verbose:

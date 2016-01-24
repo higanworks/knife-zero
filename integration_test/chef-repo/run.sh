@@ -24,3 +24,12 @@ grep value_from_file nodes/127.0.0.1.json
 knife helper exec converge_name --print-only
 knife helper exec converge_name
 knife helper exec converge2_name
+
+## Policyfile Challenge
+export POLICY_MODE=true
+chef install
+chef export ./ -f
+
+knife helper exec boot_policy
+knife helper exec converge_policy
+knife node show policy1
