@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.13.1
+
+- Misc: Change chef dependency from "~> 12.6.0" to "~> 12.6" for install 12.7.0 or later.
+
 ## v1.13.0
 
 - Feature: Support single Policyfile #80
