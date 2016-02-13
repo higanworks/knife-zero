@@ -38,7 +38,7 @@ RUN gem install -V -l knife-zero-*.gem --no-ri --no-rdoc
 
 WORKDIR /home/knife-helper
 RUN gem build knife-helper.gemspec
-RUN gem install -V -b knife-helper-*.gem --no-ri --no-rdoc
+RUN gem install -V -l knife-helper-*.gem --no-ri --no-rdoc
 
 WORKDIR /chef-repo
 
