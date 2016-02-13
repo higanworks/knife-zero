@@ -74,6 +74,7 @@ class Chef
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
+        s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
         s << " -W" if @config[:why_run]
         Chef::Log.info "Remote command: " + s
         s
