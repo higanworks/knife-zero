@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Change: support policy_document_native_api by default. #85
+
 ## v1.13.2
 
 - Bug: `--named-run-list` did not be passed to remote chef-client.
