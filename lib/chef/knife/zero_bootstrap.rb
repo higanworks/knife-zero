@@ -39,7 +39,7 @@ class Chef
         :default => nil
 
       ## For support policy_document_databag(old style)
-      self.options[:policy_name][:description] = "Policy name to use (It'll be set as deployment_group=POLICY_NAME-local)"
+      self.options[:policy_name][:description] = "Policy name to use (It'll be set with policy_group=local)"
 
       def run
         ## Command hook before_bootstrap (After launched Chef-Zero)
