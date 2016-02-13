@@ -30,6 +30,8 @@ export POLICY_MODE=true
 chef install
 chef export ./ -f
 
+knife helper exec boot_policy --print-only
 knife helper exec boot_policy
+knife helper exec converge_policy --print-only
 knife helper exec converge_policy
 knife node show policy1
