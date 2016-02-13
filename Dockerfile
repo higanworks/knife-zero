@@ -11,6 +11,10 @@ RUN tar xvzf chef.tgz && mv chef-chef-* chef
 RUN wget https://codeload.github.com/chef/chef-dk/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-dk* chef-dk
 
+## Helper
+RUN wget https://codeload.github.com/higanworks/knife-helper/legacy.tar.gz/raise_if_none_zero_exit -O knife-helper.tgz
+RUN tar xvzf knife-helper.tgz && mv higanworks-knife-helper-* knife-helper
+
 WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
 RUN gem build chef-config.gemspec
@@ -29,10 +33,12 @@ ADD integration_test/chef-repo /chef-repo/
 ADD integration_test/fixtures /chef-repo/fixtures
 
 WORKDIR /home/knife-zero
-
 RUN gem build knife-zero.gemspec
 RUN gem install -V -l knife-zero-*.gem --no-ri --no-rdoc
-RUN gem install -V knife-helper --no-ri --no-rdoc
+
+WORKDIR /home/knife-helper
+RUN gem build knife-helper.gemspec
+RUN gem install -V -l knife-helper-*.gem --no-ri --no-rdoc
 
 WORKDIR /chef-repo
 
