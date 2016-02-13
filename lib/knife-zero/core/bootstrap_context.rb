@@ -29,12 +29,14 @@ class Chef
              end
              client_rb << white_lists.join("\n")
 
-             ## For support policy_document_databag(old style)
+             ## For support policy_document_native_api
              if @config[:policy_name]
+               @config[:policy_group] = "local"
                client_rb << ["\n", "use_policyfile true",
                              "versioned_cookbooks true",
-                             "policy_document_native_api false",
-                              %Q{deployment_group "#{@config[:policy_name]}-local"}].join("\n")
+                             "policy_document_native_api true",
+                             "policy_name #{@config[:policy_name]}",
+                             "policy_group local"].join("\n")
              end
 
              if @config[:appendix_config]
