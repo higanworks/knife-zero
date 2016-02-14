@@ -43,7 +43,7 @@ knife zero diagnose # show configuration from file
 
 ### Configuration file
 
-Relocated: [Configration | Knife-Zero Document](http://knife-zero.github.io/40_configration/)
+Relocated: [Configration | Knife-Zero Document](http://knife-zero.github.io/40_configuration/)
 
 ### knife zero bootstrap | converge | diagnose
 
