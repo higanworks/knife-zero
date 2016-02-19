@@ -2,7 +2,10 @@
 
 ## Unreleased
 
+## v1.14.0
+
 - Change: support policy_document_native_api by default. #85
+    - this feature depends on chef-dk 0.11.0 or later.
 
 ## v1.13.2
 
