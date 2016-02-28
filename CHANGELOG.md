@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+Empty.
+
+## v1.15.0
+
+- Feature: specified policy_group from option.
+    - `knife serve` and `chef push`.
+
 ## v1.14.0
 
 - Change: support policy_document_native_api by default. #85

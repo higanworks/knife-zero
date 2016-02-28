@@ -31,12 +31,11 @@ class Chef
 
              ## For support policy_document_native_api
              if @config[:policy_name]
-               @config[:policy_group] = "local"
                client_rb << ["\n", "use_policyfile true",
                              "versioned_cookbooks true",
                              "policy_document_native_api true",
                              "policy_name #{@config[:policy_name]}",
-                             "policy_group local"].join("\n")
+                             "policy_group #{@config[:policy_group]}"].join("\n")
              end
 
              if @config[:appendix_config]
