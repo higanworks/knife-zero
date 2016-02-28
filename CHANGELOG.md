@@ -2,7 +2,17 @@
 
 ## Unreleased
 
+Empty.
+
+## v1.15.0
+
+- Feature: specified policy_group from option.
+    - `knife serve` and `chef push`.
+
+## v1.14.0
+
 - Change: support policy_document_native_api by default. #85
+    - this feature depends on chef-dk 0.11.0 or later.
 
 ## v1.13.2
 
