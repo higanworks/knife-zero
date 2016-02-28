@@ -18,7 +18,6 @@ class Chef
       self.options = Bootstrap.options.merge(self.options)
       self.options.delete :node_ssl_verify_mode
       self.options.delete :node_verify_api_cert
-      self.options.delete :policy_group
 
       ## Override to use nil by default. It should be create PR
       option :ssh_user,
@@ -39,7 +38,11 @@ class Chef
         :default => nil
 
       ## For support policy_document_databag(old style)
-      self.options[:policy_name][:description] = "Policy name to use (It'll be set with policy_group=local)"
+      self.options[:policy_name][:description] = "Policy name to use (F.Y.I: Default policy_group=local)"
+
+      ## Set `local` to default policy_group
+      self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). 'local' by default"
+      self.options[:policy_group][:default] = "local"
 
       def run
         ## Command hook before_bootstrap (After launched Chef-Zero)
