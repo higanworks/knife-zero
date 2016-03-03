@@ -4,6 +4,10 @@
 
 Empty.
 
+## v1.15.1
+
+- Follow Upstream: Support option both identity_file and ssh_identity_file for zero bootstrap. #88
+
 ## v1.15.0
 
 - Feature: specified policy_group from option.

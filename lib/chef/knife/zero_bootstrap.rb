@@ -73,7 +73,8 @@ class Chef
         ssh.config[:ssh_port] = config[:ssh_port] || Chef::Config[:knife][:ssh_port]
         ssh.config[:ssh_gateway] = config[:ssh_gateway] || Chef::Config[:knife][:ssh_gateway]
         ssh.config[:forward_agent] = config[:forward_agent] || Chef::Config[:knife][:forward_agent]
-        ssh.config[:identity_file] = config[:identity_file] || Chef::Config[:knife][:identity_file]
+        ssh.config[:identity_file] = config[:identity_file] || Chef::Config[:knife][:identity_file] # DEPRECATED
+        ssh.config[:ssh_identity_file] = config[:ssh_identity_file] || Chef::Config[:knife][:ssh_identity_file]
         ssh.config[:manual] = true
         ssh.config[:host_key_verify] = config[:host_key_verify] || Chef::Config[:knife][:host_key_verify]
         ssh.config[:on_error] = :raise
