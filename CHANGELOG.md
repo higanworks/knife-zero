@@ -4,6 +4,12 @@
 
 Empty.
 
+## v1.15.2
+
+- [Feature] Add option --splay from splay
+- [Feature] Add option --skip-cookbook-sync from chef-client v12.8.1
+- [Cleanup] inherit named_run_list
+
 ## v1.15.1
 
 - Follow Upstream: Support option both identity_file and ssh_identity_file for zero bootstrap. #88
