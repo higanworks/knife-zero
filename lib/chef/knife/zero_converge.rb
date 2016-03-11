@@ -1,5 +1,6 @@
 require 'chef/knife'
 require 'chef/knife/zero_base'
+require 'chef/application/client'
 require 'knife-zero/bootstrap_ssh'
 require 'knife-zero/helper'
 
@@ -18,6 +19,18 @@ class Chef
       self.options = Ssh.options.merge(self.options)
       self.options[:use_sudo_password] = Bootstrap.options[:use_sudo_password]
 
+      ## Import Features from chef-client
+      ## > 12.5.1
+      self.options[:named_run_list] = Chef::Application::Client.options[:named_run_list]
+
+      if ::Knife::Zero::Helper.required_chef_version?('12.8.1')
+        self.options[:skip_cookbook_sync] = Chef::Application::Client.options[:skip_cookbook_sync]
+      end
+
+      option :splay,
+        :long => "--splay SECONDS",
+        :description => "The splay time for running at intervals, in seconds",
+        :proc => lambda { |s| s.to_i }
 
       option :use_sudo,
         :long => "--[no-]sudo",
@@ -33,12 +46,6 @@ class Chef
         :description  => "Replace current run list with specified items for a single run. It skips save node.json on local",
         :default => nil,
         :proc => lambda { |o| o.to_s }
-
-      ## For support policy_document_databag(old style)
-      option :named_run_list,
-        :short        => "-n NAMED_RUN_LIST",
-        :long         => "--named-run-list NAMED_RUN_LIST",
-        :description  => "Use a policyfile's named run list instead of the default run list"
 
       option :client_version,
         :long         => "--client-version [latest|VERSION]",
@@ -74,7 +81,9 @@ class Chef
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
+        s << " --splay #{@config[:splay]}" if @config[:splay]
         s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
+        s << " --skip-cookbook-sync" if @config[:skip_cookbook_sync]
         s << " -W" if @config[:why_run]
         Chef::Log.info "Remote command: " + s
         s
