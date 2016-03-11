@@ -36,6 +36,10 @@ module Knife
           raise e
         end
       end
+
+      def self.required_chef_version?(ver)
+        Gem::Version.new(Chef::VERSION) >= Gem::Version.new(ver)
+      end
     end
   end
 end
