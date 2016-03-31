@@ -3,6 +3,16 @@
 ## Unreleased
 
 Empty.
+## v1.15.3
+
+- [Bugfix] move overridden options of bootstrap into deps.
+    - The new change about policy_group breaks knife bootstrap when policies aren't used #92
+
+## v1.15.2
+
+- [Feature] Add option --splay from splay
+- [Feature] Add option --skip-cookbook-sync from chef-client v12.8.1
+- [Cleanup] inherit named_run_list
 
 ## v1.15.1
 
