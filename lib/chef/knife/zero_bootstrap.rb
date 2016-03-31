@@ -10,19 +10,27 @@ class Chef
         require 'knife-zero/core/bootstrap_context'
         require 'knife-zero/bootstrap_ssh'
         Chef::Knife::BootstrapSsh.load_deps
+
+        self.options.delete :node_ssl_verify_mode
+        self.options.delete :node_verify_api_cert
+
+        ## Override to use nil by default. It should be create PR
+        option :ssh_user,
+        :short => "-x USERNAME",
+        :long => "--ssh-user USERNAME"
+
+        ## For support policy_document_databag(old style)
+        self.options[:policy_name][:description] = "Policy name to use (F.Y.I: Default policy_group=local)"
+
+        ## Set `local` to default policy_group
+        self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
+        self.options[:policy_group][:default] = "local"
       end
 
       banner "knife zero bootstrap [SSH_USER@]FQDN (options)"
 
       ## Import from knife bootstrap except exclusions
       self.options = Bootstrap.options.merge(self.options)
-      self.options.delete :node_ssl_verify_mode
-      self.options.delete :node_verify_api_cert
-
-      ## Override to use nil by default. It should be create PR
-      option :ssh_user,
-        :short => "-x USERNAME",
-        :long => "--ssh-user USERNAME"
 
       option :bootstrap_converge,
         :long => "--[no-]converge",
@@ -36,13 +44,6 @@ class Chef
         :description => "Append lines to end of client.rb on remote node from file.",
         :proc => lambda { |o| File.read(o) },
         :default => nil
-
-      ## For support policy_document_databag(old style)
-      self.options[:policy_name][:description] = "Policy name to use (F.Y.I: Default policy_group=local)"
-
-      ## Set `local` to default policy_group
-      self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). 'local' by default"
-      self.options[:policy_group][:default] = "local"
 
       def run
         ## Command hook before_bootstrap (After launched Chef-Zero)
