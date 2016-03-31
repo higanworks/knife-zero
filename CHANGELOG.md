@@ -3,6 +3,10 @@
 ## Unreleased
 
 Empty.
+## v1.15.3
+
+- [Bugfix] move overridden options of bootstrap into deps.
+    - The new change about policy_group breaks knife bootstrap when policies aren't used #92
 
 ## v1.15.2
 
