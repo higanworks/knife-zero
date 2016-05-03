@@ -35,6 +35,17 @@ commands:
       ssh-password: docker
       sudo:
       verbose:
+  - name: converge3_<%= target %>
+    command: zero converge --client-version latest
+    condition: 'name:<%= node %>'
+    options:
+      attribute: knife_zero.host
+      override-runlist: 'kzi::default'
+      ssh-user: docker
+      ssh-password: docker
+      sudo:
+      verbose:
+      json-attribute-file: fixtures/sample2.json
 <% end %>
   - name: boot_policy
     command: zero bootstrap 127.0.0.1
