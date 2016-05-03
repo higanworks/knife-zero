@@ -4,6 +4,9 @@ machine:
     version: 2.1.5
   services:
     - docker
+dependencies:
+  pre:
+    - gem install bundler --no-ri --no-rdoc
 test:
   override:
     - bundle exec ruby test/run_test.rb -v
