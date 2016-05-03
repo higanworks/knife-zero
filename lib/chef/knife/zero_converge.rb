@@ -1,7 +1,7 @@
 require 'chef/knife'
 require 'chef/knife/zero_base'
 require 'chef/application/client'
-require "chef/config_fetcher"
+require 'chef/config_fetcher'
 require 'knife-zero/bootstrap_ssh'
 require 'knife-zero/helper'
 
@@ -22,7 +22,8 @@ class Chef
 
       ## Import Features from chef-client
       self.options[:json_attribs] = Chef::Application::Client.options[:json_attribs]
-      ## > 12.5.1
+
+      ### > 12.5.1
       self.options[:named_run_list] = Chef::Application::Client.options[:named_run_list]
 
       if ::Knife::Zero::Helper.required_chef_version?('12.8.1')
@@ -86,7 +87,7 @@ class Chef
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
-        s << " -j /etc/chef/chef_client_json.json" if @config[:json_attribs]
+        s << ' -j /etc/chef/chef_client_json.json' if @config[:json_attribs]
         s << " --splay #{@config[:splay]}" if @config[:splay]
         s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
         s << " --skip-cookbook-sync" if @config[:skip_cookbook_sync]
@@ -102,7 +103,10 @@ class Chef
           exit 1
         end
         if json_attribs_without_override_given?
-          ui.error("--json-attributes must be used with --override-runlist to avoid updating local node object.")
+          ui.error(
+            '--json-attributes must be used with --override-runlist ' \
+            'to avoid updating local node object.'
+          )
           exit 1
         end
         true
@@ -132,7 +136,6 @@ class Chef
       def json_attribs_given?
         !config[:json_attribs].nil? && !config[:json_attribs].empty?
       end
-
 
       def fetch_json_from_url
         config_fetcher = Chef::ConfigFetcher.new(@config[:json_attribs])
