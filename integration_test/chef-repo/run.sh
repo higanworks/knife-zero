@@ -25,7 +25,7 @@ knife helper exec converge_name --print-only
 knife helper exec converge_name
 knife helper exec converge2_name
 knife helper exec converge3_name
-if 'grep json_attribs_check nodes/zerohost.json' ; then false ; fi
+if grep json_attribs_check nodes/zerohost.json ; then false ; fi
 
 ## Policyfile Challenge
 export POLICY_MODE=true
