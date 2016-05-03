@@ -3,6 +3,11 @@
 ## Unreleased
 
 Empty.
+
+## v1.16.0.pre~
+
+- [Feature] converge with `--json-attributes` #98
+
 ## v1.15.3
 
 - [Bugfix] move overridden options of bootstrap into deps.
