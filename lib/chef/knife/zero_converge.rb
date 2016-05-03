@@ -1,6 +1,7 @@
 require 'chef/knife'
 require 'chef/knife/zero_base'
 require 'chef/application/client'
+require "chef/config_fetcher"
 require 'knife-zero/bootstrap_ssh'
 require 'knife-zero/helper'
 
@@ -12,6 +13,12 @@ class Chef
         require 'chef/run_list/run_list_item'
         Chef::Knife::BootstrapSsh.load_deps
         require "knife-zero/helper"
+        ## Import Features from chef-client with customize
+        self.options[:json_attribs] = Chef::Application::Client.options[:json_attribs]
+        self.options[:json_attribs][:proc] = lambda { |url|
+          config_fetcher = Chef::ConfigFetcher.new(url)
+          config_fetcher.fetch_json
+        }
       end
 
       banner "knife zero converge QUERY (options)"
