@@ -41,8 +41,9 @@ class Chef
 
       def build_client_json
         <<-EOH
-        cat <<"EOP" > /tmp/chef_client_json.json
+        sudo sh -c 'cat <<"EOP" > /etc/chef/chef_client_json.json
         #{config[:chef_client_json].to_json}
+        '
         EOH
       end
     end

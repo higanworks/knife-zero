@@ -86,7 +86,7 @@ class Chef
         s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
-        s << " -j /tmp/chef_client_json.json" if @config[:json_attribs]
+        s << " -j /etc/chef/chef_client_json.json" if @config[:json_attribs]
         s << " --splay #{@config[:splay]}" if @config[:splay]
         s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
         s << " --skip-cookbook-sync" if @config[:skip_cookbook_sync]
