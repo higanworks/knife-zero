@@ -4,7 +4,7 @@
 
 Empty.
 
-## v1.16.0.pre~
+## v1.16.0
 
 - [Feature] converge with `--json-attributes` #98
 
