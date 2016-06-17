@@ -4,6 +4,11 @@
 
 Empty.
 
+## v1.17.0
+
+- Change: Ask overwrite node object at bootstrap #101
+    - New option `--[no-]overwrite`
+
 ## v1.16.0
 
 - [Feature] converge with `--json-attributes` #98
