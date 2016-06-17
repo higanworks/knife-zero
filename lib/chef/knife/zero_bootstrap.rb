@@ -51,6 +51,11 @@ class Chef
           ::Knife::Zero::Helper.hook_shell_out!("before_bootstrap", ui, Chef::Config[:knife][:before_bootstrap])
         end
 
+        q = Chef::Search::Query.new
+        if q.search(:node, "name:#{@config[:chef_node_name]}").last > 0
+          ui.confirm(%Q{Node "#{@config[:chef_node_name]}" is already exist. Overwrite it}, true, false)
+        end
+
         if @config[:first_boot_attributes_from_file]
           @config[:first_boot_attributes_from_file] = @config[:first_boot_attributes_from_file].merge(build_knifezero_attributes_for_node)
         else
