@@ -33,23 +33,40 @@ class Chef
       self.options = Bootstrap.options.merge(self.options)
 
       option :bootstrap_converge,
-        :long => "--[no-]converge",
-        :description => "Bootstrap without Chef-Client Run.(for only update client.rb)",
-        :boolean => true,
-        :default => true,
-        :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
+             :long => "--[no-]converge",
+             :description => "Bootstrap without Chef-Client Run.(for only update client.rb)",
+             :boolean => true,
+             :default => true,
+             :proc => lambda { |v| Chef::Config[:knife][:bootstrap_converge] = v }
+
+      option :overwrite_node_object,
+             :long => "--[no-]overwrite",
+             :description => "Overwrite local node object if node already exist. false by default",
+             :boolean => true,
+             :default => false,
+             :proc => lambda { |v| Chef::Config[:knife][:overwrite_node_object] = v }
 
       option :appendix_config,
-        :long => "--appendix-config PATH",
-        :description => "Append lines to end of client.rb on remote node from file.",
-        :proc => lambda { |o| File.read(o) },
-        :default => nil
+             :long => "--appendix-config PATH",
+             :description => "Append lines to end of client.rb on remote node from file.",
+             :proc => lambda { |o| File.read(o) },
+             :default => nil
 
       def run
         ## Command hook before_bootstrap (After launched Chef-Zero)
         if Chef::Config[:knife][:before_bootstrap]
           ::Knife::Zero::Helper.hook_shell_out!("before_bootstrap", ui, Chef::Config[:knife][:before_bootstrap])
         end
+
+        if @config[:bootstrap_converge]
+          unless @config[:overwrite_node_object]
+            q = Chef::Search::Query.new
+            if q.search(:node, "name:#{@config[:chef_node_name]}").last > 0
+              ui.confirm(%Q{Node "#{@config[:chef_node_name]}" already exist. Overwrite it (You can skip asking with --overwrite option.)}, true, false)
+            end
+          end
+        end
+
 
         if @config[:first_boot_attributes_from_file]
           @config[:first_boot_attributes_from_file] = @config[:first_boot_attributes_from_file].merge(build_knifezero_attributes_for_node)
