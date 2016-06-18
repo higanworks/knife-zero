@@ -4,7 +4,11 @@
 
 Empty.
 
-## v1.17.0
+## v1.17.1
+
+- [Bugfix]: change of 1.17.0 crashes nodenameless bootstrapping.
+
+## v1.17.0(Yanked)
 
 - Change: Ask overwrite node object at bootstrap #101
     - New option `--[no-]overwrite`
