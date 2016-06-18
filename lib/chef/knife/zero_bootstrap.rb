@@ -61,8 +61,15 @@ class Chef
         if @config[:bootstrap_converge]
           unless @config[:overwrite_node_object]
             q = Chef::Search::Query.new
-            if q.search(:node, "name:#{@config[:chef_node_name]}").last > 0
-              ui.confirm(%Q{Node "#{@config[:chef_node_name]}" already exist. Overwrite it (You can skip asking with --overwrite option.)}, true, false)
+            node_name = resolve_node_name
+            result = q.search(:node, "name:#{node_name} OR knife_zero_host:#{node_name}")
+            if result.last > 0
+              ui.warn(%Q{Node "#{node_name}" already exist. [Found #{result.last} Node(s) in local search.] (You can skip asking with --overwrite option.)})
+              if result.last == 1
+                ui.confirm(%Q{Overwrite it }, true, false)
+              else
+                ui.confirm(%Q{Overwrite one of them }, true, false)
+              end
             end
           end
         end
@@ -130,6 +137,10 @@ class Chef
         attr
       end
 
+      def resolve_node_name
+        return @config[:chef_node_name] if @config[:chef_node_name]
+        @cli_arguments.first.split('@').last
+      end
     end
   end
 end
