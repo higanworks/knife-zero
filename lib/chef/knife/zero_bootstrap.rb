@@ -92,7 +92,7 @@ class Chef
         ssh = Chef::Knife::BootstrapSsh.new
         ssh.ui = ui
         ssh.name_args = [ server_name, ssh_command ]
-        ssh.config = Net::SSH.configuration_for(server_name)
+        ssh.config = Net::SSH.configuration_for(server_name, true)
         ssh.config[:ssh_user] = user_name || config[:ssh_user] || Chef::Config[:knife][:ssh_user]
         ssh.config[:ssh_password] = config[:ssh_password]
         ssh.config[:ssh_port] = config[:ssh_port] || Chef::Config[:knife][:ssh_port]
