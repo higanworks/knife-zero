@@ -4,6 +4,10 @@
 
 Empty.
 
+## v1.17.2
+
+- pass true as 2nd args for Net::SSH.configuration_for by default. #106
+
 ## v1.17.1
 
 - [Bugfix]: change of 1.17.0 crashes nodenameless bootstrapping.
