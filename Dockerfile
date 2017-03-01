@@ -24,6 +24,15 @@ WORKDIR /home/chef-dk
 RUN gem build chef-dk.gemspec
 RUN gem install -V -b chef-dk*.gem --no-ri --no-rdoc
 
+## Workaround until released ohai 13
+WORKDIR /home
+RUN wget https://codeload.github.com/chef/ohai/legacy.tar.gz/master -O ohai.tgz
+RUN tar xvzf ohai.tgz && mv chef-ohai* ohai
+WORKDIR /home/ohai
+RUN gem build ohai.gemspec
+RUN gem install -V -b ohai*.gem --no-ri --no-rdoc
+
+
 ADD . /home/knife-zero/
 ADD integration_test/chef-repo /chef-repo/
 ADD integration_test/fixtures /chef-repo/fixtures
