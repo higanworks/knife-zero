@@ -4,6 +4,10 @@
 
 Empty.
 
+## v1.18.0
+
+- allow run under chef 13
+
 ## v1.17.3
 
 - apply no-color to remote side #109 HT: @yusukegoto
