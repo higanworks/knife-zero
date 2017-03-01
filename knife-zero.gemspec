@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port fowarding.}
   spec.description   = %q{Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port fowarding.}
   spec.homepage      = "http://knife-zero.github.io"
-  spec.license       = "Apache2"
+  spec.license       = "Apache-2.0"
 
   spec.files         = Dir['README.md','CHANGELOG.md','knife-zero.gemspec','lib/**/*']
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
