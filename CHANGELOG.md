@@ -6,7 +6,7 @@ Empty.
 
 ## v1.18.0
 
-- allow run under chef 13
+- Just allow run under chef-client 13
 
 ## v1.17.3
 
