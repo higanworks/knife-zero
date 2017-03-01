@@ -4,6 +4,10 @@
 
 Empty.
 
+## v1.17.3
+
+- apply no-color to remote side #109 HT: @yusukegoto
+
 ## v1.17.2
 
 - pass true as 2nd args for Net::SSH.configuration_for by default. #106
