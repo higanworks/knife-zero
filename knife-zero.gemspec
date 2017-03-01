@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "simplecov-rcov"
 
-  spec.add_runtime_dependency "chef", "~> 12.6", "< 14.0"
+  spec.add_runtime_dependency "chef", ">= 12.6", "< 14.0"
 end
