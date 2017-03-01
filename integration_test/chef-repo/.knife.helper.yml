@@ -16,6 +16,7 @@ commands:
       verbose:
       overwrite:
       json-attribute-file: fixtures/sample.json
+      bootstrap-version: latest
   - name: converge_<%= target %>
     command: zero converge
     condition: 'name:<%= node %>'
@@ -59,6 +60,7 @@ commands:
       sudo:
       verbose:
       overwrite:
+      bootstrap-version: latest
   - name: converge_policy
     command: zero converge
     condition: 'name:policy1'
