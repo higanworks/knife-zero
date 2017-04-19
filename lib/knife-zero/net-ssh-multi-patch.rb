@@ -1,8 +1,7 @@
 require 'net/ssh/multi/version'
 
 ## 1.3.0~ includes this patch.
-if Net::SSH::Multi::Version::STRING == "1.1.0" || Net::SSH::Multi::Version::STRING == "1.2.0" || Net::SSH::Multi::Version::STRING == "1.2.1"
-
+if Gem::Version.new(Net::SSH::Multi::Version::STRING) < Gem::Version.new("1.3.0.rc1")
   require 'net/ssh/multi'
 
   module Net::SSH::Multi
