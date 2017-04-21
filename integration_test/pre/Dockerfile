@@ -1,4 +1,4 @@
-FROM ruby:2.3
+FROM ruby:2.4
 MAINTAINER sawanoboriyu@higanworks.com
 
 RUN echo "deb-src http://ftp.jp.debian.org/debian/ jessie main" >> /etc/apt/sources.list
