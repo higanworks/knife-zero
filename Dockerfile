@@ -16,21 +16,12 @@ RUN touch CONTRIBUTING.md
 RUN gem build chef-config.gemspec
 RUN gem install -V -b chef-config*.gem --no-ri --no-rdoc
 
-## >> Workaround until released ohai 13
-WORKDIR /home
-RUN wget https://codeload.github.com/chef/ohai/legacy.tar.gz/master -O ohai.tgz
-RUN tar xvzf ohai.tgz && mv chef-ohai* ohai
-WORKDIR /home/ohai
-RUN gem build ohai.gemspec
-RUN gem install -V -b ohai*.gem --no-ri --no-rdoc
-## <<
-
 WORKDIR /home/chef
 RUN gem build chef.gemspec
 RUN gem install -V -b chef*.gem --no-ri --no-rdoc
 
 WORKDIR /home/chef-dk
-RUN gem build chef-dk.gemspec
+RUN gem build chef-dk
 RUN gem install -V -b chef-dk*.gem --no-ri --no-rdoc
 
 ADD . /home/knife-zero/
