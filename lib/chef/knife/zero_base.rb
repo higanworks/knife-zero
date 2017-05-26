@@ -11,6 +11,7 @@ class Chef
             Chef::Config[:local_mode] = true
             Chef::Config[:knife_zero] = Hash.new
             Chef::Knife::Ssh.load_deps
+            self.options[:listen] = true
           end
 
           ## Added by Knife-Zero
