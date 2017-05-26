@@ -4,6 +4,11 @@
 
 Empty.
 
+## v1.18.1
+
+- Set true by default to `Chef::Config[:listen]`
+    - it was reversed with chef 13.1.26.
+
 ## v1.18.0
 
 - Just allow run under chef-client 13
