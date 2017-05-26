@@ -13,6 +13,8 @@ class Chef
         require 'chef/run_list/run_list_item'
         Chef::Knife::BootstrapSsh.load_deps
         require "knife-zero/helper"
+        ## set true to listen (false by dafault after chef 13.1.29)
+        self.options[:listen] = true
       end
 
       banner "knife zero converge QUERY (options)"
