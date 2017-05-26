@@ -9,6 +9,8 @@ class Chef
         includer.class_eval do
           deps do
             Chef::Config[:local_mode] = true
+            ## deprecated CHEF-18.
+            ## TODO: should implement unix domain socket forwarding (~< net-ssh 4.1.0) before will be removed.
             Chef::Config[:listen]     = true
             Chef::Config[:knife_zero] = Hash.new
             Chef::Knife::Ssh.load_deps
