@@ -25,6 +25,9 @@ class Chef
         ## Set `local` to default policy_group
         self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
         self.options[:policy_group][:default] = "local"
+
+        ## set true to listen (false by dafault after chef 13.1.29)
+        self.options[:listen] = true
       end
 
       banner "knife zero bootstrap [SSH_USER@]FQDN (options)"
