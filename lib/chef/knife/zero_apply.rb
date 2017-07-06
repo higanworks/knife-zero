@@ -58,6 +58,7 @@ class Chef
         s << " --minimal-ohai" if @config[:minimal_ohai]
         s << " -j #{@config[:json_attribs]}" if @config[:json_attribs]
         s << " --no-color" unless @config[:color]
+        s << " -E #{@config[:environment]}" if @config[:environment]
         s << " -W" if @config[:why_run]
         Chef::Log.info "Remote command: " + s
         s
