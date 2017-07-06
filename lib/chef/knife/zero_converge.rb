@@ -92,6 +92,7 @@ class Chef
         s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
         s << " --skip-cookbook-sync" if @config[:skip_cookbook_sync]
         s << " --no-color" unless @config[:color]
+        s << " -E #{@config[:environment]}" if @config[:environment]
         s << " -W" if @config[:why_run]
         Chef::Log.info "Remote command: " + s
         s
