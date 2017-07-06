@@ -4,6 +4,10 @@
 
 Empty.
 
+## v1.18.2
+
+- add -E option support for converge #112 HT: @yusukegoto
+
 ## v1.18.1
 
 - Set true by default to `Chef::Config[:listen]`
