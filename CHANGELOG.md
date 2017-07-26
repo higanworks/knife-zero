@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-Empty.
+- add option node_config_file to zero converge #114
 
 ## v1.18.2
 
