@@ -2,11 +2,16 @@
 
 ## Unreleased
 
-- add option node_config_file to zero converge #114
+
+## v1.19.0
+
+- enable keepalive on Net::SSH::Multi [#116](https://github.com/higanworks/knife-zero/pull/116)
+- add option node_config_file to zero converge [#114](https://github.com/higanworks/knife-zero/pull/114)
+  - `-N, --node-config PATH_TO_CONFIG`
 
 ## v1.18.2
 
-- add -E option support for converge #112 HT: @yusukegoto
+- add -E option support for converge [#112](https://github.com/higanworks/knife-zero/pull/112) HT: [@yusukegoto](https://github.com/yusukegoto)
 
 ## v1.18.1
 
@@ -19,11 +24,11 @@
 
 ## v1.17.3
 
-- apply no-color to remote side #109 HT: @yusukegoto
+- apply no-color to remote side [#109](https://github.com/higanworks/knife-zero/pull/109) HT: [@yusukegoto](https://github.com/yusukegoto)
 
 ## v1.17.2
 
-- pass true as 2nd args for Net::SSH.configuration_for by default. #106
+- pass true as 2nd args for Net::SSH.configuration_for by default. [#106](https://github.com/higanworks/knife-zero/pull/106)
 
 ## v1.17.1
 
@@ -31,17 +36,17 @@
 
 ## v1.17.0(Yanked)
 
-- Change: Ask overwrite node object at bootstrap #101
+- Change: Ask overwrite node object at bootstrap [#101](https://github.com/higanworks/knife-zero/pull/101)
     - New option `--[no-]overwrite`
 
 ## v1.16.0
 
-- [Feature] converge with `--json-attributes` #98
+- [Feature] converge with `--json-attributes` [#98](https://github.com/higanworks/knife-zero/pull/98)
 
 ## v1.15.3
 
 - [Bugfix] move overridden options of bootstrap into deps.
-    - The new change about policy_group breaks knife bootstrap when policies aren't used #92
+    - The new change about policy_group breaks knife bootstrap when policies aren't used [#92](https://github.com/higanworks/knife-zero/pull/92)
 
 ## v1.15.2
 
