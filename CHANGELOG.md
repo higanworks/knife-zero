@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## v1.19.1
+
+- Properly quote policyfile name [#117](https://github.com/higanworks/knife-zero/pull/117)
 
 ## v1.19.0
 
