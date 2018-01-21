@@ -10,6 +10,12 @@ RUN wget https://codeload.github.com/chef/chef/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-* chef
 RUN wget https://codeload.github.com/chef/chef-dk/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-dk* chef-dk
+RUN wget https://codeload.github.com/chef/ohai/legacy.tar.gz/master -O ohai.tgz
+RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
+
+WORKDIR /home/ohai
+RUN gem build ohai.gemspec
+RUN gem install -V -b ohai*.gem --no-ri --no-rdoc
 
 WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
