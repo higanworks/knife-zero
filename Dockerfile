@@ -15,6 +15,8 @@ RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
 
 WORKDIR /home/ohai
 RUN gem build ohai.gemspec
+RUN echo v14.0.0 > VERSION
+RUN ./.expeditor/update_version.sh
 RUN gem install -V -b ohai*.gem --no-ri --no-rdoc
 
 WORKDIR /home/chef/chef-config
