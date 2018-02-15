@@ -1,5 +1,5 @@
 FROM higanworks/knife-zero-edgebase
-MAINTAINER sawanoboriyu@higanworks.com
+LABEL MAINTAINER=sawanoboriyu@higanworks.com
 
 # ADD .git/index /index
 

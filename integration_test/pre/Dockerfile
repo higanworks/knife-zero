@@ -1,5 +1,5 @@
 FROM ruby:2.4
-MAINTAINER sawanoboriyu@higanworks.com
+LABEL MAINTAINER=sawanoboriyu@higanworks.com
 
 RUN echo "deb-src http://ftp.jp.debian.org/debian/ jessie main" >> /etc/apt/sources.list
 RUN echo "deb-src http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list
