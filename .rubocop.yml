@@ -1,5 +1,5 @@
 ---
 Metrics/LineLength:
-  Max: 100
+  Max: 120
 Style/RedundantSelf:
   Enabled: false
