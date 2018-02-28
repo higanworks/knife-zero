@@ -22,7 +22,7 @@ class Chef
 
       # force fatal
       self.options.delete :duplicated_fqdns
-      self.options[:duplicated_fqdns] = :fatal
+      self.options[:duplicated_fqdns] = 'fatal'
 
       ## Import Features from chef-client
       self.options[:json_attribs] = Chef::Application::Client.options[:json_attribs]
