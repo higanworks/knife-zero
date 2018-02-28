@@ -20,6 +20,12 @@ class Chef
       self.options = Ssh.options.merge(self.options)
       self.options[:use_sudo_password] = Bootstrap.options[:use_sudo_password]
 
+      # fatal by default Ref: https://github.com/chef/chef/pull/6781
+      if self.options[:duplicated_fqdns]
+        self.options[:duplicated_fqdns][:description] = 'Behavior if FQDNs are duplicated, fatal by default'
+        self.options[:duplicated_fqdns][:default] = :fatal
+      end
+
       ## Import Features from chef-client
       self.options[:json_attribs] = Chef::Application::Client.options[:json_attribs]
 
