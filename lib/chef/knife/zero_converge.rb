@@ -22,6 +22,7 @@ class Chef
 
       # fatal by default Ref: https://github.com/chef/chef/pull/6781
       if self.options[:duplicated_fqdns]
+        self.options[:duplicated_fqdns][:description] = 'Behavior if FQDNs are duplicated, fatal by default'
         self.options[:duplicated_fqdns][:default] = :fatal
       end
 
