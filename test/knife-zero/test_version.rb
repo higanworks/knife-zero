@@ -1,7 +1,7 @@
 require "knife-zero/version"
 
 class TC_Version < Test::Unit::TestCase
-  test "returns version correctly" do
-    assert_equal("1.19.1", Knife::Zero::VERSION)
+  test 'returns version correctly' do
+    assert_equal('1.19.2', Knife::Zero::VERSION)
   end
 end

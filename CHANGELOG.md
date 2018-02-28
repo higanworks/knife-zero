@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v1.19.2
+
+- set :fatal to duplicated_fqdns by default [#119](https://github.com/higanworks/knife-zero/pull/119)
+  - `duplicated_fqdns` will be included at least in chef 14.
+
 ## v1.19.1
 
 - Properly quote policyfile name [#117](https://github.com/higanworks/knife-zero/pull/117)
