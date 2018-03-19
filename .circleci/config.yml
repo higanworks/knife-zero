@@ -21,7 +21,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true
+          docker_layer_caching: false
       - run:
           name: Build integrated image
           command: docker build -t local/knife-zero .
