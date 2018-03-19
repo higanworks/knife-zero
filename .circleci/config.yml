@@ -47,4 +47,3 @@ workflows:
             branches:
               only:
                 - integration_testedge
-                - integration_testedge2
