@@ -1,0 +1,48 @@
+---
+version: 2.0
+jobs:
+  test:
+    docker:
+      - image: "ruby:2.4"
+    steps:
+      - checkout
+      - restore_cache:
+          key: rubygems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Update bundler
+          command: gem install bundler --no-ri --no-rdoc
+      - run:
+          name: Bundle gems
+          command: bundle install --path vendor/bundle
+      - save_cache:
+          key: rubygems-{{ checksum "Gemfile.lock" }}
+          paths:
+          - vendor/bundle
+      - run:
+          name: Run simple test
+          command: bundle exec ruby test/run_test.rb -v
+  integration_test:
+    docker:
+      - image: "ruby:2.4"
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build integrated image
+          command: docker build -t local/knife-zero .
+      - run:
+          name: Run integration test
+          command: docker run -it local/knife-zero sh run.sh
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+      - integration_test:
+          filters:
+            branches:
+              only:
+                - integration_testedge
+                - integration_testedge2
