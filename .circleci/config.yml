@@ -1,7 +1,7 @@
 ---
 version: 2.0
 jobs:
-  test:
+  build:
     docker:
       - image: "ruby:2.4"
     steps:
@@ -39,9 +39,9 @@ jobs:
 
 workflows:
   version: 2
-  test:
+  default:
     jobs:
-      - test
+      - build
       - integration_test:
           filters:
             branches:
