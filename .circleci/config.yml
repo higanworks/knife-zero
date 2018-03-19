@@ -6,18 +6,12 @@ jobs:
       - image: "ruby:2.4"
     steps:
       - checkout
-      - restore_cache:
-          key: rubygems-{{ checksum "Gemfile.lock" }}
       - run:
           name: Update bundler
           command: gem install bundler --no-ri --no-rdoc
       - run:
           name: Bundle gems
           command: bundle install --path vendor/bundle
-      - save_cache:
-          key: rubygems-{{ checksum "Gemfile.lock" }}
-          paths:
-          - vendor/bundle
       - run:
           name: Run simple test
           command: bundle exec ruby test/run_test.rb -v
