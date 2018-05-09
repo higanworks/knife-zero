@@ -13,7 +13,7 @@ class Chef
         begin
 
         if config[:client_version]
-          super(%Q{/opt/chef/embedded/bin/ruby -ropen-uri -e 'puts open("https://chef.sh").read' | sudo sh -s -- -v #{config[:client_version]}})
+          super(%Q{/opt/chef/embedded/bin/ruby -ropen-uri -e 'puts open("https://omnitruck.chef.io/install.sh").read' | sudo sh -s -- -v #{config[:client_version]}})
         end
 
         if config[:json_attribs]
