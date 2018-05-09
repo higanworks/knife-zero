@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v1.19.3
+
+- replace `https://chef.sh` to `https://omnitruck.chef.io/install.sh` for download chef.
+
 ## v1.19.2
 
 - set :fatal to duplicated_fqdns by default [#119](https://github.com/higanworks/knife-zero/pull/119)
