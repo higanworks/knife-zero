@@ -20,3 +20,5 @@ closeComment: false
 issues:
   exemptLabels:
     - confirmed
+    - ready
+    - cheer_for_core
