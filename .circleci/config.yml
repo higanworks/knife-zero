@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Update bundler
-          command: gem install bundler --no-ri --no-rdoc
+          command: gem install bundler -no-ri-no-rdoc
       - run:
           name: Bundle gems
           command: bundle install --path vendor/bundle
