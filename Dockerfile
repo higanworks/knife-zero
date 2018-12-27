@@ -21,15 +21,15 @@ RUN gem install -V -b ohai*.gem --no-ri --no-rdoc
 WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
 RUN gem build chef-config.gemspec
-RUN gem install -V -b chef-config*.gem --no-ri --no-rdoc
+RUN gem install -V -b chef-config*.gem --no-document
 
 WORKDIR /home/chef
 RUN gem build chef.gemspec
-RUN gem install -V -b chef*.gem --no-ri --no-rdoc
+RUN gem install -V -b chef*.gem --no-document
 
 WORKDIR /home/chef-dk
 RUN gem build chef-dk
-RUN gem install -V -b chef-dk*.gem --no-ri --no-rdoc
+RUN gem install -V -b chef-dk*.gem --no-document
 
 ADD . /home/knife-zero/
 ADD integration_test/chef-repo /chef-repo/
@@ -38,8 +38,8 @@ ADD integration_test/fixtures /chef-repo/fixtures
 WORKDIR /home/knife-zero
 
 RUN gem build knife-zero.gemspec
-RUN gem install -V -l knife-zero-*.gem --no-ri --no-rdoc
-RUN gem install -V knife-helper --no-ri --no-rdoc
+RUN gem install -V -l knife-zero-*.gem --no-document
+RUN gem install -V knife-helper --no-document
 
 WORKDIR /chef-repo
 
