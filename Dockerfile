@@ -16,7 +16,7 @@ RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
 
 WORKDIR /home/ohai
 RUN gem build ohai.gemspec
-RUN gem install -V -b ohai*.gem --no-ri --no-rdoc
+RUN gem install -V -b ohai*.gem --no-document
 
 WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
