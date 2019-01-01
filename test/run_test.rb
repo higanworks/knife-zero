@@ -18,8 +18,8 @@ if ENV['CIRCLE_ARTIFACTS']
     add_filter "/vendor/"
     add_filter "/test/"
   end
-else
-  require "test/unit/notify"
+# else
+#   require "test/unit/notify"
 end
 
 exit Test::Unit::AutoRunner.run(true, test_dir)
