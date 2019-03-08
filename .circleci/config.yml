@@ -43,14 +43,6 @@ jobs:
 workflows:
   version: 2
   default:
-    jobs:
-      - build
-      - integration_test:
-          filters:
-            branches:
-              only:
-                - integration_testedge
-  daily:
     triggers:
       - schedule:
           cron: "10 3,15 * * *"
