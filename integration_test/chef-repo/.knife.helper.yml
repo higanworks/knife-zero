@@ -11,7 +11,7 @@ commands:
     options:
       node-name: <%= node %>
       ssh-user: docker
-      ssh-password: docker
+      connection-password: docker
       sudo:
       verbose:
       overwrite:
@@ -24,7 +24,7 @@ commands:
       attribute: knife_zero.host
       override-runlist: 'kzi::default'
       ssh-user: docker
-      ssh-password: docker
+      connection-password: docker
       sudo:
       verbose:
   - name: converge2_<%= target %>
@@ -34,7 +34,7 @@ commands:
       attribute: knife_zero.host
       override-runlist: 'kzi::default'
       ssh-user: docker
-      ssh-password: docker
+      connection-password: docker
       sudo:
       verbose:
   - name: converge3_<%= target %>
@@ -44,7 +44,7 @@ commands:
       attribute: knife_zero.host
       override-runlist: 'kzi::default'
       ssh-user: docker
-      ssh-password: docker
+      connection-password: docker
       sudo:
       verbose:
       json-attribute: fixtures/sample2.json
@@ -56,7 +56,7 @@ commands:
       node-name: policy1
       policy-name: integration_test
       ssh-user: docker
-      ssh-password: docker
+      connection-password: docker
       sudo:
       verbose:
       overwrite:
@@ -68,6 +68,6 @@ commands:
       attribute: knife_zero.host
       named-run-list: replay
       ssh-user: docker
-      ssh-password: docker
+      connection-password: docker
       sudo:
       verbose:
