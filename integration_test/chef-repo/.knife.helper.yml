@@ -55,6 +55,7 @@ commands:
     options:
       node-name: policy1
       policy-name: integration_test
+      policy-group: local
       ssh-user: docker
       connection-password: docker
       sudo:
