@@ -1,6 +1,6 @@
 module Knife
   module Zero
-    VERSION = '2.0.0.dev'.fleeze
+    VERSION = '2.0.0.dev'.freeze
     MAJOR, MINOR, TINY = VERSION.split('.')
   end
 end
