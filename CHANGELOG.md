@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- WIP follow chef 15 ssh_client changes
+
 ## v1.19.3
 
 - replace `https://chef.sh` to `https://omnitruck.chef.io/install.sh` for download chef.
