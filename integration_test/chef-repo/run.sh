@@ -29,7 +29,7 @@ if grep json_attribs_check nodes/zerohost.json ; then false ; fi
 
 ## Policyfile Challenge
 export POLICY_MODE=true
-chef install
+chef install --chef-license accept
 chef export ./ -f
 
 knife helper exec boot_policy --print-only
