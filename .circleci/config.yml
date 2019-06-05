@@ -20,7 +20,7 @@ jobs:
           command: bundle exec ruby test/run_test.rb -v
   integration_test:
     docker:
-      - image: "ruby:2.4"
+      - image: "ruby:2.5"
     steps:
       - checkout
       - setup_remote_docker:
