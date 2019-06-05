@@ -98,15 +98,6 @@ class Chef
         super
       end
 
-      ## override check
-      def do_connect(conn_options)
-        @connection = TrainConnector.new(host_descriptor, connection_protocol, conn_options)
-        pp '==' * 300
-        pp connection
-        connection.connect!
-
-      end
-
       def knife_ssh
         begin
         ssh = Chef::Knife::BootstrapSsh.new
