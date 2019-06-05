@@ -1,7 +1,9 @@
 require 'net/ssh/multi/version'
 
+# rubocop:disable all
+
 ## 1.3.0~ includes this patch.
-if Gem::Version.new(Net::SSH::Multi::Version::STRING) < Gem::Version.new("1.3.0.rc1")
+if Gem::Version.new(Net::SSH::Multi::Version::STRING) < Gem::Version.new('1.3.0.rc1')
   require 'net/ssh/multi'
 
   module Net::SSH::Multi
@@ -122,3 +124,5 @@ module Net::SSH::Multi
     end
   end
 end
+
+# rubocop:enable all

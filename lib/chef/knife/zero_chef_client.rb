@@ -12,7 +12,7 @@ class Chef
       self.options = ZeroConverge.options
 
       def run
-        Chef::Log.warn "`zero chef_client` was renamed. use `zero converge`."
+        Chef::Log.warn '`zero chef_client` was renamed. use `zero converge`.'
         super
       end
     end

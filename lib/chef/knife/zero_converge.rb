@@ -12,10 +12,10 @@ class Chef
       deps do
         require 'chef/run_list/run_list_item'
         Chef::Knife::BootstrapSsh.load_deps
-        require "knife-zero/helper"
+        require 'knife-zero/helper'
       end
 
-      banner "knife zero converge QUERY (options)"
+      banner 'knife zero converge QUERY (options)'
 
       self.options = Ssh.options.merge(self.options)
       self.options[:use_sudo_password] = Bootstrap.options[:use_sudo_password]
@@ -37,50 +37,49 @@ class Chef
       end
 
       option :node_config_file,
-        :short => "-N PATH_TO_CONFIG",
-        :long  => "--node-config PATH_TO_CONFIG",
-        :description => "The configuration file to use on remote node"
+             short: '-N PATH_TO_CONFIG',
+             long: '--node-config PATH_TO_CONFIG',
+             description: 'The configuration file to use on remote node'
 
       option :splay,
-        :long => "--splay SECONDS",
-        :description => "The splay time for running at intervals, in seconds",
-        :proc => lambda { |s| s.to_i }
+             long: '--splay SECONDS',
+             description: 'The splay time for running at intervals, in seconds',
+             proc: lambda { |s| s.to_i }
 
       option :use_sudo,
-        :long => "--[no-]sudo",
-        :description => "Execute the chef-client via sudo (true by default)",
-        :boolean => true,
-        :default => true,
-        :proc => lambda { |v| Chef::Config[:knife][:use_sudo] = v }
-
+             long: '--[no-]sudo',
+             description: 'Execute the chef-client via sudo (true by default)',
+             boolean: true,
+             default: true,
+             proc: lambda { |v| Chef::Config[:knife][:use_sudo] = v }
 
       option :override_runlist,
-        :short        => "-o RunlistItem,RunlistItem...",
-        :long         => "--override-runlist RunlistItem,RunlistItem...",
-        :description  => "Replace current run list with specified items for a single run. It skips save node.json on local",
-        :default => nil,
-        :proc => lambda { |o| o.to_s }
+             short: '-o RunlistItem,RunlistItem...',
+             long: '--override-runlist RunlistItem,RunlistItem...',
+             description: 'Replace current run list with specified items for a single run. It skips save node.json on local',
+             default: nil,
+             proc: lambda { |o| o.to_s }
 
       option :client_version,
-        :long         => "--client-version [latest|VERSION]",
-        :description  => "Up or downgrade omnibus chef-client before converge.",
-        :default => nil,
-        :proc => lambda { |o|
-          if ::Knife::Zero::Helper.chef_version_available?(o)
-            o.to_s
-          else
-            ui.error "Client version #{o} is not found."
-            exit 1
-          end
-        }
+             long: '--client-version [latest|VERSION]',
+             description: 'Up or downgrade omnibus chef-client before converge.',
+             default: nil,
+             proc: lambda { |o|
+               if ::Knife::Zero::Helper.chef_version_available?(o)
+                 o.to_s
+               else
+                 ui.error "Client version #{o} is not found."
+                 exit 1
+               end
+             }
 
-      def initialize(argv=[])
+      def initialize(argv = [])
         super
         self.configure_chef
 
         ## Command hook before_converge (Before launched Chef-Zero)
         if Chef::Config[:knife][:before_converge]
-          ::Knife::Zero::Helper.hook_shell_out!("before_converge", ui, Chef::Config[:knife][:before_converge])
+          ::Knife::Zero::Helper.hook_shell_out!('before_converge', ui, Chef::Config[:knife][:before_converge])
         end
 
         validate_options!
@@ -91,29 +90,29 @@ class Chef
         @name_args = [@name_args[0], start_chef_client]
       end
 
-      def start_chef_client
+      def start_chef_client # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
         client_path = @config[:use_sudo] || Chef::Config[:knife][:use_sudo] ? 'sudo ' : ''
         client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}chef-client"
-        s = String.new("#{client_path}")
-        s << ' -l debug' if @config[:verbosity] and @config[:verbosity] >= 2
+        s = String.new(client_path)
+        s << ' -l debug' if @config[:verbosity] && @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
         s << ' -j /etc/chef/chef_client_json.json' if @config[:json_attribs]
         s << " --splay #{@config[:splay]}" if @config[:splay]
         s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
         s << " --config #{@config[:node_config_file]}" if @config[:node_config_file]
-        s << " --skip-cookbook-sync" if @config[:skip_cookbook_sync]
-        s << " --no-color" unless @config[:color]
+        s << ' --skip-cookbook-sync' if @config[:skip_cookbook_sync]
+        s << ' --no-color' unless @config[:color]
         s << " -E #{@config[:environment]}" if @config[:environment]
-        s << " -W" if @config[:why_run]
-        Chef::Log.info "Remote command: " + s
+        s << ' -W' if @config[:why_run]
+        Chef::Log.info 'Remote command: ' + s
         s
       end
 
       ## For support policy_document_databag(old style)
       def validate_options!
         if override_and_named_given?
-          ui.error("--override_runlist and --named_run_list are exclusive")
+          ui.error('--override_runlist and --named_run_list are exclusive')
           exit 1
         end
         if json_attribs_without_override_given?
@@ -125,6 +124,7 @@ class Chef
         end
         true
       end
+
       # True if policy_name and run_list are both given
       def override_and_named_given?
         override_runlist_given? && named_run_list_given?
