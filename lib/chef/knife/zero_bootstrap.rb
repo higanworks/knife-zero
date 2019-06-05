@@ -7,7 +7,7 @@ class Chef
     class ZeroBootstrap < Chef::Knife::Bootstrap
       include Chef::Knife::ZeroBase
       deps do
-        require "erubis" unless defined?(Erubis)
+        require 'erubis' unless defined?(Erubis)
 
         require 'chef/knife/bootstrap/chef_vault_handler'
         require 'chef/knife/bootstrap/client_builder'
@@ -30,7 +30,8 @@ class Chef
         # self.options[:policy_name][:default] = "build"
 
         ## Set `local` to default policy_group
-        # self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
+        # self.options[:policy_group][:description] =
+        #   "Policy group name to use (--policy-name must also be given). use 'local' "
         # self.options[:policy_group][:default] = "local"
       end
 
