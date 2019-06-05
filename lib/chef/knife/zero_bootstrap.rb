@@ -13,6 +13,7 @@ class Chef
         require 'chef/knife/bootstrap/client_builder'
         require 'chef/knife/bootstrap/train_connector'
         require 'knife-zero/core/bootstrap_context'
+        require 'knife-zero/devpatch/train_connector'
         require 'knife-zero/bootstrap_ssh'
         Chef::Knife::BootstrapSsh.load_deps
 
@@ -25,12 +26,12 @@ class Chef
         :long => "--ssh-user USERNAME"
 
         ## For support policy_document_databag(old style)
-        self.options[:policy_name][:description] = "Policy name to use (F.Y.I: Default policy_group=local)"
-        self.options[:policy_name][:default] = "build"
+        # self.options[:policy_name][:description] = "Policy name to use (F.Y.I: Default policy_group=local)"
+        # self.options[:policy_name][:default] = "build"
 
         ## Set `local` to default policy_group
-        self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
-        self.options[:policy_group][:default] = "local"
+        # self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
+        # self.options[:policy_group][:default] = "local"
       end
 
       banner "knife zero bootstrap [SSH_USER@]FQDN (options)"
@@ -95,6 +96,15 @@ class Chef
           f.puts OpenSSL::PKey::RSA.new(2048).to_s
         end
         super
+      end
+
+      ## override check
+      def do_connect(conn_options)
+        @connection = TrainConnector.new(host_descriptor, connection_protocol, conn_options)
+        pp '==' * 300
+        pp connection
+        connection.connect!
+
       end
 
       def knife_ssh
