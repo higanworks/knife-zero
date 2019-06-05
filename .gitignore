@@ -34,6 +34,7 @@ Session.vim
 
 .rvmrc
 vendor/
+b_bin/
 
 ## Integration
 nodes/

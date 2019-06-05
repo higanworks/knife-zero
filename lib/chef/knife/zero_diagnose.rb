@@ -15,7 +15,7 @@ class Chef
         Chef::Knife::ZeroChefClient.load_deps
       end
 
-      banner "knife zero diagnose # show configuration from file"
+      banner 'knife zero diagnose # show configuration from file'
 
       def initialize(argv = [])
         super
@@ -23,26 +23,26 @@ class Chef
         @converge = Chef::Knife::ZeroConverge.new
       end
 
-      def run
-        ui.msg "Chef::Config"
-        ui.msg "===================="
+      def run # rubocop:disable Metrics/AbcSize
+        ui.msg 'Chef::Config'
+        ui.msg '===================='
         ui.msg Chef::Config.configuration.to_yaml
-        ui.msg ""
+        ui.msg ''
 
-        ui.msg "Knife::Config"
-        ui.msg "===================="
+        ui.msg 'Knife::Config'
+        ui.msg '===================='
         ui.msg config.to_yaml
-        ui.msg ""
+        ui.msg ''
 
-        ui.msg "Zero Bootstrap Config"
-        ui.msg "===================="
-        bootstrap = Chef::Knife::ZeroBootstrap.new
+        ui.msg 'Zero Bootstrap Config'
+        ui.msg '===================='
+        @bootstrap = Chef::Knife::ZeroBootstrap.new
         @bootstrap.merge_configs
         ui.msg @bootstrap.config.to_yaml
-        ui.msg ""
+        ui.msg ''
 
-        ui.msg "Zero Converge Config"
-        ui.msg "===================="
+        ui.msg 'Zero Converge Config'
+        ui.msg '===================='
         @converge.merge_configs
         ui.msg @converge.config.to_yaml
       end
