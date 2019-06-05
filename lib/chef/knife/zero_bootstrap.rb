@@ -30,7 +30,8 @@ class Chef
         # self.options[:policy_name][:default] = "build"
 
         ## Set `local` to default policy_group
-        # self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
+        # self.options[:policy_group][:description] =
+        #   "Policy group name to use (--policy-name must also be given). use 'local' "
         # self.options[:policy_group][:default] = "local"
       end
 
