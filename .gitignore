@@ -33,6 +33,7 @@ Session.vim
 ## Development
 
 .rvmrc
+vendor/
 
 ## Integration
 nodes/

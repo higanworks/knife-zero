@@ -1,5 +1,9 @@
 ---
+Naming/ClassAndModuleCamelCase:
+  Enabled: false
 Metrics/LineLength:
   Max: 120
 Style/RedundantSelf:
+  Enabled: false
+Style/Documentation:
   Enabled: false

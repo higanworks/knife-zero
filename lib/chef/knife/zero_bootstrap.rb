@@ -7,7 +7,13 @@ class Chef
     class ZeroBootstrap < Chef::Knife::Bootstrap
       include Chef::Knife::ZeroBase
       deps do
+        require "erubis" unless defined?(Erubis)
+
+        require 'chef/knife/bootstrap/chef_vault_handler'
+        require 'chef/knife/bootstrap/client_builder'
+        require 'chef/knife/bootstrap/train_connector'
         require 'knife-zero/core/bootstrap_context'
+        require 'knife-zero/devpatch/train_connector'
         require 'knife-zero/bootstrap_ssh'
         Chef::Knife::BootstrapSsh.load_deps
 
@@ -20,11 +26,12 @@ class Chef
         :long => "--ssh-user USERNAME"
 
         ## For support policy_document_databag(old style)
-        self.options[:policy_name][:description] = "Policy name to use (F.Y.I: Default policy_group=local)"
+        # self.options[:policy_name][:description] = "Policy name to use (F.Y.I: Default policy_group=local)"
+        # self.options[:policy_name][:default] = "build"
 
         ## Set `local` to default policy_group
-        self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
-        self.options[:policy_group][:default] = "local"
+        # self.options[:policy_group][:description] = "Policy group name to use (--policy-name must also be given). use 'local' "
+        # self.options[:policy_group][:default] = "local"
       end
 
       banner "knife zero bootstrap [SSH_USER@]FQDN (options)"
@@ -83,6 +90,10 @@ class Chef
           else
             @config[:first_boot_attributes] = build_knifezero_attributes_for_node
           end
+        end
+
+        File.open(client_builder.client_path, 'w') do |f|
+          f.puts OpenSSL::PKey::RSA.new(2048).to_s
         end
         super
       end
