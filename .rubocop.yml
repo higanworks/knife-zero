@@ -19,3 +19,5 @@ Style/Lambda:
   Enabled: false
 Style/PercentLiteralDelimiters:
   Enabled: false
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 2
