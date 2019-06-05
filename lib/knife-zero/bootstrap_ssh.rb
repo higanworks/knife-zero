@@ -5,15 +5,13 @@ class Chef
     class BootstrapSsh < Chef::Knife::Ssh
       deps do
         Chef::Knife::Ssh.load_deps
-        require "knife-zero/net-ssh-multi-patch"
-        require "knife-zero/helper"
+        require 'knife-zero/net-ssh-multi-patch'
+        require 'knife-zero/helper'
       end
 
-      def ssh_command(command, subsession=nil)
-        begin
-
+      def ssh_command(command, subsession = nil) # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
         if config[:client_version]
-          super(%Q{/opt/chef/embedded/bin/ruby -ropen-uri -e 'puts open("https://omnitruck.chef.io/install.sh").read' | sudo sh -s -- -v #{config[:client_version]}})
+          super(%{/opt/chef/embedded/bin/ruby -ropen-uri -e 'puts open("https://omnitruck.chef.io/install.sh").read' | sudo sh -s -- -v #{config[:client_version]}})
         end
 
         if config[:json_attribs]
@@ -26,25 +24,24 @@ class Chef
                          URI.parse(Chef::Config.chef_server_url).port
         chef_zero_host = config[:chef_zero_host] ||
                          Chef::Config[:knife][:chef_zero_host] ||
-                        '127.0.0.1'
+                         '127.0.0.1'
         (subsession || session).servers.each do |server|
           session = server.session(true)
           session.forward.remote(chef_zero_port, chef_zero_host, ::Knife::Zero::Helper.zero_remote_port)
         end
         super
-        rescue => e
-          ui.error(e.class.to_s + e.message)
-          ui.error e.backtrace.join("\n")
-          exit 1
-        end
+      rescue => e # rubocop:disable Style/RescueStandardError
+        ui.error(e.class.to_s + e.message)
+        ui.error e.backtrace.join("\n")
+        exit 1
       end
 
       def build_client_json
-        <<-EOH
+        <<-SCRIPT
         sudo sh -c 'cat <<"EOP" > /etc/chef/chef_client_json.json
         #{config[:chef_client_json].to_json}
         '
-        EOH
+        SCRIPT
       end
     end
   end
