@@ -1,4 +1,6 @@
 ---
+AllCops:
+  TargetRubyVersion: 2.3
 Style/FrozenStringLiteralComment:
   Enabled: false
 Naming/ClassAndModuleCamelCase:
@@ -23,3 +25,5 @@ Style/PercentLiteralDelimiters:
   Enabled: false
 Naming/UncommunicativeMethodParamName:
   MinNameLength: 2
+Performance/UnfreezeString:
+  Enabled: false
