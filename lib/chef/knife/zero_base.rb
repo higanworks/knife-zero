@@ -12,23 +12,22 @@ class Chef
             ## deprecated CHEF-18.
             ## TODO: should implement unix domain socket forwarding (~< net-ssh 4.1.0) before will be removed.
             Chef::Config[:listen]     = true
-            Chef::Config[:knife_zero] = Hash.new
+            Chef::Config[:knife_zero] = {}
             Chef::Knife::Ssh.load_deps
           end
 
           ## Added by Knife-Zero
           option :why_run,
-            :short        => '-W',
-            :long         => '--why-run',
-            :description  => 'Enable whyrun mode on chef-client run at remote node.',
-            :boolean      => true
+                 short: '-W',
+                 long: '--why-run',
+                 description: 'Enable whyrun mode on chef-client run at remote node.',
+                 boolean: true
 
           option :remote_chef_zero_port,
-            :long => "--remote-chef-zero-port PORT",
-            :description => "Listen port on remote",
-            :default => nil,
-            :proc => Proc.new { |key| Chef::Config[:remote_chef_zero_port] = key.to_i }
-
+                 long: '--remote-chef-zero-port PORT',
+                 description: 'Listen port on remote',
+                 default: nil,
+                 proc: proc { |key| Chef::Config[:remote_chef_zero_port] = key.to_i }
         end
       end
 

@@ -1,5 +1,29 @@
 ---
+AllCops:
+  TargetRubyVersion: 2.5
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Naming/ClassAndModuleCamelCase:
+  Enabled: false
 Metrics/LineLength:
-  Max: 120
+  Max: 180
+Metrics/BlockNesting:
+  Max: 4
+Metrics/ClassLength:
+  Max: 150
+Metrics/MethodLength:
+  Max: 30
 Style/RedundantSelf:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 2
+Performance/UnfreezeString:
   Enabled: false
