@@ -9,6 +9,8 @@ Metrics/BlockNesting:
   Max: 4
 Metrics/ClassLength:
   Max: 150
+Metrics/MethodLength:
+  Max: 30
 Style/RedundantSelf:
   Enabled: false
 Style/Documentation:
