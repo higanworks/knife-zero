@@ -1,4 +1,6 @@
 ---
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Naming/ClassAndModuleCamelCase:
   Enabled: false
 Metrics/LineLength:
