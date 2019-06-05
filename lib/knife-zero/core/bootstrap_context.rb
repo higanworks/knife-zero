@@ -20,7 +20,7 @@ class Chef
             client_rb = orig_config_content
             white_lists = []
             %w{automatic_attribute_whitelist default_attribute_whitelist normal_attribute_whitelist override_attribute_whitelist}.each do |white_list|
-              next unless Chef::Config[:knife][white_list.to_sym] && Chef::Config[:knife][white_list.to_sym].is_a?(Array)
+              next unless Chef::Config[:knife][white_list.to_sym]&.is_a?(Array)
 
               white_lists.push([
                 white_list,
