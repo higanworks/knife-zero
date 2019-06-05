@@ -57,3 +57,11 @@ workflows:
             branches:
               only:
                 - integration_testedge
+  push:
+    jobs:
+      - build
+      - integration_test:
+          filters:
+            branches:
+              only:
+                - integration_testedge
