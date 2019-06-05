@@ -4,8 +4,16 @@ Style/FrozenStringLiteralComment:
 Naming/ClassAndModuleCamelCase:
   Enabled: false
 Metrics/LineLength:
-  Max: 120
+  Max: 180
+Metrics/BlockNesting:
+  Max: 4
+Metrics/ClassLength:
+  Max: 150
 Style/RedundantSelf:
   Enabled: false
 Style/Documentation:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Style/PercentLiteralDelimiters:
   Enabled: false
