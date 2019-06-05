@@ -6,8 +6,6 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/higanworks/knife-zero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Gem Version](https://badge.fury.io/rb/knife-zero.svg)](http://badge.fury.io/rb/knife-zero)
-[![Stories in Ready](https://badge.waffle.io/higanworks/knife-zero.svg?label=ready&title=Ready)](http://waffle.io/higanworks/knife-zero) 
-[![Stories in Progress](https://badge.waffle.io/higanworks/knife-zero.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/higanworks/knife-zero) 
 
 Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port forwarding.
 
@@ -23,7 +21,8 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 
 ## Requirements
 
-- Must support AllowTcpForward 
+- Ruby 2.5 or later
+- Must support AllowTcpForward
 
 ## Installation
 
