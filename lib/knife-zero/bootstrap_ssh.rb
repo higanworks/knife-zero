@@ -5,7 +5,7 @@ class Chef
     class BootstrapSsh < Chef::Knife::Ssh
       deps do
         Chef::Knife::Ssh.load_deps
-        require 'knife-zero/net-ssh-multi-patch'
+        require 'knife-zero/net_ssh_multi_patch'
         require 'knife-zero/helper'
       end
 
