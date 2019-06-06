@@ -1,5 +1,4 @@
 require 'chef/knife'
-require 'chef/knife/bootstrap'
 require 'chef/knife/zero_base'
 
 class Chef
