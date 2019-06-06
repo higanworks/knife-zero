@@ -2,7 +2,12 @@
 
 ## Unreleased
 
-- WIP follow chef 15 ssh_client changes
+
+## v2.0.0
+
+- Support bootstrap changes on Chef Infra Client 15.x
+  - without Windows
+- drop support chef-client < 15
 
 ## v1.19.3
 
