@@ -59,7 +59,7 @@ class Chef
             q = Chef::Search::Query.new
             node_name = resolve_node_name
             result = q.search(:node, "name:#{node_name} OR knife_zero_host:#{node_name}")
-            if result.last > 0
+            if result.last.positive?
               ui.warn(%{Node "#{node_name}" already exist. [Found #{result.last} Node(s) in local search.] (You can skip asking with --overwrite option.)})
               if result.last == 1
                 ui.confirm(%{Overwrite it }, true, false)
