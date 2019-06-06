@@ -24,6 +24,14 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 - Ruby 2.5 or later
 - Must support AllowTcpForward
 
+### 2.0.0 or later
+
+- Chef Infra Client 15.x for bootstraping.
+
+### 1.x
+
+- Chef < 15.0
+
 ## Installation
 
 Relocated: [Installation | Knife-Zero Document](http://knife-zero.github.io/10_install/)

@@ -8,6 +8,7 @@
 - Support bootstrap changes on Chef Infra Client 15.x
   - without Windows
 - drop support chef-client < 15
+- add `--connection-user`, `--connection-password`, `--connection-port` options for converge, apply subcommand as wrapper.
 
 ## v1.19.3
 
