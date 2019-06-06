@@ -73,6 +73,23 @@ class Chef
                end
              }
 
+      # Common connectivity options for compatibility
+      option :connection_user,
+             short: '-U USERNAME',
+             long: '--connection-user USERNAME',
+             description: 'Authenticate to the target host with this user account. (same as --ssh-user)',
+             proc: lambda { |v| Chef::Config[:knife][:ssh_user] = v }
+
+      option :connection_password,
+             long: '--connection-password PASSWORD',
+             description: 'Authenticate to the target host with this password. (same as --ssh-password)',
+             proc: lambda { |v| Chef::Config[:knife][:ssh_password_ng] = v }
+
+      option :connection_port,
+             long: '--connection-port PORT',
+             description: 'The port on the target node to connect to. (same as --ssh-port)',
+             proc: lambda { |v| Chef::Config[:knife][:ssh_port] = v }
+
       def initialize(argv = [])
         super
         self.configure_chef
