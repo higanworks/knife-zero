@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v2.0.1
+
+- Add new option `--chef-license` to converge [#128](https://github.com/higanworks/knife-zero/pull/128)
+
 
 ## v2.0.0
 
