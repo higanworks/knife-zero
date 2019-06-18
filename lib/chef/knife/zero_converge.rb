@@ -73,6 +73,12 @@ class Chef
                end
              }
 
+      # import from LicenseAcceptance:CLIFlags:MixlibCLI
+      option :chef_license,
+             long: '--chef-license ACCEPTANCE',
+             description: %{Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')},
+             required: false
+
       # Common connectivity options for compatibility
       option :connection_user,
              short: '-U USERNAME',
@@ -121,6 +127,7 @@ class Chef
         s << ' --skip-cookbook-sync' if @config[:skip_cookbook_sync]
         s << ' --no-color' unless @config[:color]
         s << " -E #{@config[:environment]}" if @config[:environment]
+        s << " --chef-license #{@config[:chef_license]}" if @config[:chef_license]
         s << ' -W' if @config[:why_run]
         Chef::Log.info 'Remote command: ' + s
         s
