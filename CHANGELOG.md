@@ -2,10 +2,11 @@
 
 ## Unreleased
 
-## v2.0.2
+## v2.0.3
 
 - Properly quoted policy name [#129](https://github.com/higanworks/knife-zero/pull/129) HT: [@etki](https://github.com/etki)
 
+## v2.0.2(yanked)
 
 ## v2.0.1
 
@@ -18,6 +19,11 @@
   - without Windows
 - drop support chef-client < 15
 - add `--connection-user`, `--connection-password`, `--connection-port` options for converge, apply subcommand as wrapper.
+
+## v1.x
+
+- no longer support on master branch.
+  - May maintain a bit on 1.x branche. see: https://github.com/higanworks/knife-zero/tree/1.x
 
 ## v1.19.3
 
