@@ -34,7 +34,7 @@ class Chef
               client_rb << ["\n", 'use_policyfile true',
                             'versioned_cookbooks true',
                             'policy_document_native_api true',
-                            "policy_name \"#{@config[:policy_name]}]\"",
+                            "policy_name \"#{@config[:policy_name]}\"",
                             "policy_group \"#{@config[:policy_group]}\""].join("\n")
             end
 
