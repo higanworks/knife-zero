@@ -2,10 +2,11 @@
 
 ## Unreleased
 
-## v1.19.5
+## v1.19.6
 
 - Properly quoted policy name [#129](https://github.com/higanworks/knife-zero/pull/129) HT: [@etki](https://github.com/etki)
 
+## v1.19.5(yanked)
 
 ## v1.19.4
 
