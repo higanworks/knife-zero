@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## v1.19.5
+
+- Properly quoted policy name [#129](https://github.com/higanworks/knife-zero/pull/129) HT: [@etki](https://github.com/etki)
+
+
+## v1.19.4
+
+- set `chef < 15.0` for 1.x
+
 ## v1.19.3
 
 - replace `https://chef.sh` to `https://omnitruck.chef.io/install.sh` for download chef.
