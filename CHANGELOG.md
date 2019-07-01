@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v2.0.2
+
+- Properly quoted policy name [#129](https://github.com/higanworks/knife-zero/pull/129) HT: [@etki](https://github.com/etki)
+
+
 ## v2.0.1
 
 - Add new option `--chef-license` to converge [#128](https://github.com/higanworks/knife-zero/pull/128)
