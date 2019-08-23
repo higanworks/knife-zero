@@ -86,6 +86,8 @@ module Net::SSH::Multi
 
       ## >> Patch
       def keepalive_if_needed(readers, writers)
+        return unless session
+
         listeners = session.listeners.keys
         readers = readers || []
         writers = writers || []
