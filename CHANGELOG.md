@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Allow pass run-list and environments from json-attributes.
+  - Related:Split run list and attributes from nodes [#132](https://github.com/higanworks/knife-zero/issues/132)
+
 ## v2.0.4
 
 - bugfix: Crash around the end of a concurrent connection [#131](https://github.com/higanworks/knife-zero/pull/131)
