@@ -105,10 +105,11 @@ class Chef
           ::Knife::Zero::Helper.hook_shell_out!('before_converge', ui, Chef::Config[:knife][:before_converge])
         end
 
-        validate_options!
         if @config[:json_attribs]
           @config[:chef_client_json] = fetch_json_from_url
         end
+
+        validate_options!
 
         @name_args = [@name_args[0], start_chef_client]
       end
@@ -142,7 +143,8 @@ class Chef
         if json_attribs_without_override_given?
           ui.error(
             '--json-attributes must be used with --override-runlist ' \
-            'to avoid updating local node object.'
+            'or passed json should includes key `run-list` ' \
+            'to avoid unexpected updating local node object.'
           )
           exit 1
         end
@@ -155,7 +157,7 @@ class Chef
       end
 
       def override_runlist_given?
-        !config[:override_runlist].nil? && !config[:override_runlist].empty?
+        !config[:override_runlist].nil? && !config[:override_runlist].empty? || @config[:chef_client_json]&.key?('run_list')
       end
 
       def named_run_list_given?

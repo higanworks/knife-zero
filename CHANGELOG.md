@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+none.
+
+## v2.1.0
+
+- Allow pass run-list and environments from json-attributes.
+  - Related:Split run list and attributes from nodes [#132](https://github.com/higanworks/knife-zero/issues/132)
+
+## v2.0.4
+
+- bugfix: Crash around the end of a concurrent connection [#131](https://github.com/higanworks/knife-zero/pull/131)
+
+
 ## v2.0.3
 
 - Properly quoted policy name [#129](https://github.com/higanworks/knife-zero/pull/129) HT: [@etki](https://github.com/etki)
