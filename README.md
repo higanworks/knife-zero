@@ -50,7 +50,7 @@ knife zero diagnose # show configuration from file
 
 ### Configuration file
 
-Relocated: [Configration | Knife-Zero Document](http://knife-zero.github.io/40_configuration/)
+Relocated: [Configuration | Knife-Zero Document](http://knife-zero.github.io/40_configuration/)
 
 ### knife zero bootstrap | converge | diagnose
 
@@ -60,9 +60,9 @@ Relocated
 - [Subcommands | Knife-Zero Document](http://knife-zero.github.io/30_subcommands/)
 
 
-#### (Hint)Supress Automatic Attributes
+#### (Hint)Suppress Automatic Attributes
 
-Relocated: [Configration | Knife-Zero Document](http://knife-zero.github.io/40_configration/)
+Relocated: [Configuration | Knife-Zero Document](http://knife-zero.github.io/40_configuration/)
 
 
 ## To include from other knife plugins
