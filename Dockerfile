@@ -18,6 +18,11 @@ WORKDIR /home/ohai
 RUN gem build ohai.gemspec
 RUN gem install -V -b ohai*.gem --no-document
 
+WORKDIR /home/chef/chef-utils
+RUN touch CONTRIBUTING.md
+RUN gem build chef-utils.gemspec
+RUN gem install -V -b chef-utils*.gem --no-document
+
 WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
 RUN gem build chef-config.gemspec

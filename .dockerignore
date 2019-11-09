@@ -3,3 +3,5 @@ tmp/
 pkg/
 nodes/
 clients/
+vendor/
+Gemfile.lock
