@@ -28,10 +28,12 @@ knife helper exec converge3_name
 if grep json_attribs_check nodes/zerohost.json ; then false ; fi
 
 ## install cinc
+dpkg -r chef
 knife helper exec boot_cinc --print-only
 knife helper exec boot_cinc
 knife node show cinchost
 grep value_from_file nodes/cinchost.json
+dpkg -r cinc
 
 ## Policyfile Challenge
 export POLICY_MODE=true
