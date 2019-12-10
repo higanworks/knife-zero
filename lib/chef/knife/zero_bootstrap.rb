@@ -54,6 +54,11 @@ class Chef
           )
         end
 
+        case @config[:alter_project]
+        when 'cinc'
+          Chef::Config[:knife][:bootstrap_url] = 'https://omnitruck.cinc.sh/install.sh'
+        end
+
         if @config[:bootstrap_converge]
           unless @config[:overwrite_node_object]
             q = Chef::Search::Query.new

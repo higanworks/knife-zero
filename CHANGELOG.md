@@ -4,6 +4,12 @@
 
 none.
 
+- add `--alter-project` to support cinc [#133]
+  - allowed values: 'chef' or 'cinc'
+- add `--node-config` option for `zero bootstrap`.
+- remove `-N` for `--node-config` short option from `zero converge`.
+  - (Duplicate with NAME option)
+
 ## v2.1.0
 
 - Allow pass run-list and environments from json-attributes.

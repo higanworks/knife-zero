@@ -36,11 +36,6 @@ class Chef
         self.options[:skip_cookbook_sync] = Chef::Application::Client.options[:skip_cookbook_sync]
       end
 
-      option :node_config_file,
-             short: '-N PATH_TO_CONFIG',
-             long: '--node-config PATH_TO_CONFIG',
-             description: 'The configuration file to use on remote node'
-
       option :splay,
              long: '--splay SECONDS',
              description: 'The splay time for running at intervals, in seconds',
@@ -124,7 +119,7 @@ class Chef
         s << ' -j /etc/chef/chef_client_json.json' if @config[:json_attribs]
         s << " --splay #{@config[:splay]}" if @config[:splay]
         s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
-        s << " --config #{@config[:node_config_file]}" if @config[:node_config_file]
+        s << " --config #{@config[:node_config_file]}"
         s << ' --skip-cookbook-sync' if @config[:skip_cookbook_sync]
         s << ' --no-color' unless @config[:color]
         s << " -E #{@config[:environment]}" if @config[:environment]
