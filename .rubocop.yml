@@ -25,7 +25,7 @@ Style/Lambda:
   Enabled: false
 Style/PercentLiteralDelimiters:
   Enabled: false
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   MinNameLength: 2
 Performance/UnfreezeString:
   Enabled: false
