@@ -28,6 +28,19 @@ class Chef
                  description: 'Listen port on remote',
                  default: nil,
                  proc: proc { |key| Chef::Config[:remote_chef_zero_port] = key.to_i }
+
+          option :alter_project,
+                 long: '--alter-project PROJECT',
+                 proc: proc { |u| Chef::Config[:alter_project] = u },
+                 description: 'Products used on remote nodes',
+                 default: 'chef',
+                 in: %w{chef cinc}
+
+          option :node_config_file,
+                 long: '--node-config PATH_TO_CONFIG',
+                 proc: proc { |u| Chef::Config[:node_config_file] = u },
+                 description: 'The configuration file to use on remote node',
+                 default: '/etc/chef/client.rb'
         end
       end
 

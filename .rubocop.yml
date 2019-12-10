@@ -9,6 +9,8 @@ Metrics/LineLength:
   Max: 180
 Metrics/BlockNesting:
   Max: 4
+Metrics/BlockLength:
+  Max: 30
 Metrics/ClassLength:
   Max: 150
 Metrics/MethodLength:
@@ -23,7 +25,7 @@ Style/Lambda:
   Enabled: false
 Style/PercentLiteralDelimiters:
   Enabled: false
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   MinNameLength: 2
 Performance/UnfreezeString:
   Enabled: false
