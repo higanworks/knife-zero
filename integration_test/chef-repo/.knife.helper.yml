@@ -74,3 +74,16 @@ commands:
       ssh-password: docker
       sudo:
       verbose:
+  - name: boot_cinc
+    command: zero bootstrap 127.0.0.1
+    condition:
+    options:
+      node-name: cinchost
+      connection-user: docker
+      connection-password: docker
+      sudo:
+      verbose:
+      overwrite:
+      json-attribute-file: fixtures/sample.json
+      bootstrap-version: latest
+      alter_project: cinc
