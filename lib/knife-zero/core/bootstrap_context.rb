@@ -52,6 +52,7 @@ class Chef
                 client_path = @chef_config[:chef_client_path] || 'chef-client'
                 s = String.new("#{client_path} -j /etc/chef/first-boot.json")
                 s << ' -l debug' if @config[:verbosity] && @config[:verbosity] >= 2
+                s << " --config #{@config[:node_config_file]}"
                 s << " -E #{bootstrap_environment}" unless bootstrap_environment.nil?
                 s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
                 s << ' -W' if @config[:why_run]

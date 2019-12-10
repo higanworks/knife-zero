@@ -4,6 +4,15 @@
 
 none.
 
+## v2.2.0
+
+- add `--alter-project` to support cinc [#133]
+  - allowed values: 'chef' or 'cinc'
+  - in config => `knife[:alter_project]`
+- relocate `--node-config` option from `zero converge` to both `zero converge` and `zero bootstrap`.
+- remove `-N` for `--node-config` short option.
+  - (Duplicate with NAME option)
+
 ## v2.1.0
 
 - Allow pass run-list and environments from json-attributes.
