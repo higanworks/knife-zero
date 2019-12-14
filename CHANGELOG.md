@@ -4,9 +4,13 @@
 
 none.
 
+## v2.2.1
+
+- path --validation_key option to resolve crash bootstraping in cinc 15.6 [#138](https://github.com/higanworks/knife-zero/pull/138)
+
 ## v2.2.0
 
-- add `--alter-project` to support cinc [#133]
+- add `--alter-project` to support cinc [#133](https://github.com/higanworks/knife-zero/pull/133)
   - allowed values: 'chef' or 'cinc'
   - in config => `knife[:alter_project]`
 - relocate `--node-config` option from `zero converge` to both `zero converge` and `zero bootstrap`.
