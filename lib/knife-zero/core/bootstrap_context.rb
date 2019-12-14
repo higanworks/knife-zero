@@ -55,6 +55,7 @@ class Chef
                 s << " --config #{@config[:node_config_file]}"
                 s << " -E #{bootstrap_environment}" unless bootstrap_environment.nil?
                 s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
+                s << " -K #{[::File.dirname(@config[:node_config_file]), 'validation.pem'].join('/')}"
                 s << ' -W' if @config[:why_run]
                 Chef::Log.info 'Remote command: ' + s
                 s
