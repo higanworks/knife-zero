@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: WorkAround, uninstall bundler
-          command: gem uninstall bundler && /usr/local/bin/bundle
+          command: gem uninstall bundler && rm /usr/local/bin/bundle
       - run:
           name: Update rubygems
           command: gem update --system -f --no-prerelease
