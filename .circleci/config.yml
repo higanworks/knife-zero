@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Update rubygems
-          command: gem update --system
+          command: gem update --system -f
       - run:
           name: Update bundler
           command: gem install bundler --no-document
@@ -61,6 +61,8 @@ workflows:
     jobs:
       - build
       - integration_test:
+          requires:
+            - build
           filters:
             branches:
               only:
