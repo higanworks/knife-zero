@@ -64,8 +64,6 @@ workflows:
     jobs:
       - build
       - integration_test:
-          requires:
-            - build
           filters:
             branches:
               only:
