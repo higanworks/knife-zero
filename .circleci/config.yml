@@ -7,11 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Update bundler
-          command: gem install bundler --no-document -f
+          name: WorkAround, uninstall bundler
+          command: gem uninstall bundler
       - run:
           name: Update rubygems
           command: gem update --system -f --no-prerelease
+      - run:
+          name: Update bundler
+          command: gem install bundler --no-document -f
       - run:
           name: Bundle gems
           command: bundle install --path vendor/bundle
