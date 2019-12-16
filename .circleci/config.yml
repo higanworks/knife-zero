@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Update rubygems
-          command: gem update --system -f
+          command: gem update --system -f --no-prerelease
       - run:
           name: Update bundler
           command: gem install bundler --no-document
