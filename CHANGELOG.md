@@ -4,6 +4,11 @@
 
 none.
 
+## v2.3.0
+
+- use `allowd_` instead.
+- ref: [Renamed Client Configuration Options - Chef Infra Client 16.3 released!](https://discourse.chef.io/t/chef-infra-client-16-3-released/17449)
+
 ## v2.2.1
 
 - path --validation_key option to resolve crash bootstraping in cinc 15.6 [#138](https://github.com/higanworks/knife-zero/pull/138)
