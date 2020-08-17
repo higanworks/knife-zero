@@ -11,7 +11,7 @@ class Chef
 
       def ssh_command(command, subsession = nil) # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
         if config[:client_version]
-          case @config[:alter_project]
+          case config[:alter_project]
           when 'cinc'
             super(%{/opt/cinc/embedded/bin/ruby -ropen-uri -e 'puts open("https://omnitruck.cinc.sh/install.sh").read' | sudo sh -s -- -v #{config[:client_version]}})
           else
