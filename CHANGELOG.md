@@ -4,6 +4,11 @@
 
 none.
 
+## v2.3.1
+
+- bugfix: alter_project not works due to typo. HT: [@aspyatkin](https://github.com/aspyatkin)
+  - [https://github.com/higanworks/knife-zero/issues/133#issuecomment-674530243](https://github.com/higanworks/knife-zero/issues/133#issuecomment-674530243)
+
 ## v2.3.0
 
 - use `allowd_` instead.
