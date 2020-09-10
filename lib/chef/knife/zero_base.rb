@@ -1,6 +1,7 @@
 require 'chef'
 require 'chef/knife/ssh'
 require 'chef/knife/bootstrap' unless Chef::Knife.const_defined?(:Bootstrap)
+require 'yaml'
 
 class Chef
   class Knife
