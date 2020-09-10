@@ -4,6 +4,11 @@
 
 none.
 
+## v2.3.2
+
+- follow core changes, they uses autoload.
+  - .to_yaml not work in diagnose.
+
 ## v2.3.1
 
 - bugfix: alter_project not works due to typo. HT: [@aspyatkin](https://github.com/aspyatkin)
