@@ -1,6 +1,6 @@
 # Knife-Plugin Zero
 
-- current_master: [![Circle CI](https://circleci.com/gh/higanworks/knife-zero/tree/master.svg?style=svg)](https://circleci.com/gh/higanworks/knife-zero/tree/master)
+- current_main: [![Circle CI](https://circleci.com/gh/higanworks/knife-zero/tree/main.svg?style=svg)](https://circleci.com/gh/higanworks/knife-zero/tree/main)
 - integration_with_edge_chef: [![Circle CI](https://circleci.com/gh/higanworks/knife-zero/tree/integration_testedge.svg?style=svg)](https://circleci.com/gh/higanworks/knife-zero/tree/integration_testedge)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/higanworks/knife-zero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -17,7 +17,7 @@ Run chef-client at remote node with chef-zero(local-mode) via HTTP over SSH port
 - [Knife-Zero Document](https://knife-zero.github.io)
 - [Knife-Zero Document(Ja)](https://knife-zero.github.io/ja/)
 
-- [CHANGELOG](https://github.com/higanworks/knife-zero/blob/master/CHANGELOG.md)
+- [CHANGELOG](https://github.com/higanworks/knife-zero/blob/main/CHANGELOG.md)
 
 ## Requirements
 
