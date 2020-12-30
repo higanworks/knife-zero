@@ -9,7 +9,7 @@ WORKDIR /home
 RUN wget https://codeload.github.com/chef/chef/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-* chef
 RUN wget https://codeload.github.com/chef/chef-dk/legacy.tar.gz/master -O chef.tgz
-RUN tar xvzf chef.tgz && mv chef-chef-dk* chef-dk
+RUN tar xvzf chef.tgz && mv chef-boneyard-chef-dk* chef-dk
 # use ohai 15
 RUN wget https://codeload.github.com/chef/ohai/legacy.tar.gz/master -O ohai.tgz
 RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
