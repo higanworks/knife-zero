@@ -1,8 +1,8 @@
-FROM ruby:2.6
+FROM ruby:2.7
 LABEL MAINTAINER=sawanoboriyu@higanworks.com
 
-RUN echo "deb-src http://ftp.jp.debian.org/debian/ jessie main" >> /etc/apt/sources.list
-RUN echo "deb-src http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list
+RUN echo "deb-src http://ftp.jp.debian.org/debian/ buster main" >> /etc/apt/sources.list
+RUN echo "deb-src http://security.debian.org/ buster/updates main" >> /etc/apt/sources.list
 
 RUN apt-get -y update \
 && apt-get -y install sudo git build-essential openssh-server wget vim net-tools \
