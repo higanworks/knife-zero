@@ -6,12 +6,12 @@ LABEL MAINTAINER=sawanoboriyu@higanworks.com
 WORKDIR /home
 # RUN wget https://codeload.github.com/chef/chef-config/legacy.tar.gz/master -O chef-config.tgz
 # RUN tar xvzf chef-config.tgz && mv chef-chef-* chef-config
-RUN wget https://codeload.github.com/chef/chef/legacy.tar.gz/master -O chef.tgz
+RUN wget -nv https://codeload.github.com/chef/chef/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-* chef
-RUN wget https://codeload.github.com/chef/chef-dk/legacy.tar.gz/master -O chef.tgz
+RUN wget -nv https://codeload.github.com/chef/chef-dk/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-boneyard-chef-dk* chef-dk
-# use ohai 15
-RUN wget https://codeload.github.com/chef/ohai/legacy.tar.gz/master -O ohai.tgz
+# use ohai latest
+RUN wget -nv https://codeload.github.com/chef/ohai/legacy.tar.gz/master -O ohai.tgz
 RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
 
 WORKDIR /home/ohai
