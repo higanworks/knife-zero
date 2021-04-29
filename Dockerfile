@@ -8,8 +8,8 @@ WORKDIR /home
 # RUN tar xvzf chef-config.tgz && mv chef-chef-* chef-config
 RUN wget -nv https://codeload.github.com/chef/chef/legacy.tar.gz/master -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-* chef
-RUN wget -nv https://codeload.github.com/chef/chef-workstation/legacy.tar.gz/master -O chef-workstation.tgz
-RUN tar xvzf chef-workstation.tgz && mv chef-chef-workstation* chef-workstation
+# RUN wget -nv https://codeload.github.com/chef/chef-workstation/legacy.tar.gz/master -O chef-workstation.tgz
+# RUN tar xvzf chef-workstation.tgz && mv chef-chef-workstation* chef-workstation
 # RUN wget -nv https://codeload.github.com/chef/chef-dk/legacy.tar.gz/master -O chef.tgz
 # RUN tar xvzf chef.tgz && mv chef-boneyard-chef-dk* chef-dk
 # use ohai latest
@@ -48,9 +48,9 @@ RUN gem install -V -b knife*.gem --no-document
 # RUN gem build chef-dk
 # RUN gem install -V -b chef-dk*.gem --no-document
 
-WORKDIR /home/chef-workstation
-RUN gem build chef-workstation
-RUN gem install -V -b chef-workstation*.gem --no-document
+# WORKDIR /home/chef-workstation
+# RUN gem build chef-workstation
+# RUN gem install -V -b chef-workstation*.gem --no-document
 
 ADD . /home/knife-zero/
 ADD integration_test/chef-repo /chef-repo/
@@ -61,6 +61,7 @@ WORKDIR /home/knife-zero
 RUN gem build knife-zero.gemspec
 RUN gem install -V -l knife-zero-*.gem --no-document
 RUN gem install -V knife-helper --no-document
+RUN gem install -V chef-cli --no-document
 
 WORKDIR /chef-repo
 
