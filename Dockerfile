@@ -32,6 +32,11 @@ WORKDIR /home/chef
 RUN gem build chef.gemspec
 RUN gem install -V -b chef*.gem --no-document
 
+WORKDIR /home/chef/knife
+RUN touch CONTRIBUTING.md
+RUN gem build knife.gemspec
+RUN gem install -V -b knife*.gem --no-document
+
 WORKDIR /home/chef-dk
 RUN gem build chef-dk
 RUN gem install -V -b chef-dk*.gem --no-document
