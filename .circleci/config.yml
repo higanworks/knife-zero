@@ -17,13 +17,15 @@ jobs:
           command: gem install bundler --no-document -f
       - run:
           name: Bundle gems
-          command: bundle install --path vendor/bundle
+          command: |
+            bundle config set --local path vendor/bundle
+            bundle install
       - run:
           name: Run simple test
           command: bundle exec ruby test/run_test.rb -v
   integration_test:
     docker:
-      - image: "ruby:2.6"
+      - image: "ruby:2.7"
     steps:
       - checkout
       - setup_remote_docker:
