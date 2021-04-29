@@ -42,9 +42,9 @@ RUN touch CONTRIBUTING.md
 RUN gem build knife.gemspec
 RUN gem install -V -b knife*.gem --no-document
 
-WORKDIR /home/chef-dk
-RUN gem build chef-dk
-RUN gem install -V -b chef-dk*.gem --no-document
+# WORKDIR /home/chef-dk
+# RUN gem build chef-dk
+# RUN gem install -V -b chef-dk*.gem --no-document
 
 ADD . /home/knife-zero/
 ADD integration_test/chef-repo /chef-repo/
