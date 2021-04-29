@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'test-unit-rr'
 
   spec.add_runtime_dependency 'chef', '>= 15.0'
+  spec.add_runtime_dependency 'knife', '>= 17.0'
 end
