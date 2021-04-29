@@ -37,8 +37,8 @@ dpkg -r cinc
 
 ## Policyfile Challenge
 export POLICY_MODE=true
-chef install --chef-license accept
-chef export ./ -f
+chef-cli install --chef-license accept
+chef-cli export ./ -f
 
 knife helper exec boot_policy --print-only
 knife helper exec boot_policy
