@@ -4,6 +4,11 @@
 
 none.
 
+## v2.4.0
+
+- follow core changes.
+  - ssh_command changed at chef-17.3.27
+
 ## v2.3.2
 
 - follow core changes, they uses autoload.
