@@ -43,7 +43,6 @@ class Chef
         exit 1
       end
     else
-      # def ssh_command(command, subsession = nil) # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
       def ssh_command(command, session_list = session) # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
         if config[:client_version]
           case config[:alter_project]
