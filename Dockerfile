@@ -4,16 +4,12 @@ LABEL MAINTAINER=sawanoboriyu@higanworks.com
 # ADD .git/index /index
 
 WORKDIR /home
-# RUN wget https://codeload.github.com/chef/chef-config/legacy.tar.gz/master -O chef-config.tgz
-# RUN tar xvzf chef-config.tgz && mv chef-chef-* chef-config
-RUN wget -nv https://codeload.github.com/chef/chef/legacy.tar.gz/master -O chef.tgz
+RUN wget -nv https://codeload.github.com/chef/chef/legacy.tar.gz/main -O chef.tgz
 RUN tar xvzf chef.tgz && mv chef-chef-* chef
-RUN wget -nv https://codeload.github.com/chef/chef-cli/legacy.tar.gz/master -O chef-cli.tgz
+RUN wget -nv https://codeload.github.com/chef/chef-cli/legacy.tar.gz/main -O chef-cli.tgz
 RUN tar xvzf chef-cli.tgz && mv chef-chef-cli* chef-cli
-# RUN wget -nv https://codeload.github.com/chef/chef-dk/legacy.tar.gz/master -O chef.tgz
-# RUN tar xvzf chef.tgz && mv chef-boneyard-chef-dk* chef-dk
 # use ohai latest
-RUN wget -nv https://codeload.github.com/chef/ohai/legacy.tar.gz/master -O ohai.tgz
+RUN wget -nv https://codeload.github.com/chef/ohai/legacy.tar.gz/main -O ohai.tgz
 RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
 
 WORKDIR /home/ohai
