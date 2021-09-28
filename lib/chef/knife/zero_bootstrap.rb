@@ -56,7 +56,7 @@ class Chef
 
         case @config[:alter_project]
         when 'cinc'
-          Chef::Config[:knife][:bootstrap_url] = 'https://omnitruck.cinc.sh/install.sh'
+          @config[:bootstrap_url] = 'https://omnitruck.cinc.sh/install.sh'
         end
 
         if @config[:bootstrap_converge]
