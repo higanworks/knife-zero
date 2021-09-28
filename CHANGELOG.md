@@ -3,7 +3,7 @@
 ## Unreleased
 
 none.
-## v2.4.0
+## v2.4.1
 
 - bugfix: alter_project does not work correctly at bootstraping. [#159](https://github.com/higanworks/knife-zero/issues/159) HT [@pyama86](https://github.com/pyama86)
 
