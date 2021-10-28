@@ -1,5 +1,5 @@
 require 'chef/knife/ssh'
-require 'chef/version'
+require 'chef/knife/version'
 
 class Chef
   class Knife
@@ -10,7 +10,7 @@ class Chef
         require 'knife-zero/helper'
       end
 
-    if Gem::Version.new(Chef::VERSION) < Gem::Version.new("17.3.27")
+    if Gem::Version.new(Chef::Knife::VERSION) < Gem::Version.new("17.3.27")
       def ssh_command(command, subsession = nil) # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
         if config[:client_version]
           case config[:alter_project]
