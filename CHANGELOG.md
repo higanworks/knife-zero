@@ -3,6 +3,10 @@
 ## Unreleased
 
 none.
+## v2.4.2
+
+- compatibility: Check knife version instead of chef version before overriding knife method [#162](https://github.com/higanworks/knife-zero/pull/162) HT [@cgunther](https://github.com/cgunther)
+
 ## v2.4.1
 
 - bugfix: alter_project does not work correctly at bootstraping. [#159](https://github.com/higanworks/knife-zero/issues/159) HT [@pyama86](https://github.com/pyama86)
