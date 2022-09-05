@@ -1,5 +1,5 @@
 .PHONY: build_push
 
 build_push:
-	docker build -t higanworks/knife-zero-edgebase:latest . --squash --no-cache
+	docker build --platform linux/amd64 -t higanworks/knife-zero-edgebase:latest . --squash --no-cache
 	docker push higanworks/knife-zero-edgebase:latest

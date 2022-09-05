@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:3.1
 LABEL MAINTAINER=sawanoboriyu@higanworks.com
 
 RUN echo "deb-src http://ftp.jp.debian.org/debian/ buster main" >> /etc/apt/sources.list
