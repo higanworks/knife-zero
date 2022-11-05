@@ -13,10 +13,10 @@ RUN wget -nv https://codeload.github.com/chef/ohai/legacy.tar.gz/main -O ohai.tg
 RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
 
 WORKDIR /home/ohai
+RUN sed /chef-utils/d ohai.gemspec -i
+RUN sed /chef-config/d ohai.gemspec -i
 RUN gem build ohai.gemspec
 RUN gem install -V -b ohai*.gem --no-document
-RUN gem uninstall chef-config --all --force
-RUN gem uninstall chef-utils --all --force
 
 WORKDIR /home/chef/chef-utils
 RUN touch CONTRIBUTING.md
