@@ -15,6 +15,8 @@ RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
 WORKDIR /home/ohai
 RUN gem build ohai.gemspec
 RUN gem install -V -b ohai*.gem --no-document
+RUN gem uninstall chef-config --all --force
+RUN gem uninstall chef-utils --all --force
 
 WORKDIR /home/chef/chef-utils
 RUN touch CONTRIBUTING.md
