@@ -29,6 +29,8 @@ RUN gem build ohai.gemspec
 RUN gem install -V -b ohai*.gem --no-document
 
 WORKDIR /home/chef
+RUN sed /chef-utils/d ohai.gemspec -i
+RUN sed /chef-config/d ohai.gemspec -i
 RUN gem build chef.gemspec
 RUN gem install -V -b chef*.gem --no-document
 
