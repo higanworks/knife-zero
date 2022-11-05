@@ -1,4 +1,4 @@
-FROM ruby:3.1
+FROM --platform=linux/amd64 ruby:3.1
 LABEL MAINTAINER=sawanoboriyu@higanworks.com
 
 RUN echo "deb-src http://ftp.jp.debian.org/debian/ bullseye main" >> /etc/apt/sources.list
