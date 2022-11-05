@@ -12,12 +12,6 @@ RUN tar xvzf chef-cli.tgz && mv chef-chef-cli* chef-cli
 RUN wget -nv https://codeload.github.com/chef/ohai/legacy.tar.gz/main -O ohai.tgz
 RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
 
-WORKDIR /home/ohai
-RUN sed /chef-utils/d ohai.gemspec -i
-RUN sed /chef-config/d ohai.gemspec -i
-RUN gem build ohai.gemspec
-RUN gem install -V -b ohai*.gem --no-document
-
 WORKDIR /home/chef/chef-utils
 RUN touch CONTRIBUTING.md
 RUN gem build chef-utils.gemspec
@@ -27,6 +21,12 @@ WORKDIR /home/chef/chef-config
 RUN touch CONTRIBUTING.md
 RUN gem build chef-config.gemspec
 RUN gem install -V -b chef-config*.gem --no-document
+
+WORKDIR /home/ohai
+RUN sed /chef-utils/d ohai.gemspec -i
+RUN sed /chef-config/d ohai.gemspec -i
+RUN gem build ohai.gemspec
+RUN gem install -V -b ohai*.gem --no-document
 
 WORKDIR /home/chef
 RUN gem build chef.gemspec
