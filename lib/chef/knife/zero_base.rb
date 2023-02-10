@@ -41,7 +41,7 @@ class Chef
                  long: '--node-config PATH_TO_CONFIG',
                  proc: proc { |u| Chef::Config[:node_config_file] = u },
                  description: 'The configuration file to use on remote node',
-                 default: '/etc/chef/client.rb'
+                 default: '/etc/' + ChefUtils::Dist::Infra::DIR_SUFFIX + '/client.rb'
         end
       end
 

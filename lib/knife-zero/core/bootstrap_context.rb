@@ -52,8 +52,8 @@ class Chef
           def start_chef # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
             if @chef_config[:knife_zero]
               if @config[:bootstrap_converge]
-                client_path = @chef_config[:chef_client_path] || 'chef-client'
-                s = String.new("#{client_path} -j /etc/chef/first-boot.json")
+                client_path = @chef_config[:chef_client_path] || ChefUtils::Dist::Infra::CLIENT
+                s = String.new("#{client_path} -j /etc/" + ChefUtils::Dist::Infra::DIR_SUFFIX + "/first-boot.json")
                 s << ' -l debug' if @config[:verbosity] && @config[:verbosity] >= 2
                 s << " --config #{@config[:node_config_file]}"
                 s << " -E #{bootstrap_environment}" unless bootstrap_environment.nil?
