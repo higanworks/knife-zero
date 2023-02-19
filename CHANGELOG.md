@@ -3,6 +3,12 @@
 ## Unreleased
 
 none.
+
+## v2.5.0
+
+- CINC client bootstrap fix [#168](https://github.com/higanworks/knife-zero/pull/168) HT [@Spirtulus](https://github.com/Spirtulus)
+- drop support chef-client < 16.6
+
 ## v2.4.2
 
 - compatibility: Check knife version instead of chef version before overriding knife method [#162](https://github.com/higanworks/knife-zero/pull/162) HT [@cgunther](https://github.com/cgunther)
