@@ -111,12 +111,12 @@ class Chef
 
       def start_chef_client # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize, Metrics/CyclomaticComplexity
         client_path = @config[:use_sudo] || Chef::Config[:knife][:use_sudo] ? 'sudo ' : ''
-        client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}chef-client"
+        client_path = @config[:chef_client_path] ? "#{client_path}#{@config[:chef_client_path]}" : "#{client_path}#{ChefUtils::Dist::Infra::CLIENT}"
         s = String.new(client_path)
         s << ' -l debug' if @config[:verbosity] && @config[:verbosity] >= 2
         s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
         s << " -o #{@config[:override_runlist]}" if @config[:override_runlist]
-        s << ' -j /etc/chef/chef_client_json.json' if @config[:json_attribs]
+        s << ' -j /etc/' + ChefUtils::Dist::Infra::DIR_SUFFIX + '/chef_client_json.json' if @config[:json_attribs]
         s << " --splay #{@config[:splay]}" if @config[:splay]
         s << " -n #{@config[:named_run_list]}" if @config[:named_run_list]
         s << " --config #{@config[:node_config_file]}"

@@ -78,7 +78,7 @@ class Chef
 
       def build_client_json
         <<-SCRIPT
-        sudo sh -c 'cat <<"EOP" > /etc/chef/chef_client_json.json
+        sudo sh -c 'cat <<"EOP" > /etc/#{ChefUtils::Dist::Infra::DIR_SUFFIX}/chef_client_json.json
         #{config[:chef_client_json].to_json}
         '
         SCRIPT
