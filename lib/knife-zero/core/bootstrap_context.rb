@@ -60,6 +60,7 @@ class Chef
                 s << " -S http://127.0.0.1:#{::Knife::Zero::Helper.zero_remote_port}"
                 s << " -K #{[::File.dirname(@config[:node_config_file]), 'validation.pem'].join('/')}"
                 s << ' -W' if @config[:why_run]
+                s << " -N #{@config[:chef_node_name]}" if @config[:chef_node_name]
                 Chef::Log.info 'Remote command: ' + s
                 s
               else
