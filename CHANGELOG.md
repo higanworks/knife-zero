@@ -4,6 +4,10 @@
 
 none.
 
+## v2.5.2
+
+- Bootstrap: Allow overriding node name for the new node #170 HT [@Spirtulus](https://github.com/Spirtulus)
+
 ## v2.5.1
 
 - Put some more Chefutils constants [#169](https://github.com/higanworks/knife-zero/pull/169) HT [@Spirtulus](https://github.com/Spirtulus)
