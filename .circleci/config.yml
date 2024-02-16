@@ -3,7 +3,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: "ruby:2.7"
+      - image: "cimg/ruby:3.3"
     steps:
       - checkout
       - run:
@@ -25,7 +25,7 @@ jobs:
           command: bundle exec ruby test/run_test.rb -v
   integration_test:
     docker:
-      - image: "ruby:2.7"
+      - image: "cimg/ruby:3.3"
     steps:
       - checkout
       - setup_remote_docker:
