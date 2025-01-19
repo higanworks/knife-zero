@@ -18,19 +18,21 @@ class Chef
           alias_method :orig_config_content, :config_content
           def config_content # rubocop:disable Metrics/AbcSize
             client_rb = orig_config_content
-            allowed_lists = []
+            attribute_lists = []
             %w{
               automatic_attribute_whitelist default_attribute_whitelist normal_attribute_whitelist override_attribute_whitelist
               allowed_automatic_attributes allowed_default_attributes allowed_normal_attributes allowed_override_attributes
-            }.each do |allowed_list|
-              next unless Chef::Config[:knife][allowed_list.to_sym]&.is_a?(Array)
+              automatic_attribute_blacklist default_attribute_blacklist normal_attribute_blacklist override_attribute_blacklist
+              blocked_automatic_attributes blocked_default_attributes blocked_normal_attributes blocked_override_attributes
+            }.each do |attribute_list|
+              next unless Chef::Config[:knife][attribute_list.to_sym]&.is_a?(Array)
 
-              allowed_lists.push([
-                allowed_list,
-                Chef::Config[:knife][allowed_list.to_sym].to_s
+              attribute_lists.push([
+                attribute_list,
+                Chef::Config[:knife][attribute_list.to_sym].to_s
               ].join(' '))
             end
-            client_rb << allowed_lists.join("\n")
+            client_rb << attribute_lists.join("\n")
 
             ## For support policy_document_native_api
             if @config[:policy_name]

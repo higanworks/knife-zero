@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-none.
+- Bootstrap: Include blocked attribute lists in config [#171](https://github.com/higanworks/knife-zero/pull/171) HT [@cgunther](https://github.com/cgunther)
 
 ## v2.5.2
 
