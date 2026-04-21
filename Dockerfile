@@ -11,6 +11,8 @@ RUN tar xvzf chef-cli.tgz && mv chef-chef-cli* chef-cli
 # use ohai latest
 RUN wget -nv https://codeload.github.com/chef/ohai/legacy.tar.gz/main -O ohai.tgz
 RUN tar xvzf ohai.tgz && mv chef-ohai-* ohai
+RUN wget -nv https://codeload.github.com/chef/knife/legacy.tar.gz/main -O knife.tgz
+RUN tar xvzf knife.tgz && mv chef-knife-* knife
 
 WORKDIR /home/chef/chef-utils
 RUN touch CONTRIBUTING.md
@@ -34,7 +36,7 @@ WORKDIR /home/chef
 RUN gem build chef.gemspec
 RUN gem install -V -b chef*.gem --no-document
 
-WORKDIR /home/chef/knife
+WORKDIR /home/knife
 RUN touch CONTRIBUTING.md
 RUN gem build knife.gemspec
 RUN gem install -V -b knife*.gem --no-document
