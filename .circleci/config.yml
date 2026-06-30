@@ -35,7 +35,7 @@ jobs:
           command: docker build -t local/knife-zero .
       - run:
           name: Run integration test
-          command: docker run -it local/knife-zero sh run.sh
+          command: docker run -e CHEF_LICENSE_KEY -it local/knife-zero sh run.sh
 
 workflows:
   version: 2
